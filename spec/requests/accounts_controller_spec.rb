@@ -14,8 +14,12 @@ RSpec.describe 'Account Requests', type: :request do
                    user: user)
   end
 
-  before(:each) do
+  before do
     sign_in user
+  end
+
+  after do
+    Rails.application.reload_routes!
   end
 
   describe 'GET index' do
