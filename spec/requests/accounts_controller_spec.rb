@@ -99,20 +99,19 @@ RSpec.describe 'Account Requests', type: :request do
         follow_redirect!
         expect(response).to render_template(:edit)
         expect(response.body).to include('Name is invalid')
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
-    # context 'when parameters are valid' do
-    #   it 'updates account with new params' do
-    #     put "/accounts/#{account.id}", params: valid_params
-    #     expect(Account.last.name).to eq('New Name')
-    #   end
-
-    #   it 'redirects to account_path' do
-    #     put "/accounts/#{account.id}", params: valid_params
-    #     expect(response).to redirect_to(account_path(account))
-    #   end
-    # end
+    context 'when parameters are valid' do
+      it 'updates account with new params' do
+        put "/accounts/#{account.id}", params: valid_params
+        expect(Account.last.name).to eq('New Name')
+        expect(response).to redirect_to(account_path(account))
+        follow_redirect!
+        expect(response).to render_template(:show)
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
