@@ -1,0 +1,18 @@
+<p>Net Worth Dashboard</p>
+
+Hello <%= current_user.name %>!
+<p>Your accounts:</p>
+
+<% if @accounts.empty? %>
+ <p>No existing accounts. Create one.</p>
+<% else %>
+  <ul>
+  <% @accounts.each do |account| %>
+    <li><%= link_to account.name, account %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<hr>
+<%= link_to 'Add Account', '/accounts/new'%>
+
