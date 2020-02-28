@@ -14,5 +14,6 @@ RSpec.describe Account, type: :model do
     # name validations
     it { should allow_value('My Account Name').for(:name) }
     it { should_not allow_value('123456', '', nil).for(:name) }
+    it { should validate_length_of(:name).is_at_most(40) }
   end
 end

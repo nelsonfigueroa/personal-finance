@@ -3,23 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe 'Account Requests', type: :request do
-  let!(:user) do
+  let(:user) do
     User.create(email: Faker::Internet.email,
                 name: Faker::Name.first_name,
                 password: Faker::Internet.password)
   end
 
-  let!(:account) do
-    Account.create(name: Faker::Bank.name,
+  let(:account) do
+    Account.create(name: Faker::Alphanumeric.alpha(number: 40),
                    user: user)
   end
 
   before do
     sign_in user
-  end
-
-  after do
-    Rails.application.reload_routes!
   end
 
   describe 'GET index' do

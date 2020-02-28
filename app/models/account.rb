@@ -4,5 +4,5 @@ class Account < ApplicationRecord
   belongs_to :user
 
   validates :user, :name, presence: true
-  validates :name, format: { with: /\A[a-zA-Z ]+\z/ } # only letters
+  validates :name, length: { maximum: 40 }, format: { with: /\A[a-zA-Z ]+\z/ } # only letters
 end
