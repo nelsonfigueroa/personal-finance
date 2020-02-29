@@ -30,6 +30,7 @@ RSpec.describe 'Account Requests', type: :request do
     it 'returns 200' do
       get "/accounts/#{account.id}"
       expect(response).to render_template(:show)
+      expect(assigns(:account)).to eq(account)
       expect(response).to have_http_status(:ok)
     end
 
@@ -46,6 +47,7 @@ RSpec.describe 'Account Requests', type: :request do
     it 'returns 200' do
       get '/accounts/new'
       expect(response).to render_template(:new)
+      expect(assigns(:account)).to_not eq(nil)
       expect(response).to have_http_status(:ok)
     end
   end
@@ -75,6 +77,7 @@ RSpec.describe 'Account Requests', type: :request do
     it 'returns 200 if account exists' do
       get "/accounts/#{account.id}/edit"
       expect(response).to render_template(:edit)
+      expect(assigns(:account)).to eq(account)
       expect(response).to have_http_status(:ok)
     end
 
@@ -110,6 +113,7 @@ RSpec.describe 'Account Requests', type: :request do
         expect(response).to redirect_to(account_path(account))
         follow_redirect!
         expect(response).to render_template(:show)
+        expect(assigns(:account)).to eq(account)
         expect(response).to have_http_status(:ok)
       end
     end
