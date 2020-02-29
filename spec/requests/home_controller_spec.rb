@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :request do
+RSpec.describe 'Home Requests', type: :request do
   describe 'GET index' do
     before(:example) { get root_path }
 
