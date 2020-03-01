@@ -69,7 +69,7 @@ RSpec.describe 'Account Requests', type: :request do
       post '/accounts', params: invalid_params
       expect(response).to render_template(:new)
       expect(response.body).to include('Name is invalid')
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 

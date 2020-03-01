@@ -22,7 +22,9 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(account_params)
-    @account.user_id = @user.id # keep here for security, hidden fields can easily be modified.
+
+    # keep here for security, hidden fields can easily be modified.
+    @account.user_id = @user.id
 
     if @account.save
       flash[:notice] = 'Account created'
