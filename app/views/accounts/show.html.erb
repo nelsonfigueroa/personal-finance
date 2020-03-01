@@ -1,3 +1,12 @@
 <%= @account.name %>
 
 <p><%= link_to 'Edit', edit_account_path %>
+<p><%= link_to 'Add Statement', new_account_statement_path(account_id: @account.id) %>
+
+<hr>
+
+<% unless @statements.empty? %>
+	<% @statements.each do |statement| %>
+		<p>$<%= statement.balance %> | <%= statement.date %> | <%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement) %></p>
+	<% end %>
+<% end %>

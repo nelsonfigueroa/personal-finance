@@ -9,6 +9,10 @@ Hello <%= current_user.name %>!
   <ul>
   <% @accounts.each do |account| %>
     <li><%= link_to account.name, account %></li>
+    <% if account.statements.last %>
+	    <li>Last statement: <%= account.statements.last.balance %> | <%= account.statements.last.date %> </li>
+    <% end %>
+    <br>
   <% end %>
   </ul>
 <% end %>

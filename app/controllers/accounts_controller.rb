@@ -14,6 +14,8 @@ class AccountsController < ApplicationController
       flash[:alert] = 'Invalid ID'
       redirect_to(accounts_path)
     end
+
+    @statements = @account.statements
   end
 
   def new

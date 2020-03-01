@@ -1,0 +1,7 @@
+<%= form_with model: @statement, url: {controller: 'statements', action: 'create'} do |f| %>
+  <%= f.label :balance, 'Balance:' %>
+  <%= f.number_field :balance, step: 0.01 %>
+  <%= f.label :date, 'Date:' %>
+  <%= f.date_field :date %>
+  <%= f.submit 'Submit' %>
+<% end %>
