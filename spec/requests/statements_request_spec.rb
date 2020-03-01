@@ -14,9 +14,12 @@ RSpec.describe 'Statement Requests', type: :request do
                    user: user)
   end
 
+  let(:date) { Faker::Date.in_date_period(year: 2018, month: 2) }
+  let(:price) { Faker::Commerce.price(range: 0..100_000.0) }
+
   let(:statement) do
-    Statement.create(balance: Faker::Commerce.price(range: 0..100_000.0),
-                     date: Faker::Date.in_date_period(year: 2018, month: 2),
+    Statement.create(balance: price,
+                     date: date,
                      account: account)
   end
 
@@ -44,7 +47,7 @@ RSpec.describe 'Statement Requests', type: :request do
 
   describe 'POST create' do
     context 'when parameters are valid' do
-      let(:valid_params) { { statement: { balance: Faker::Commerce.price(range: 0..100_000.0), date: '1/1/2020' } } }
+      let(:valid_params) { { statement: { balance: price, date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: valid_params
       end
@@ -74,7 +77,7 @@ RSpec.describe 'Statement Requests', type: :request do
     end
 
     context 'when parameters are invalid' do
-      let(:invalid_params) { { statement: { balance: Faker::Alphanumeric.alpha(number: 5), date: '1/1/2020' } } }
+      let(:invalid_params) { { statement: { balance: Faker::Alphanumeric.alpha(number: 5), date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: invalid_params
       end
@@ -139,8 +142,8 @@ RSpec.describe 'Statement Requests', type: :request do
 
   describe 'PUT update' do
     context 'when parameters are valid' do
-      let(:new_balance) { Faker::Commerce.price(range: 0..100_000.0) }
-      let(:valid_params) { { statement: { balance: new_balance, date: '1/1/2020' } } }
+      let(:new_balance) { price }
+      let(:valid_params) { { statement: { balance: new_balance, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
       end
@@ -169,7 +172,7 @@ RSpec.describe 'Statement Requests', type: :request do
     end
 
     context 'when parameters are invalid' do
-      let(:invalid_params) { { statement: { balance: Faker::String.random, date: '1/1/2020' } } }
+      let(:invalid_params) { { statement: { balance: Faker::String.random, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
       end
