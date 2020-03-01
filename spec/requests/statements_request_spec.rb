@@ -23,6 +23,15 @@ RSpec.describe 'Statement Requests', type: :request do
   before do
     sign_in user
   end
+  
+  # under each account write down the previous month's statement if it exists
+  # a list of all statements for an account will show up when viewing an account
+  # need to write additional specs in account request specs for statements
+  # GET /accounts, it 'should show last statement if it exists' do
+  # GET /account/1, it 'should show all account statements' do
+  #
+  # Routes for statements:
+  # Actions: new, create, edit, update
 
   describe 'GET new' do
     it 'renders new template' do
@@ -72,7 +81,20 @@ RSpec.describe 'Statement Requests', type: :request do
   end
 
   describe 'PUT update' do
-    # pending
+    let(:valid_params) { { statement: { balance: 200.34, date: '1/1/2020' } } }
+    let(:invalid_params) { { statement: { balance: 'abc', date: '1/1/2020' } } }
+
+    context 'when parameters are valid' do
+      xit 'updates statement with new params and renders account show template' do
+
+      end
+    end
+
+    context 'when parameters are invalid' do
+      xit 'redirects to edit_statement_path and renders edit template' do
+
+      end
+    end
   end
 end
 

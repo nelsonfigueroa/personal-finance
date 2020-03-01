@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    resources :accounts
+    resources :accounts do
+    	resources :statements, only: %i[new create edit update]
+    end
   end
 end
