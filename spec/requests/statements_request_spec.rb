@@ -94,7 +94,6 @@ RSpec.describe 'Statement Requests', type: :request do
   end
 
   describe 'GET edit' do
-
     context 'if statement exists' do
       before do
         get "/accounts/#{account.id}/statements/#{statement.id}/edit"
