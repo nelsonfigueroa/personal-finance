@@ -160,19 +160,46 @@ RSpec.describe 'Account Requests', type: :request do
   end
 
   describe 'GET edit' do
-    it 'renders edit template if account exists' do
-      get "/accounts/#{account.id}/edit"
-      expect(response).to render_template(:edit)
-      expect(assigns(:account)).to eq(account)
-      expect(response).to have_http_status(:ok)
+    context 'if account exists' do
+      before do
+        get "/accounts/#{account.id}/edit"
+      end
+
+      it 'renders edit template' do
+        expect(response).to render_template(:edit)
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'redirects and renders index template if account does not exist' do
-      get '/accounts/123456/edit'
-      expect(response).to redirect_to(accounts_path)
-      follow_redirect!
-      expect(response).to render_template(:index)
-      expect(response).to have_http_status(:ok)
+    context 'if account does not exist' do
+      before do
+        get '/accounts/123456/edit'
+      end
+
+      it 'redirects to accounts_path' do
+        expect(response).to redirect_to(accounts_path)
+      end
+
+      it 'renders index template' do
+        follow_redirect!
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
