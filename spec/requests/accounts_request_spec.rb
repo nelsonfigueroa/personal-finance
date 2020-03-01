@@ -204,29 +204,66 @@ RSpec.describe 'Account Requests', type: :request do
   end
 
   describe 'PUT update' do
-    let(:valid_params) { { account: { name: 'New Name' } } }
-    let(:invalid_params) { { account: { name: 123 } } }
-
     context 'when parameters are valid' do
-      it 'updates account with new params and renders show template' do
+      let(:valid_params) { { account: { name: 'New Name' } } }
+      before do
         put "/accounts/#{account.id}", params: valid_params
+      end
+
+      it 'updates @account with new params' do
         expect(Account.last.name).to eq('New Name')
+      end
+
+      it 'redirects to account_path' do
         expect(response).to redirect_to(account_path(account))
+      end
+
+      it 'renders show template' do
         follow_redirect!
         expect(response).to render_template(:show)
+      end
+
+      it 'assigns @account in show template' do
+        follow_redirect!
         expect(assigns(:account)).to eq(account)
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'when parameters are invalid' do
-      it 'redirects to edit_account_path and renders edit template' do
+      let(:invalid_params) { { account: { name: 123 } } }
+      before do
         put "/accounts/#{account.id}", params: invalid_params
-        expect(flash[:alert].empty?).to eq(false)
+      end
+
+      it 'redirects to edit_account_path' do
         expect(response).to redirect_to(edit_account_path(account))
+      end
+
+      it 'renders edit template' do
         follow_redirect!
         expect(response).to render_template(:edit)
+      end
+
+      it 'includes "Name is invalid" in response body' do
+        follow_redirect!
         expect(response.body).to include('Name is invalid')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
         expect(response).to have_http_status(:ok)
       end
     end
