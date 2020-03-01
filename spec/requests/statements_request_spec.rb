@@ -41,7 +41,7 @@ RSpec.describe 'Statement Requests', type: :request do
       post "/accounts/#{account.id}/statements", params: valid_params
       expect(response).to redirect_to(account_path(account))
       follow_redirect!
-      expect(response).to render_template(:show) # this might not work, might need to specify controller?
+      expect(response).to render_template('accounts/show')
       expect(response.body).to include('Statement created')
       expect(response).to have_http_status(:ok)
     end
@@ -66,7 +66,7 @@ RSpec.describe 'Statement Requests', type: :request do
       get "/accounts/#{account.id}/statements/123456/edit"
       expect(response).to redirect_to(account_path(account))
       follow_redirect!
-      expect(response).to render_template(:show) # this might not work again
+      expect(response).to render_template('accounts/show')
       expect(response).to have_http_status(:ok)
     end
   end
@@ -76,14 +76,24 @@ RSpec.describe 'Statement Requests', type: :request do
     let(:invalid_params) { { statement: { balance: 'abc', date: '1/1/2020' } } }
 
     context 'when parameters are valid' do
-      xit 'updates statement with new params and renders account show template' do
-
+      it 'updates statement with new params and renders account show template' do
+        put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
+        expect(Statement.last.balance).to eq(200.34)
+        expect(response).to redirect_to(account_path(account))
+        follow_redirect!
+        expect(response).to render_template('accounts/show')
+        expect(response).to have_http_status(:ok)
       end
     end
 
     context 'when parameters are invalid' do
-      xit 'redirects to edit_statement_path and renders edit template' do
-
+      it 'redirects to edit_statement_path and renders edit template' do
+        put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
+        expect(response).to redirect_to(edit_account_statement_path(account_id: account.id, statement: statement))
+        follow_redirect!
+        expect(response).to render_template(:edit)
+        expect(response.body).to include('Balance is not a number')
+        expect(response).to have_http_status(:ok)
       end
     end
   end
