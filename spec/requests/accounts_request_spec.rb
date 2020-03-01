@@ -110,7 +110,7 @@ RSpec.describe 'Account Requests', type: :request do
 
   describe 'POST create' do
     context 'when parameters are valid' do
-      let(:valid_params) { { account: { name: 'Foo' } } }
+      let(:valid_params) { { account: { name: Faker::Alphanumeric.alpha(number: 40) } } }
       before do
         post '/accounts', params: valid_params
       end
@@ -140,7 +140,7 @@ RSpec.describe 'Account Requests', type: :request do
     end
 
     context 'when parameters are invalid' do
-      let(:invalid_params) { { account: { name: 123 } } }
+      let(:invalid_params) { { account: { name: Faker::Number.number(digits: 3) } } }
       before do
         post '/accounts', params: invalid_params
       end
@@ -205,13 +205,14 @@ RSpec.describe 'Account Requests', type: :request do
 
   describe 'PUT update' do
     context 'when parameters are valid' do
-      let(:valid_params) { { account: { name: 'New Name' } } }
+      let(:new_name) { Faker::Alphanumeric.alpha(number: 40) }
+      let(:valid_params) { { account: { name: new_name } } }
       before do
         put "/accounts/#{account.id}", params: valid_params
       end
 
       it 'updates @account with new params' do
-        expect(Account.last.name).to eq('New Name')
+        expect(Account.last.name).to eq(new_name)
       end
 
       it 'redirects to account_path' do

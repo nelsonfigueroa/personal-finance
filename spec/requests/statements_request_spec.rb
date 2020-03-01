@@ -44,7 +44,7 @@ RSpec.describe 'Statement Requests', type: :request do
 
   describe 'POST create' do
     context 'when parameters are valid' do
-      let(:valid_params) { { statement: { balance: 200.34, date: '1/1/2020' } } }
+      let(:valid_params) { { statement: { balance: Faker::Commerce.price(range: 0..100_000.0), date: '1/1/2020' } } }
       before do
         post "/accounts/#{account.id}/statements", params: valid_params
       end
@@ -74,7 +74,7 @@ RSpec.describe 'Statement Requests', type: :request do
     end
 
     context 'when parameters are invalid' do
-      let(:invalid_params) { { statement: { balance: 'abc', date: '1/1/2020' } } }
+      let(:invalid_params) { { statement: { balance: Faker::Alphanumeric.alpha(number: 5), date: '1/1/2020' } } }
       before do
         post "/accounts/#{account.id}/statements", params: invalid_params
       end
@@ -139,27 +139,62 @@ RSpec.describe 'Statement Requests', type: :request do
   end
 
   describe 'PUT update' do
-    let(:valid_params) { { statement: { balance: 200.34, date: '1/1/2020' } } }
-    let(:invalid_params) { { statement: { balance: 'abc', date: '1/1/2020' } } }
-
     context 'when parameters are valid' do
-      it 'updates statement with new params and renders account show template' do
+      let(:new_balance) { Faker::Commerce.price(range: 0..100_000.0) }
+      let(:valid_params) { { statement: { balance: new_balance, date: '1/1/2020' } } }
+      before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
-        expect(Statement.last.balance).to eq(200.34)
+      end
+
+      it 'updates @statement with new params' do
+        expect(Statement.last.balance).to eq(new_balance)
+      end
+
+      it 'redirects to account_path' do
         expect(response).to redirect_to(account_path(account))
+      end
+
+      it 'renders account/show template' do
         follow_redirect!
         expect(response).to render_template('accounts/show')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'when parameters are invalid' do
-      it 'redirects to edit_statement_path and renders edit template' do
+      let(:invalid_params) { { statement: { balance: Faker::String.random, date: '1/1/2020' } } }
+      before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
+      end
+
+      it 'redirects to edit_account_statement_path' do
         expect(response).to redirect_to(edit_account_statement_path(account_id: account.id, statement: statement))
+      end
+
+      it 'renders edit template' do
         follow_redirect!
         expect(response).to render_template(:edit)
+      end
+
+      it 'includes "Balance is not a number" in response body' do
+        follow_redirect!
         expect(response.body).to include('Balance is not a number')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
         expect(response).to have_http_status(:ok)
       end
     end
