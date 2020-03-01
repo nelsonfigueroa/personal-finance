@@ -23,18 +23,10 @@ RSpec.describe 'Statement Requests', type: :request do
   before do
     sign_in user
   end
-  
-  # under each account write down the previous month's statement if it exists
-  # a list of all statements for an account will show up when viewing an account
-  # need to write additional specs in account request specs for statements
-
-  #
-  # Routes for statements:
-  # Actions: new, create, edit, update
 
   describe 'GET new' do
     it 'renders new template' do
-      get "/statements/new"
+      get "/accounts/#{account.id}/statements/new"
       expect(response).to render_template(:new)
       expect(assigns(:statement)).to_not eq(nil)
       expect(response).to have_http_status(:ok)
@@ -46,7 +38,7 @@ RSpec.describe 'Statement Requests', type: :request do
     let(:invalid_params) { { statement: { balance: 'abc', date: '1/1/2020' } } }
     
     it 'redirects to account_path if statement is created' do
-      post '/statements', params: valid_params
+      post "/accounts/#{account.id}/statements", params: valid_params
       expect(response).to redirect_to(account_path(account))
       follow_redirect!
       expect(response).to render_template(:show) # this might not work, might need to specify controller?
@@ -55,23 +47,23 @@ RSpec.describe 'Statement Requests', type: :request do
     end
 
     it 'renders new template if statement is not created' do
-      post '/statements', params: invalid_params
+      post "/accounts/#{account.id}/statements", params: invalid_params
       expect(response).to render_template(:new)
-      expect(response.body).to include('Balance is invalid')
+      expect(response.body).to include('Balance is not a number')
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'GET edit' do
     it 'renders edit template if statement exists' do
-      get "/statements/#{statement.id}/edit"
+      get "/accounts/#{account.id}/statements/#{statement.id}/edit"
       expect(response).to render_template(:edit)
       expect(assigns(:statement)).to eq(statement)
       expect(response).to have_http_status(:ok)
     end
 
     it 'redirects and renders account show template if statement does not exist' do
-      get '/statements/123456/edit'
+      get "/accounts/#{account.id}/statements/123456/edit"
       expect(response).to redirect_to(account_path(account))
       follow_redirect!
       expect(response).to render_template(:show) # this might not work again
