@@ -14,7 +14,20 @@ RSpec.describe 'Account Requests', type: :request do
                    user: user)
   end
 
+  let(:statement) do
+    Statement.create(balance: Faker::Commerce.price(range: 0..100_000.0),
+                     date: Faker::Date.in_date_period(year: 2018, month: 2),
+                     account: account)
+  end
+
+  def create_statements
+    5.times do
+      account.statements << statement
+    end
+  end
+
   before do
+    create_statements
     sign_in user
   end
 
@@ -22,6 +35,7 @@ RSpec.describe 'Account Requests', type: :request do
     it 'renders index template' do
       get '/accounts'
       expect(response).to render_template(:index)
+      expect(assigns(:accounts)).to eq(user.accounts)
       expect(response).to have_http_status(:ok)
     end
   end
@@ -31,6 +45,7 @@ RSpec.describe 'Account Requests', type: :request do
       get "/accounts/#{account.id}"
       expect(response).to render_template(:show)
       expect(assigns(:account)).to eq(account)
+      expect(assigns(:statements)).to eq(account.statements)
       expect(response).to have_http_status(:ok)
     end
 

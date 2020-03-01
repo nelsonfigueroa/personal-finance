@@ -13,9 +13,9 @@ class AccountsController < ApplicationController
     if @account.nil?
       flash[:alert] = 'Invalid ID'
       redirect_to(accounts_path)
+    else
+      @statements = @account.statements
     end
-
-    @statements = @account.statements
   end
 
   def new

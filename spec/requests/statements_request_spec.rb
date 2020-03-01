@@ -27,8 +27,7 @@ RSpec.describe 'Statement Requests', type: :request do
   # under each account write down the previous month's statement if it exists
   # a list of all statements for an account will show up when viewing an account
   # need to write additional specs in account request specs for statements
-  # GET /accounts, it 'should show last statement if it exists' do
-  # GET /account/1, it 'should show all account statements' do
+
   #
   # Routes for statements:
   # Actions: new, create, edit, update
