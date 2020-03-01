@@ -91,32 +91,71 @@ RSpec.describe 'Account Requests', type: :request do
   end
 
   describe 'GET new' do
-    it 'renders new template' do
+    before do
       get '/accounts/new'
+    end
+
+    it 'renders new template' do
       expect(response).to render_template(:new)
+    end
+
+    it 'assigns unsaved @account' do
       expect(assigns(:account)).to_not eq(nil)
+    end
+
+    it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'POST create' do
-    let(:valid_params) { { account: { name: 'Foo' } } }
-    let(:invalid_params) { { account: { name: 123 } } }
+    context 'when parameters are valid' do
+      let(:valid_params) { { account: { name: 'Foo' } } }
+      before do
+        post '/accounts', params: valid_params
+      end
 
-    it 'redirects to accounts_path if account is created' do
-      post '/accounts', params: valid_params
-      expect(response).to redirect_to(accounts_path)
-      follow_redirect!
-      expect(response).to render_template(:index)
-      expect(response.body).to include('Account created')
-      expect(response).to have_http_status(:ok)
+      it 'redirects to account_path' do
+        expect(response).to redirect_to(accounts_path)
+      end
+
+      it 'renders index template' do
+        follow_redirect!
+        expect(response).to render_template(:index)
+      end
+
+      it 'includes "Account created" in response body' do
+        follow_redirect!
+        expect(response.body).to include('Account created')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'renders new template if account is not created' do
-      post '/accounts', params: invalid_params
-      expect(response).to render_template(:new)
-      expect(response.body).to include('Name is invalid')
-      expect(response).to have_http_status(:ok)
+    context 'when parameters are invalid' do
+      let(:invalid_params) { { account: { name: 123 } } }
+      before do
+        post '/accounts', params: invalid_params
+      end
+
+      it 'renders new template' do
+        expect(response).to render_template(:new)
+      end
+
+      it 'includes "Name is invalid" in response body' do
+        expect(response.body).to include('Name is invalid')
+      end
+
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
