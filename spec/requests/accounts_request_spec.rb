@@ -20,41 +20,73 @@ RSpec.describe 'Account Requests', type: :request do
                      account: account)
   end
 
-  def create_statements
-    5.times do
-      account.statements << statement
-    end
-  end
-
   before do
-    create_statements
     sign_in user
   end
 
   describe 'GET index' do
-    it 'renders index template' do
+    before do
       get '/accounts'
+    end
+
+    it 'renders index template' do
       expect(response).to render_template(:index)
+    end
+
+    it 'assigns @accounts' do
       expect(assigns(:accounts)).to eq(user.accounts)
+    end
+
+    it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'GET show' do
-    it 'renders show template, assigns @account if account exists' do
-      get "/accounts/#{account.id}"
-      expect(response).to render_template(:show)
-      expect(assigns(:account)).to eq(account)
-      expect(assigns(:statements)).to eq(account.statements)
-      expect(response).to have_http_status(:ok)
+    context 'if account exists' do
+      before do
+        get "/accounts/#{account.id}"
+      end
+
+      it 'renders show template' do
+        expect(response).to render_template(:show)
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
+      it 'assigns @statements' do
+        expect(assigns(:statements)).to eq(account.statements)
+      end
+
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'redirects and renders index template if account does not exist' do
-      get '/accounts/123456'
-      expect(response).to redirect_to(accounts_path)
-      follow_redirect!
-      expect(response).to render_template(:index)
-      expect(response).to have_http_status(:ok)
+    context 'if account does not exist' do
+      before do
+        get '/accounts/123456'
+      end
+
+      it 'redirects to accounts_path' do
+        expect(response).to redirect_to(accounts_path)
+      end
+
+      it 'renders index template' do
+        follow_redirect!
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
