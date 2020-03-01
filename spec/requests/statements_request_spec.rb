@@ -84,7 +84,6 @@ RSpec.describe 'Statement Requests', type: :request do
       end
 
       it 'includes "Balance is not a number" in response body' do
-
         expect(response.body).to include('Balance is not a number')
       end
 
@@ -95,19 +94,47 @@ RSpec.describe 'Statement Requests', type: :request do
   end
 
   describe 'GET edit' do
-    it 'renders edit template if statement exists' do
-      get "/accounts/#{account.id}/statements/#{statement.id}/edit"
-      expect(response).to render_template(:edit)
-      expect(assigns(:statement)).to eq(statement)
-      expect(response).to have_http_status(:ok)
+
+    context 'if statement exists' do
+      before do
+        get "/accounts/#{account.id}/statements/#{statement.id}/edit"
+      end
+
+      it 'renders edit template' do
+        expect(response).to render_template(:edit)
+      end
+
+      it 'assigns @statement' do
+        expect(assigns(:statement)).to eq(statement)
+      end
+
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'redirects and renders account show template if statement does not exist' do
-      get "/accounts/#{account.id}/statements/123456/edit"
-      expect(response).to redirect_to(account_path(account))
-      follow_redirect!
-      expect(response).to render_template('accounts/show')
-      expect(response).to have_http_status(:ok)
+    context 'if statement does not exist' do
+      before do
+        get "/accounts/#{account.id}/statements/123456/edit"
+      end
+
+      it 'redirects to account_path' do
+        expect(response).to redirect_to(account_path(account))
+      end
+
+      it 'renders accounts/show template' do
+        follow_redirect!
+        expect(response).to render_template('accounts/show')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
@@ -138,34 +165,3 @@ RSpec.describe 'Statement Requests', type: :request do
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
