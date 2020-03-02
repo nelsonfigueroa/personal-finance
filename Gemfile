@@ -24,7 +24,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry', '~> 0.12.2'
-
   # for rails 6 compatability
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0.beta2'
@@ -48,10 +47,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
