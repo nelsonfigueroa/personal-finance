@@ -57,6 +57,10 @@ RSpec.describe 'Account Requests', type: :request do
         get '/accounts/123456'
       end
 
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
+      end
+
       it 'redirects to accounts_path' do
         expect(response).to redirect_to(accounts_path)
       end
@@ -102,6 +106,10 @@ RSpec.describe 'Account Requests', type: :request do
         post '/accounts', params: valid_params
       end
 
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
       it 'redirects to account_path' do
         expect(response).to redirect_to(accounts_path)
       end
@@ -130,6 +138,10 @@ RSpec.describe 'Account Requests', type: :request do
       let(:invalid_params) { { account: { name: Faker::Number.number(digits: 3) } } }
       before do
         post '/accounts', params: invalid_params
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
       end
 
       it 'renders new template' do
@@ -170,6 +182,10 @@ RSpec.describe 'Account Requests', type: :request do
         get '/accounts/123456/edit'
       end
 
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
+      end
+
       it 'redirects to accounts_path' do
         expect(response).to redirect_to(accounts_path)
       end
@@ -202,6 +218,10 @@ RSpec.describe 'Account Requests', type: :request do
         expect(Account.last.name).to eq(new_name)
       end
 
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
       it 'redirects to account_path' do
         expect(response).to redirect_to(account_path(account))
       end
@@ -230,6 +250,10 @@ RSpec.describe 'Account Requests', type: :request do
       let(:invalid_params) { { account: { name: 123 } } }
       before do
         put "/accounts/#{account.id}", params: invalid_params
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
       end
 
       it 'redirects to edit_account_path' do
