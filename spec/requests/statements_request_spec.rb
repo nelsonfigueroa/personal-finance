@@ -8,7 +8,7 @@ RSpec.describe 'Statement Requests', type: :request do
   let(:statement) { create(:statement, account: account) }
 
   let(:date) { Faker::Date.in_date_period(year: 2018, month: 2) }
-  let(:price) { Faker::Commerce.price(range: 0..100_000.0) }
+  let(:balance) { Faker::Commerce.price(range: 0..100_000.0) }
 
   before do
     sign_in user
@@ -34,7 +34,7 @@ RSpec.describe 'Statement Requests', type: :request do
 
   describe 'POST create' do
     context 'when parameters are valid' do
-      let(:valid_params) { { statement: { balance: price, date: date } } }
+      let(:valid_params) { { statement: { balance: balance, date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: valid_params
       end
@@ -129,7 +129,7 @@ RSpec.describe 'Statement Requests', type: :request do
 
   describe 'PUT update' do
     context 'when parameters are valid' do
-      let(:new_balance) { price }
+      let(:new_balance) { balance }
       let(:valid_params) { { statement: { balance: new_balance, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
