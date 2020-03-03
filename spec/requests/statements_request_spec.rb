@@ -39,6 +39,10 @@ RSpec.describe 'Statement Requests', type: :request do
         post "/accounts/#{account.id}/statements", params: valid_params
       end
 
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
       it 'redirects to account_path of statement' do
         expect(response).to redirect_to(account_path(account))
       end
@@ -67,6 +71,10 @@ RSpec.describe 'Statement Requests', type: :request do
       let(:invalid_params) { { statement: { balance: Faker::Alphanumeric.alpha(number: 5), date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: invalid_params
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
       end
 
       it 'renders new template' do
@@ -107,6 +115,10 @@ RSpec.describe 'Statement Requests', type: :request do
         get "/accounts/#{account.id}/statements/123456/edit"
       end
 
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
+      end
+
       it 'redirects to account_path' do
         expect(response).to redirect_to(account_path(account))
       end
@@ -139,6 +151,10 @@ RSpec.describe 'Statement Requests', type: :request do
         expect(Statement.last.balance).to eq(new_balance)
       end
 
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
       it 'redirects to account_path' do
         expect(response).to redirect_to(account_path(account))
       end
@@ -162,6 +178,10 @@ RSpec.describe 'Statement Requests', type: :request do
       let(:invalid_params) { { statement: { balance: Faker::String.random, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
       end
 
       it 'redirects to edit_account_statement_path' do
