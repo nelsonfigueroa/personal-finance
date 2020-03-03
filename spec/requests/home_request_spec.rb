@@ -4,19 +4,29 @@ require 'rails_helper'
 
 RSpec.describe 'Home Requests', type: :request do
   describe 'GET index' do
-    before(:example) { get root_path }
+    before do
+      get root_path
+    end
 
-    it 'gets index page' do
+    it 'renders index template' do
       expect(response).to render_template('index')
+    end
+
+    it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'GET faq' do
-    before(:example) { get faq_path }
+    before do
+      get faq_path
+    end
 
-    it 'gets the faq page' do
+    it 'renders faq template' do
       expect(response).to render_template('faq')
+    end
+
+    it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
   end
