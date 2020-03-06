@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many(:accounts) }
+    it { should have_many(:statements) }
   end
 
   describe 'validations' do

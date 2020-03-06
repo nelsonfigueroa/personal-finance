@@ -5,6 +5,10 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = @user.accounts
+
+    @net_worth = Statement.pluck(:date, :balance)
+
+
   end
 
   def show

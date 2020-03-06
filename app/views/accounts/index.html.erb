@@ -1,6 +1,9 @@
 <p>Net Worth Dashboard</p>
 
 Hello <%= current_user.name %>!
+
+<%= line_chart @net_worth %>
+
 <p>Your accounts:</p>
 
 <% if @accounts.empty? %>
