@@ -2,7 +2,16 @@
 
 Hello <%= current_user.name %>!
 
-<%= line_chart @net_worth %>
+<%# area_chart @net_worth %>
+<%= @net_worth %>
+<%= 
+area_chart @user.statements.sorted_by_date.group_by_day(:date).maximum(:balance), 
+prefix: "$", 
+# discrete: true, 
+spanGaps: true, 
+messages: {empty: "No statements recorded."},
+title: "Net Worth"
+%>
 
 <p>Your accounts:</p>
 
