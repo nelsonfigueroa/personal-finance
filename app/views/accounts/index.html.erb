@@ -1,12 +1,10 @@
-<p>Net Worth Dashboard</p>
+<h1>Hello <%= @user.name %>.</h1>
 
-Hello <%= current_user.name %>!
-
-<%# area_chart @net_worth %>
-<%= @net_worth %>
+<p>Total Net Worth: $<%= @user.statements.sum(:balance) %></p>
 <%= 
-area_chart @user.statements.sorted_by_date.group_by_day(:date).maximum(:balance), 
-prefix: "$", 
+area_chart @net_worth, 
+prefix: "$",
+# points: false,
 # discrete: true, 
 spanGaps: true, 
 messages: {empty: "No statements recorded."},

@@ -6,42 +6,14 @@ class AccountsController < ApplicationController
   def index
     @accounts = @user.accounts
 
-    @net_worth = @user.statements.sorted_by_date.pluck(:date, :balance)
+    # @net_worth = @user.statements.sorted_by_date.pluck(:date, :balance)
+    @net_worth = @user.statements.group_by_day(:date).maximum(:balance)
 
-    # by adding this output to the view: <%= @net_worth %>
-    # we can see that the format is arrays within an array
-    # find a way to generate total balance for a given day.
-
-    # maybe it's best to store this in a database so it's faster
-    # maybe this is a good case for service objects?
-    # whenever a user adds a statement, save statement and also modify
-    # the database that calculates net worth.
-    # table could be called worth or something.
-
-    # for now just add private methods to controller
-
-    # but how would this work?
-    # everytime a user modified or creates a statement we need to calculate net worth
-    # and the hard part is taking into account the dates.
-
-    # when a statment is added, sum net worth and save to database
-    # 
-
-    # also, implement the route for displaying chartkick
-    # it's much faster.
-    # then maybe write specs for this?
-
-
-    # you can try .maximum(:balance)
-    # there's also .sum(:balance)
-
-    # maybe create a method of total_net_worth_on(date)
-    # and it gets all statements up to that date and adds up balance
-
-    # but chartkick wants data. So i'd have to create BS data just to fill the dots
-
-    # apparently spanGaps: true should fix it but idk if that option is implemented in Ruby
-    # https://github.com/ankane/vue-chartkick/issues/34
+    # this just gets statements
+    # need to add up net worth over time
+    # so each statement needs to stack on top of the previous one 
+    # how do i do that
+    # first worry about connecting the graph gaps
   end
 
   def show
