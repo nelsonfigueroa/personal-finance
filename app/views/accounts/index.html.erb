@@ -1,7 +1,8 @@
 <h1>Hello <%= @user.name %>.</h1>
 
-<p>Total Net Worth: $<%= @user.statements.sum(:balance) %></p>
-<%= 
+<p>Total Net Worth: $<%= @net_worth %></p>
+
+<%# 
 area_chart @net_worth, 
 prefix: "$",
 # points: false,
