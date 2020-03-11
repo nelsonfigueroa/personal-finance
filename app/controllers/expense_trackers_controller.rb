@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpenseTrackersController < ApplicationController
   before_action :assign_user
 

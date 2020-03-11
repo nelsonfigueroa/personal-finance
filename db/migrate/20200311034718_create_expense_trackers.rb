@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExpenseTrackers < ActiveRecord::Migration[6.0]
   def change
     create_table :expense_trackers do |t|

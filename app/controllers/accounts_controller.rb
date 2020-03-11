@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
 
     # this just gets statements
     # need to add up net worth over time
-    # so each statement needs to stack on top of the previous one 
+    # so each statement needs to stack on top of the previous one
     # how do i do that
     # first worry about connecting the graph gaps
     # then worry about implementation of net worth

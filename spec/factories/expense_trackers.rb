@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :expense_tracker do
     category { Faker::Commerce.department(max: 1) }
