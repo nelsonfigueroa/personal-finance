@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :accounts do
       resources :statements, only: %i[new create edit update]
     end
+
+    resources :expense_trackers
   end
 end
