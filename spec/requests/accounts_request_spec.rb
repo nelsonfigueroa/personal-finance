@@ -110,6 +110,10 @@ RSpec.describe 'Account Requests', type: :request do
         post '/accounts', params: valid_params
       end
 
+      it 'saves @account' do
+        expect(assigns(:account)).to eq(Account.last)
+      end
+
       it 'assigns flash[:notice]' do
         expect(flash[:notice]).to_not be(nil)
       end

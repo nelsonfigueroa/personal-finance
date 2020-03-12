@@ -101,6 +101,10 @@ RSpec.describe 'ExpenseTrackers', type: :request do
         post '/expense_trackers', params: valid_params
       end
 
+      it 'saves @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(ExpenseTracker.last)
+      end
+
       it 'assigns flash[:notice]' do
         expect(flash[:notice]).to_not be(nil)
       end

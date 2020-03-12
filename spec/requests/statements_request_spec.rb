@@ -39,6 +39,10 @@ RSpec.describe 'Statement Requests', type: :request do
         post "/accounts/#{account.id}/statements", params: valid_params
       end
 
+      it 'saves @statement' do
+        expect(assigns(:statement)).to eq(Statement.last)
+      end
+
       it 'assigns flash[:notice]' do
         expect(flash[:notice]).to_not be(nil)
       end
