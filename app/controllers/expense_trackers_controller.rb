@@ -50,7 +50,7 @@ class ExpenseTrackersController < ApplicationController
       redirect_to(@expense_tracker)
     else
       flash[:alert] = @expense_tracker.errors.full_messages.join(', ')
-      redirect_to(edit_expense_trackers_path(@expense_tracker))
+      redirect_to(edit_expense_tracker_path(@expense_tracker))
     end
   end
 
