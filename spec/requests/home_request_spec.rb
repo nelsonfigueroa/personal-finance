@@ -17,13 +17,13 @@ RSpec.describe 'Home Requests', type: :request do
     end
   end
 
-  describe 'GET faq' do
+  describe 'GET about' do
     before do
-      get faq_path
+      get about_path
     end
 
-    it 'renders faq template' do
-      expect(response).to render_template('faq')
+    it 'renders about template' do
+      expect(response).to render_template('about')
     end
 
     it 'returns 200 status' do

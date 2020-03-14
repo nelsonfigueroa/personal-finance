@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root to: 'home#index'
-  get '/faq', to: 'home#faq'
+  get '/about', to: 'home#about'
 
   devise_for :users
 
