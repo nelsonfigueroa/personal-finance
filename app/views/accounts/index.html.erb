@@ -1,7 +1,36 @@
-<h1>Hello <%= @user.name %>.</h1>
-<h2>Here are your accounts.</h2>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Accounts</h1>
+    <h2 class="subtitle">
+      Total Net Worth: <span class="has-text-success">$<%= @net_worth %></span>
+    </h2>
 
-<p>Total Net Worth: $<%= @net_worth %></p>
+    <table class="table is-striped is-hoverable">
+      <thead>
+        <tr> 
+          <th>Name</th>
+          <th>Last Statement</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <% if @accounts.empty? %>
+          <td>No existing accounts. <%= link_to 'Create an account.', '/accounts/new'%></td>
+        <% else %>
+          <% @accounts.each do |account| %>
+            <td><%= link_to account.name, account %></td>
+            <% if account.statements.last %>
+              <td>Last statement: <span class="has-text-success">$<%= account.statements.last.balance %></span></td>
+              <td><%= account.statements.last.date %></td>
+            <% end %>
+          <% end %>
+        <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <%# 
 area_chart @net_worth, 
@@ -12,23 +41,3 @@ spanGaps: true,
 messages: {empty: "No statements recorded."},
 title: "Net Worth"
 %>
-
-<p>Your accounts:</p>
-
-<% if @accounts.empty? %>
- <p>No existing accounts. Create one.</p>
-<% else %>
-  <ul>
-  <% @accounts.each do |account| %>
-    <li><%= link_to account.name, account %></li>
-    <% if account.statements.last %>
-	    <li>Last statement: <%= account.statements.last.balance %> | <%= account.statements.last.date %> </li>
-    <% end %>
-    <br>
-  <% end %>
-  </ul>
-<% end %>
-
-<hr>
-<%= link_to 'Add Account', '/accounts/new'%>
-
