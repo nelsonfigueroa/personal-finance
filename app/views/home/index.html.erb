@@ -1,9 +1,12 @@
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <br>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-<% else %>
-  <%= link_to('Sign up', new_user_registration_path)  %> 
-  <br>
-  <%= link_to('Login', new_user_session_path) %>  
-<% end %>
+<section class="hero is-light is-fullheight is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Take control of your money.
+      </h1>
+      <h2 class="subtitle">
+        Net worth. Expense trackers. Budgets.
+      </h2>
+    </div>
+  </div>
+</section>
