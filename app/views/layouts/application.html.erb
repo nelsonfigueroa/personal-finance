@@ -11,18 +11,6 @@
 
   <body>
     <%= render partial: 'layouts/nav' %>
-    <% if notice %>
-      <div class="notification is-success">
-        <%# <button class="delete"></button> %>
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if alert %>
-      <div class="notification is-warning">
-        <%# <button class="delete"></button> %>
-        <%= alert %>
-      </div>
-    <% end %>
     <%= yield %>
   </body>
 
