@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :statements, only: %i[new create edit update]
     end
 
-    resources :expense_trackers
+    resources :expense_trackers do
+      resources :expenses, only: %i[new create edit update]
+    end
   end
 end
