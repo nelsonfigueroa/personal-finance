@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpensesController < ApplicationController
   before_action :assign_user
   before_action :assign_expense_tracker, only: %i[create edit update]
@@ -24,7 +26,7 @@ class ExpensesController < ApplicationController
     @expense = @user.expense_trackers.find_by(id: @expense_tracker.id).expenses.find_by(id: params[:id])
 
     if @expense.nil?
-      flash[:alert] = "Invalid ID"
+      flash[:alert] = 'Invalid ID'
       redirect_to(expense_tracker_path(@expense_tracker))
     end
   end
