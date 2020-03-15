@@ -1,8 +1,34 @@
 <section class="section">
   <div class="container">
-    <h1 class="title">Expense Trackers</h1>
 
     <%= render partial: 'layouts/notifications' %>
+
+    <h1 class="title">Expense Trackers</h1>
+    <%= link_to 'Create Tracker', new_expense_tracker_path, class: 'button is-link' %>
+    <br><br>
+
+    <% if @expense_trackers.empty? %>
+      <h2 class="subtitle">You have no trackers. Create one!</h2>
+    <% else %>
+      <div class="columns is-multiline">
+      <% @expense_trackers.each do |tracker| %>
+        <div class="column is-one-third">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title is-capitalized">
+                <%= link_to tracker.category, tracker %>
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Recent expenses:
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
 
   </div>
 </section>
