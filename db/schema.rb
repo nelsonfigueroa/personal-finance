@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_034718) do
+ActiveRecord::Schema.define(version: 2020_03_15_063225) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2020_03_11_034718) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_expense_trackers_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer "expense_tracker_id"
+    t.decimal "amount", precision: 12, scale: 2
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expense_tracker_id"], name: "index_expenses_on_expense_tracker_id"
   end
 
   create_table "statements", force: :cascade do |t|
@@ -52,5 +61,6 @@ ActiveRecord::Schema.define(version: 2020_03_11_034718) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "expense_trackers", "users"
+  add_foreign_key "expenses", "expense_trackers"
   add_foreign_key "statements", "accounts"
 end
