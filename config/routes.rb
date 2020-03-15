@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     get '/dashboard', to: 'home#dashboard'
-    
+
     resources :accounts do
       resources :statements, only: %i[new create edit update]
     end

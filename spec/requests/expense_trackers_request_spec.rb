@@ -11,7 +11,7 @@ RSpec.describe 'ExpenseTrackers', type: :request do
   end
 
   describe 'GET index' do
-    before do 
+    before do
       get '/expense_trackers'
     end
 
