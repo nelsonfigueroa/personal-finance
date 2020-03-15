@@ -26,7 +26,7 @@
       <tbody>
 			<% @statements.each do |statement| %>
 				<tr>
-					<td class="has-text-success">$<%= statement.balance %></td>
+					<td class="has-text-success"><%= number_to_currency(statement.balance, delimiter: ",") %></td>
 					<td><%= statement.date %></td>
 					<td><%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: 'button is-small is-rounded' %></td>
 				</tr>

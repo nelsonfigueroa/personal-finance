@@ -7,7 +7,7 @@
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Net Worth (In the future, subtract debt from worth)</p>
-          <p class="title">$<%= @net_worth %></p>
+          <p class="title"><%= number_to_currency(@net_worth, delimiter: ",") %></p>
         </div>
       </div>
       <div class="level-item has-text-centered">

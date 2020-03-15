@@ -5,7 +5,7 @@
 
     <h1 class="title">Accounts</h1>
     <h2 class="subtitle">
-      Total Net Worth: <span class="has-text-success">$<%= @net_worth %></span>
+      Total Net Worth: <span class="has-text-success"><%= number_to_currency(@net_worth, delimeter: ",") %></span>
     </h2>
     <%= link_to 'Add Account', new_account_path, class: 'button is-link' %>
 
@@ -25,7 +25,7 @@
           <tr>
           <td><%= link_to account.name, account %></td>
           <% if account.statements.last %>
-            <td>Last statement: <span class="has-text-success">$<%= account.statements.last.balance %></span></td>
+            <td><span class="has-text-success"><%= number_to_currency(account.statements.last.balance, delimiter: ",") %></span></td>
             <td><%= account.statements.last.date %></td>
           <% end %>
           </tr>
