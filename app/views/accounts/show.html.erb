@@ -1,11 +1,18 @@
 <section class="section">
   <div class="container">
+		<nav class="breadcrumb" aria-label="breadcrumbs">
+			<ul>
+				<li><%= link_to 'Accounts', accounts_path %></li>
+				<li class="is-active"><a href="#" aria-current="page"><%= @account.name %></a></li>
+			</ul>
+		</nav>
+
     <h1 class="title"><%= @account.name %></h1>
 		<%= link_to 'Add Statement', new_account_statement_path(account_id: @account.id), class: 'button is-link' %>
     <%= link_to 'Edit', edit_account_path, class: 'button is-link' %>
 
 		<% unless @statements.empty? %>
-    <table class="table is-striped is-hoverable is-fullwidth is-size-5">
+    <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr> 
           <th>Balance</th>
@@ -14,13 +21,13 @@
         </tr>
       </thead>
       <tbody>
+			<% @statements.each do |statement| %>
 				<tr>
-				<% @statements.each do |statement| %>
 					<td class="has-text-success">$<%= statement.balance %></td>
 					<td><%= statement.date %></td>
 					<td><%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: 'button is-small is-rounded' %></td>
-				<% end %>
 				</tr>
+			<% end %>
 			</tbody>
 		</table>
 

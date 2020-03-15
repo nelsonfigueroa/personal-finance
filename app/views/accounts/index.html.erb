@@ -4,8 +4,9 @@
     <h2 class="subtitle">
       Total Net Worth: <span class="has-text-success">$<%= @net_worth %></span>
     </h2>
+    <%= link_to 'Add Account', new_account_path, class: 'button is-link' %>
 
-    <table class="table is-striped is-hoverable is-fullwidth is-size-5">
+    <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr> 
           <th>Name</th>
@@ -14,19 +15,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-        <% if @accounts.empty? %>
-          <td>No existing accounts. <%= link_to 'Create an account.', '/accounts/new'%></td>
-        <% else %>
-          <% @accounts.each do |account| %>
-            <td><%= link_to account.name, account %></td>
-            <% if account.statements.last %>
-              <td>Last statement: <span class="has-text-success">$<%= account.statements.last.balance %></span></td>
-              <td><%= account.statements.last.date %></td>
-            <% end %>
+      <% if @accounts.empty? %>
+        <tr><td>No existing accounts. <%= link_to 'Create an account.', '/accounts/new'%></td></tr>
+      <% else %>
+        <% @accounts.each do |account| %>
+          <tr>
+          <td><%= link_to account.name, account %></td>
+          <% if account.statements.last %>
+            <td>Last statement: <span class="has-text-success">$<%= account.statements.last.balance %></span></td>
+            <td><%= account.statements.last.date %></td>
           <% end %>
+          </tr>
         <% end %>
-        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
