@@ -1,8 +1,18 @@
 <section class="section">
   <div class="container">
-    <h1 class="title">Tracker Name</h1>
 
     <%= render partial: 'layouts/notifications' %>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+			<ul>
+				<li><%= link_to 'Expense Trackers', expense_trackers_path %></li>
+				<li class="is-active"><a href="#" aria-current="page"><%= @expense_tracker.category %></a></li>
+			</ul>
+		</nav>
+
+    <h1 class="title"><%= @expense_tracker.category %></h1>
+    <a class="button is-link">Add Expense</a>
+    <%= link_to 'Edit', edit_expense_tracker_path, class: 'button is-link' %>
 
   </div>
 </section>
