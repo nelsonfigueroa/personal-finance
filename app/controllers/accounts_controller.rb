@@ -6,17 +6,6 @@ class AccountsController < ApplicationController
   def index
     @accounts = @user.accounts
     @net_worth = @user.statements.sum(:balance)
-
-    # for chartkick
-    # @net_worth = @user.statements.sorted_by_date.pluck(:date, :balance)
-    # @net_worth = @user.statements.group_by_day(:date).maximum(:balance)
-
-    # this just gets statements
-    # need to add up net worth over time
-    # so each statement needs to stack on top of the previous one
-    # how do i do that
-    # first worry about connecting the graph gaps
-    # then worry about implementation of net worth
   end
 
   def show

@@ -2,5 +2,36 @@
   <div class="container">
     <h1 class="title">Hello, <span class="is-capitalized"><%= @user.name %></span></h1>
     <h2 class="subtitle">Here's an overview of your finances</h2>
+
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Net Worth (In the future, subtract debt from worth)</p>
+          <p class="title">$<%= @net_worth %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">+/- Previous Month</p>
+          <p class="title has-text-success">+ $434.11</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Debt</p>
+          <p class="title has-text-danger">- $456.40</p>
+        </div>
+      </div>
+    </nav>
+
+    <%= 
+      area_chart @net_worth_graph, 
+      prefix: "$",
+      # points: false,
+      # discrete: true, 
+      spanGaps: true, 
+      messages: {empty: "No statements recorded."},
+      title: "Net Worth"
+    %>
   </div>
 </section>
