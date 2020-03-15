@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:accounts) }
     it { should have_many(:statements) }
     it { should have_many(:expense_trackers) }
+    it { should have_many(:expenses) }
   end
 
   describe 'validations' do
