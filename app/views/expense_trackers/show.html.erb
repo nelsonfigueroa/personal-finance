@@ -27,7 +27,7 @@
 			<% @expenses.each do |expense| %>
 				<tr>
 					<td class="has-text-success"><%= number_to_currency(expense.amount, delimiter: ",") %></td>
-					<td><%= expense.date %></td>
+					<td><%= expense.date.to_formatted_s(:long) %></td>
 					<td><%= link_to 'Edit', edit_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id, id: expense), class: 'button is-small is-rounded' %></td>
 				</tr>
 			<% end %>

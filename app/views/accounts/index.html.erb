@@ -10,7 +10,7 @@
       <thead>
         <tr> 
           <th>Name</th>
-          <th>Last Statement</th>
+          <th>Latest Statement</th>
           <th>Date</th>
         </tr>
       </thead>
@@ -21,9 +21,9 @@
         <% @accounts.each do |account| %>
           <tr>
           <td><%= link_to account.name, account %></td>
-          <% if account.statements.last %>
-            <td><span class="has-text-success"><%= number_to_currency(account.statements.last.balance, delimiter: ",") %></span></td>
-            <td><%= account.statements.last.date %></td>
+          <% if account.statements.order(:date).last %>
+            <td><span class="has-text-success"><%= number_to_currency(account.statements.order(:date).last.balance, delimiter: ",") %></span></td>
+            <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
           <% end %>
           </tr>
         <% end %>
