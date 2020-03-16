@@ -17,14 +17,14 @@
 		<% unless @statements.empty? %>
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
-        <tr> 
+        <tr>
           <th>Balance</th>
           <th>Date</th>
           <th>Options</th>
         </tr>
       </thead>
       <tbody>
-			<% @statements.each do |statement| %>
+			<% @statements.order('date DESC').each do |statement| %>
 				<tr>
 					<td class="has-text-success"><%= number_to_currency(statement.balance, delimiter: ",") %></td>
 					<td><%= statement.date.to_formatted_s(:long) %></td>
