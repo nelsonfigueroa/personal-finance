@@ -4,7 +4,7 @@ class ExpenseTrackersController < ApplicationController
   before_action :assign_user
 
   def index
-    @expense_trackers = @user.expense_trackers
+    @expense_trackers = @user.expense_trackers.order(:category)
   end
 
   def show
