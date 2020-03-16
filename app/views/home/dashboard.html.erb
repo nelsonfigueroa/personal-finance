@@ -22,27 +22,33 @@
           <% end %>
         </div>
       </div>
+    </nav>
+
+    <%= area_chart @net_worth_graph, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."}, title: "Net Worth" %>
+
+    <nav class="level">
       <div class="level-item has-text-centered">
         <div>
-          <p class="heading">Debt</p>
-          <p class="title has-text-danger">-$456.40</p>
+          <p class="heading">Expenses This Month</p>
+          <p class="title has-text-danger"><%= number_to_currency(@expenses_this_month, delimeter: ",") %></p>
         </div>
       </div>
     </nav>
 
-    <%= 
-      area_chart @net_worth_graph,
-      code: true,
-      colors: ["rgba(72, 199, 116, 0.65)"], 
-      prefix: "$",
-      thousands: ",",
-      # points: false,
-      # discrete: true, 
-      spanGaps: true, 
-      messages: {empty: "No statements recorded."},
-      title: "Net Worth"
-    %>
+    <%= pie_chart @expenses_by_category, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
 
-    <%= pie_chart @expenses %>
+    <%= column_chart @expenses_month_to_month, title: "Expenses Month to Month", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+
+
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Remaining Debt</p>
+          <p class="title has-text-danger">$1422.40</p>
+        </div>
+      </div>
+    </nav>
+
+    <%# show an area graph for this just like net worth %>
   </div>
 </section>
