@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Add Expense</h1>
+
+    <%= render partial: 'layouts/notifications' %>
+
+    <%= form_with model: @expense, url: {controller: 'expenses', action: 'update'} do |f| %>
+      <div class="field">
+        <%= f.label :amount %>
+        <div class="control">
+          <%= f.number_field :amount, step: 0.01, class: 'input' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :date %>
+        <div class="control">
+          <%= f.date_field :date, class: 'input' %>
+        </div>
+      </div>
+
+      <div class="control">
+        <%= f.submit "Add", class: 'button is-primary' %>
+      </div>
+    <% end %>
+  </div>
+</section>

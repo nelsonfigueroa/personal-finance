@@ -42,6 +42,10 @@ RSpec.describe 'ExpenseTrackers', type: :request do
         expect(assigns(:expense_tracker)).to eq(expense_tracker)
       end
 
+      it 'assigns @expenses' do
+        expect(assigns(:expenses)).to eq(expense_tracker.expenses)
+      end
+
       it 'returns 200 status' do
         expect(response).to have_http_status(:ok)
       end

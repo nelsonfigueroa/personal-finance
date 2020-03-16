@@ -11,8 +11,28 @@
 		</nav>
 
     <h1 class="title"><%= @expense_tracker.category %></h1>
-    <a class="button is-link">Add Expense</a>
+		<%= link_to 'Add Expense', new_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id), class: 'button is-link' %>
     <%= link_to 'Edit', edit_expense_tracker_path, class: 'button is-link' %>
 
+		<% unless @expenses.empty? %>
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr> 
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+			<% @expenses.each do |expense| %>
+				<tr>
+					<td class="has-text-success"><%= number_to_currency(expense.amount, delimiter: ",") %></td>
+					<td><%= expense.date %></td>
+					<td><%= link_to 'Edit', edit_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id, id: expense), class: 'button is-small is-rounded' %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+		<% end %>
   </div>
 </section>
