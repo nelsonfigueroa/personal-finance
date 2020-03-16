@@ -5,7 +5,6 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = @user.accounts
-    @net_worth = @user.statements.sum(:balance)
   end
 
   def show

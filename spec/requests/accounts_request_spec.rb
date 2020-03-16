@@ -24,10 +24,6 @@ RSpec.describe 'Account Requests', type: :request do
       expect(assigns(:accounts)).to eq(user.accounts)
     end
 
-    it 'assigns @net_worth' do
-      expect(assigns(:net_worth)).to eq(user.statements.sum(:balance))
-    end
-
     it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
