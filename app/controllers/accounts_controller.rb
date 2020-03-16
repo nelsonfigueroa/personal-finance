@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   before_action :assign_user
 
   def index
-    @accounts = @user.accounts
+    @accounts = @user.accounts.order(:name)
   end
 
   def show
