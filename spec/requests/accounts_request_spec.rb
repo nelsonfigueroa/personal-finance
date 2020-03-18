@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Account Requests', type: :request do
+RSpec.describe 'Account Requests', type: :request do # rubocop:disable Metrics/BlockLength
   let!(:user) { create(:user) }
   let(:account) { create(:account, user: user) }
   let(:statement) { create(:statement, account: account) }
