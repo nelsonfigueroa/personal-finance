@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'faker'
 
 user = User.create(
@@ -21,12 +13,18 @@ account = Account.create(
   user: user
 )
 
-5.times do
+i = 1
+min_balance = 10000.0
+max_balance = 20000.0
+12.times do
   Statement.create(
-    balance: Faker::Commerce.price(range: 0..100_000.0),
-    date: Faker::Date.in_date_period(year: 2019, month: 12),
+    balance: Faker::Commerce.price(range: min_balance..max_balance),
+    date: Faker::Date.in_date_period(year: 2019, month: i),
     account: account
   )
+  i = i + 1
+  min_balance = min_balance + 10000.0
+  max_balance = max_balance + 10000.0
 end
 
 5.times do
@@ -38,7 +36,7 @@ end
 
 25.times do
   Expense.create(
-    amount: Faker::Commerce.price(range: 0..100_000.0),
+    amount: Faker::Commerce.price(range: 0..50.0),
     date: Faker::Date.in_date_period(year: 2018, month: 2),
     expense_tracker: ExpenseTracker.all.sample
   )
