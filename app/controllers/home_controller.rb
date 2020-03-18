@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action :assign_user, only: %i[dashboard]
+
   def index; end
 
   def about; end
 
   def dashboard
-    @user = current_user
-
     # sum of statements from current month
     @net_worth = @user.statements.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:balance)
     # statements this month - sum of statements from last month
@@ -21,5 +21,11 @@ class HomeController < ApplicationController
     @expenses_by_category = @user.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).group(:category).sum(:amount)
     # expenses month to month
     @expenses_month_to_month = @user.expenses.group_by_month(:date).sum(:amount)
+  end
+
+  private
+
+  def assign_user
+    @user = current_user
   end
 end

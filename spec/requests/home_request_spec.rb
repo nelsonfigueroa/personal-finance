@@ -30,4 +30,16 @@ RSpec.describe 'Home Requests', type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe 'GET dashboard' do
+    let!(:user) { create(:user) }
+    before do
+      sign_in user
+      get dashboard_path
+    end
+
+    it 'assigns @user' do
+      expect(assigns(:user)).to eq(user)
+    end
+  end
 end
