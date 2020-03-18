@@ -1,13 +1,42 @@
-<section class="hero is-light is-fullheight is-bold">
-  <%= render partial: 'layouts/notifications' %>
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Take control of your money.
-      </h1>
-      <h2 class="subtitle">
-        Net worth. Expense trackers. Budgets.
-      </h2>
+<%= render partial: 'layouts/notifications' %>
+
+<section class="section is-medium">
+  <div class="container">
+    <h1 class="title">Personal Finance</h1>
+    <h2 class="subtitle">Keep track of your financial life.</h2>
+  </div>
+</section>
+
+<section class="section is-medium">
+  <div class="container">
+    <h1 class="title">Track your net worth</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle">Add accounts. Add an ending balance once a month. We handle the rest.</h2>
+      </div>
+      <div class="column is-half">
+        <%= area_chart Statement.group_by_month(:date).sum(:balance), colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="section is-medium">
+  <div class="container">
+    <h1 class="title">Visualize your expenses.</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle">Track expenses based on category. See where your money goes.</h2>
+      </div>
+      <div class="column is-half">
+        <%= pie_chart ExpenseTracker.all.group(:category).map(&:expenses).count %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>Nelson Figueroa | 2020</p>
+  </div>
+</footer>
