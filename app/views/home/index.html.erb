@@ -1,18 +1,18 @@
 <%= render partial: 'layouts/notifications' %>
 
 <section class="section is-medium">
-  <div class="container ">
+  <div class="container">
     <h1 class="title">Personal Finance</h1>
     <h2 class="subtitle">Keep track of your financial life.</h2>
   </div>
 </section>
 
-<section class="section is-medium has-text-centered has-background-black">
+<section class="section is-medium has-background-black">
   <div class="container">
     <h1 class="title has-text-white">Track your net worth</h1>
     <div class="columns">
       <div class="column is-half">
-        <h2 class="subtitle has-text-white">Add accounts. Add an ending balance once a month. We handle the rest.</h2>
+        <h2 class="subtitle has-text-white">Add accounts. Add an ending balance once a month. See net worth over time.</h2>
       </div>
       <div class="column is-half">
         <%= area_chart Statement.group_by_month(:date).sum(:balance), colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
