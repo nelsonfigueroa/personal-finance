@@ -1,21 +1,32 @@
 <%= render partial: 'layouts/notifications' %>
 
-<section class="section is-medium">
+<section class="section is-large">
   <div class="container">
-    <h1 class="title">Personal Finance</h1>
-    <h2 class="subtitle">Keep track of your financial life.</h2>
+    <h1 class="title">@company_name</h1>
+    <h2 class="subtitle">A simple way to keep track of your financial life.</h2>
+    <p class="">Do you keep track of your finances manually?</p>
+    <p class="">Do you use a spreadsheet to log expenses?</p>
+    <p class="">Do you dislike companies that make you link your bank accounts?</p>
+    <p class="">If so, @company_name is for you.</p>
+    <p>We create charts and graphs so you can better manage your finances. Simply log statements and expenses once a month, and we'll handle the rest.</p>
+  </div>
+</section>
+
+<section class="section is-small has-background-primary">
+  <div class="container">
+    <h1 class="title has-text-black has-text-centered">Features</h1>
   </div>
 </section>
 
 <section class="section is-medium has-background-black">
   <div class="container">
-    <h1 class="title has-text-white">Track your net worth</h1>
+    <h1 class="title has-text-white">Track your net worth.</h1>
     <div class="columns">
       <div class="column is-half">
         <h2 class="subtitle has-text-white">Add accounts. Add an ending balance once a month. See net worth over time.</h2>
       </div>
       <div class="column is-half">
-        <%= area_chart Statement.group_by_month(:date).sum(:balance), colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
+        <%= area_chart @net_worth_data, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
       </div>
     </div>
   </div>
@@ -23,20 +34,31 @@
 
 <section class="section is-medium">
   <div class="container">
-    <h1 class="title">Visualize your expenses.</h1>
+    <h1 class="title has-text-center">Visualize your expenses.</h1>
+    <h2 class="subtitle has-text-center">See your month-to-month spending. Track expenses based on category. </h2>
     <div class="columns">
       <div class="column is-half">
-        <h2 class="subtitle">Track expenses based on category. See where your money goes each month.</h2>
+        <%= column_chart @column_chart_data, prefix: "$", thousands: ",", discrete: true %>
       </div>
       <div class="column is-half">
-        <%= pie_chart User.find(1).expenses.group(:category).sum(:amount), prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+        <%= pie_chart @pie_chart_data, prefix: "$", thousands: "," %>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white has-text-centered">Get Started</h1>
+    <div class="buttons is-centered">
+      <%= link_to('Sign Up', new_user_registration_path, class: 'button is-outlined is-primary')  %>
+      <%= link_to('Login', new_user_session_path, class: 'button is-outlined is-primary') %>  
+    </div>
+  </div>
+</section>
+
+<footer class="footer has-background-black">
   <div class="content has-text-centered">
-    <p>Nelson Figueroa | 2020</p>
+    <p>Nelson Figueroa | 2020 | <a class="has-text-primary" href="https://nfigueroa.dev">nfigueroa.dev</a></p>
   </div>
 </footer>
