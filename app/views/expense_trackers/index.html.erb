@@ -13,19 +13,11 @@
       <div class="columns is-multiline">
       <% @expense_trackers.each do |tracker| %>
         <div class="column is-one-third">
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title is-capitalized">
-                <%= link_to tracker.category, tracker %>
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                This month:
-                <br>
-                Last month:
-              </div>
-            </div>
+          <div class="tile">
+            <article class="tile is-child notification is-primary has-text-black">
+              <p class="title"><%= link_to tracker.category, tracker %></p>
+              <p class="subtitle">Total Expenses: </p>
+            </article>
           </div>
         </div>
       <% end %>
