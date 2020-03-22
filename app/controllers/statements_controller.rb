@@ -2,7 +2,7 @@
 
 class StatementsController < ApplicationController
   before_action :assign_user
-  before_action :assign_account, only: %i[create edit update]
+  before_action :assign_account
 
   def new
     @statement = Statement.new

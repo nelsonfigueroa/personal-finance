@@ -3,6 +3,14 @@
     <h1 class="title">Edit Tracker</h1>
 
     <%= render partial: 'layouts/notifications' %>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+			<ul>
+				<li><%= link_to 'Expense Trackers', expense_trackers_path %></li>
+        <li><%= link_to "#{@expense_tracker.category}", expense_tracker_path(@expense_tracker) %></li>
+        <li class="is-active"><a href="#" aria-current="page">Edit Expense Tracker</a></li>
+			</ul>
+		</nav>
     
     <%= form_with model: @expense_tracker do |f| %>
       <div class="field">

@@ -2,8 +2,7 @@
 
 class ExpensesController < ApplicationController
   before_action :assign_user
-  before_action :assign_expense_tracker, only: %i[create edit update]
-
+  before_action :assign_expense_tracker
   def new
     @expense = Expense.new
   end
