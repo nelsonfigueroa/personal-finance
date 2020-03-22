@@ -57,7 +57,14 @@ class ExpenseTrackersController < ApplicationController
   end
 
   def destroy
-    # should delete expenses associated, dependent_destroy
+    @expense_tracker = @user.expense_trackers.find_by(id: params[:id])
+
+    if @expense_tracker.destroy
+      flash[:notice] = 'Expense Tracker Deleted'
+    else
+      flash[:alert] = @expense_tracker.errors.full_messages.join(', ')
+    end
+    redirect_to(expense_trackers_path)
   end
 
   private

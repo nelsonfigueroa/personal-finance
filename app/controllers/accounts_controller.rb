@@ -58,7 +58,14 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    # should destroy all entries/logs as well. dependent_destroy
+    @account = @user.accounts.find_by(id: params[:id])
+
+    if @account.destroy
+      flash[:notice] = 'Account Deleted'
+    else
+      flash[:alert] = @account.errors.full_messages.join(', ')
+    end
+    redirect_to(accounts_path)
   end
 
   private

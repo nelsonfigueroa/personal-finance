@@ -11,8 +11,26 @@
 		</nav>
 
     <h1 class="title"><%= @expense_tracker.category %></h1>
-		<%= link_to 'Add Expense', new_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id), class: 'button is-link' %>
-    <%= link_to 'Edit', edit_expense_tracker_path, class: 'button is-link' %>
+		<%= link_to new_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id), class: 'button is-link' do %>
+			<span class="icon">
+				<%= inline_svg_tag("plus.svg", size: '30 * 30') %>
+			</span>
+			<p>Add Expense</p>
+		<% end %>
+		
+		<%= link_to edit_expense_tracker_path, class: 'button is-link' do %>
+			<span class="icon">
+				<%= inline_svg_tag("cog.svg", size: '30 * 30') %>
+			</span>
+			<p>Edit</p>
+		<% end %>
+		
+		<%= link_to expense_tracker_path, method: :delete, class: 'button is-danger', data: {confirm: "Are you sure you want to delete this expense tracker?: #{@expense_tracker.category}"} do %>
+			<span class="icon">
+				<%= inline_svg_tag("trash.svg", size: '30 * 30') %>
+			</span>
+			<p>Delete</p>
+		<% end %>
 
 		<% unless @expenses.empty? %>
     <table class="table is-striped is-hoverable is-fullwidth">

@@ -96,3 +96,22 @@ The problem is that when I create the form for a new Statement, I need to specif
 ```
 
 I'm still investigating to see if there's a cleaner way of doing this.
+
+## Adding SVGs to Button Links
+
+I had links like this:
+
+```rb
+<%= link_to 'Add Expense', new_expense_tracker_expense_path(expense_tracker_id: @expense_tracker.id), class: 'button is-link' %>
+```
+
+To create a block out of this `link_to` tag, I had to remove the text `Add Expense`. The text would go within the block itself. If I didn't remove the text, it would give me an error. The updated link looks like this:
+
+```rb
+<%= link_to new_account_statement_path(account_id: @account.id), class: 'button is-link' do %>
+  <span class="icon">
+    <%= inline_svg_tag("plus.svg", size: '30 * 30') %>
+  </span>
+  <p>Add Statement</p>
+<% end %>
+```
