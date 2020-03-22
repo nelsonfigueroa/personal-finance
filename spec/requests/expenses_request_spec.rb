@@ -19,6 +19,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
       get "/expense_trackers/#{expense_tracker.id}/expenses/new"
     end
 
+    it 'assigns @expense_tracker' do
+      expect(assigns(:expense_tracker)).to eq(expense_tracker)
+    end
+
     it 'renders new template' do
       expect(response).to render_template(:new)
     end
@@ -37,6 +41,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
       let(:valid_params) { { expense: { amount: amount, date: date } } }
       before do
         post "/expense_trackers/#{expense_tracker.id}/expenses", params: valid_params
+      end
+
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
       end
 
       it 'saves @expense' do
@@ -77,6 +85,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
         post "/expense_trackers/#{expense_tracker.id}/expenses", params: invalid_params
       end
 
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
+      end
+
       it 'assigns flash[:alert]' do
         expect(flash[:alert]).to_not be(nil)
       end
@@ -101,6 +113,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
         get "/expense_trackers/#{expense_tracker.id}/expenses/#{expense.id}/edit"
       end
 
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
+      end
+
       it 'renders edit template' do
         expect(response).to render_template(:edit)
       end
@@ -117,6 +133,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
     context 'if expense does not exist' do
       before do
         get "/expense_trackers/#{expense_tracker.id}/expenses/123456/edit"
+      end
+
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
       end
 
       it 'assigns flash[:alert]' do
@@ -151,6 +171,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
         put "/expense_trackers/#{expense_tracker.id}/expenses/#{expense.id}", params: valid_params
       end
 
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
+      end
+
       it 'updates @expense with new params' do
         expect(Expense.last.amount).to eq(new_amount)
       end
@@ -173,6 +197,10 @@ RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLeng
       let(:invalid_params) { { expense: { amount: Faker::String.random, date: date } } }
       before do
         put "/expense_trackers/#{expense_tracker.id}/expenses/#{expense.id}", params: invalid_params
+      end
+
+      it 'assigns @expense_tracker' do
+        expect(assigns(:expense_tracker)).to eq(expense_tracker)
       end
 
       it 'assigns flash[:alert]' do

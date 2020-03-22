@@ -19,6 +19,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
       get "/accounts/#{account.id}/statements/new"
     end
 
+    it 'assigns @account' do
+      expect(assigns(:account)).to eq(account)
+    end
+
     it 'renders new template' do
       expect(response).to render_template(:new)
     end
@@ -37,6 +41,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
       let(:valid_params) { { statement: { balance: balance, date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: valid_params
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
       end
 
       it 'saves @statement' do
@@ -77,6 +85,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
         post "/accounts/#{account.id}/statements", params: invalid_params
       end
 
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
       it 'assigns flash[:alert]' do
         expect(flash[:alert]).to_not be(nil)
       end
@@ -101,6 +113,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
         get "/accounts/#{account.id}/statements/#{statement.id}/edit"
       end
 
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
       it 'renders edit template' do
         expect(response).to render_template(:edit)
       end
@@ -117,6 +133,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
     context 'if statement does not exist' do
       before do
         get "/accounts/#{account.id}/statements/123456/edit"
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
       end
 
       it 'assigns flash[:alert]' do
@@ -151,6 +171,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
         put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
       end
 
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
       it 'updates @statement with new params' do
         expect(Statement.last.balance).to eq(new_balance)
       end
@@ -182,6 +206,10 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
       let(:invalid_params) { { statement: { balance: Faker::String.random, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
       end
 
       it 'assigns flash[:alert]' do
