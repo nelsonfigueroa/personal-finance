@@ -5,30 +5,31 @@
 
     <h1 class="title">Accounts</h1>
     <%= link_to 'Add Account', new_account_path, class: 'button is-link' %>
+    <br><br>
 
-    <table class="table is-striped is-hoverable is-fullwidth">
-      <thead>
-        <tr> 
-          <th>Name</th>
-          <th>Latest Statement</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% if @accounts.empty? %>
-        <tr><td>No existing accounts. <%= link_to 'Create an account.', '/accounts/new'%></td></tr>
-      <% else %>
-        <% @accounts.each do |account| %>
-          <tr>
-          <td><%= link_to account.name, account %></td>
-          <% if account.statements.order(:date).last %>
-            <td><span class="has-text-success"><%= number_to_currency(account.statements.order(:date).last.balance, delimiter: ",") %></span></td>
-            <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
-          <% end %>
+    <% if @accounts.empty? %>
+      <p class="notification is-info">No existing accounts. Create one!</p>
+    <% else %>
+      <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+          <tr> 
+            <th>Name</th>
+            <th>Latest Statement</th>
+            <th>Date</th>
           </tr>
-        <% end %>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+            <td><%= link_to account.name, account %></td>
+            <% if account.statements.order(:date).last %>
+              <td><span class="has-text-success"><%= number_to_currency(account.statements.order(:date).last.balance, delimiter: ",") %></span></td>
+              <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
+            <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </section>
