@@ -16,7 +16,7 @@
           <div class="tile">
             <article class="tile is-child notification is-primary has-text-black">
               <p class="title"><%= link_to tracker.category, tracker %></p>
-              <p class="subtitle">Total Expenses: <%= number_to_currency(tracker.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:amount)) %></p>
+              <p class="subtitle">Expenses this month: <%= number_to_currency(tracker.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:amount)) %></p>
             </article>
           </div>
         </div>
