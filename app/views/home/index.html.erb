@@ -22,7 +22,7 @@
         <h2 class="subtitle has-text-white">Add accounts. Add an ending balance once a month. See net worth over time.</h2>
       </div>
       <div class="column is-half">
-        <%= area_chart @net_worth_data, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
+        <%= area_chart net_worth_demo_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
         <h2 class="subtitle has-text-center">Create expense trackers based on category. Log expenses as you go to see a pie chart of your expenses by category.</h2>
       </div>
       <div class="column is-half">
-        <%= pie_chart @pie_chart_data, prefix: "$", thousands: "," %>
+        <%= pie_chart expenses_pie_chart_demo_path, prefix: "$", thousands: "," %>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
         <h2 class="subtitle has-text-center has-text-white">See monthly spending trends over time.</h2>
       </div>
       <div class="column is-half">
-        <%= column_chart @column_chart_data, prefix: "$", thousands: ",", discrete: true %>
+        <%= column_chart expenses_column_chart_demo_path, prefix: "$", thousands: ",", discrete: true %>
       </div>
     </div>
   </div>

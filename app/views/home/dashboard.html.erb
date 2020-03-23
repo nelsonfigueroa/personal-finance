@@ -24,7 +24,7 @@
       </div>
     </nav>
 
-    <%= area_chart @net_worth_graph, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."}, title: "Net Worth" %>
+    <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."}, title: "Net Worth" %>
 
     <nav class="level">
       <div class="level-item has-text-centered">
@@ -35,9 +35,9 @@
       </div>
     </nav>
 
-    <%= pie_chart @expenses_by_category, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+    <%= pie_chart expenses_pie_chart_path, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
 
-    <%= column_chart @expenses_month_to_month, title: "Expenses Month to Month", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+    <%= column_chart expenses_column_chart_path, title: "Expenses Month to Month", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
 
 
     <nav class="level">
