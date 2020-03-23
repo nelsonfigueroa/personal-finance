@@ -1,13 +1,18 @@
-<section class="section">
+<section class="section is-small">
   <div class="container">
     <h1 class="title">Hello, <span class="is-capitalized"><%= @user.name %></span></h1>
     <h2 class="subtitle">Your finances at a glance:</h2>
+  </div>
+</section>
 
-    <nav class="level">
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white">Net Worth</h1>
+    <nav class="level has-text-white">
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Net Worth Today (In the future, subtract debt from worth)</p>
-          <p class="title"><%= number_to_currency(@net_worth, delimiter: ",") %></p>
+          <p class="title has-text-white"><%= number_to_currency(@net_worth, delimiter: ",") %></p>
         </div>
       </div>
       <div class="level-item has-text-centered">
@@ -24,8 +29,13 @@
       </div>
     </nav>
 
-    <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."}, title: "Net Worth" %>
+    <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
+  </div>
+</section>
 
+<section class="section is-medium">
+  <div class="container">
+    <h1 class="title">Expenses This Month</h1>
     <nav class="level">
       <div class="level-item has-text-centered">
         <div>
@@ -36,15 +46,24 @@
     </nav>
 
     <%= pie_chart expenses_pie_chart_path, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+  </div>
+</section>
 
-    <%= column_chart expenses_column_chart_path, title: "Expenses Month to Month", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white">Spending Trends</h1>
+    <%= column_chart expenses_column_chart_path, prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+  </div>
+</section>
 
+<section class="section is-medium">
+  <div class="container">
 
     <nav class="level">
       <div class="level-item has-text-centered">
         <div>
           <p class="heading">Remaining Debt</p>
-          <p class="title has-text-danger">$1422.40</p>
+          <p class="title has-text-danger">(TBD)</p>
         </div>
       </div>
     </nav>

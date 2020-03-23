@@ -14,6 +14,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
+      <%= link_to 'Home', root_path, class: 'navbar-item has-text-black' %>
       <%= link_to 'About', about_path, class: 'navbar-item has-text-black' %>
       <% if user_signed_in? %>
         <%= link_to 'Dashboard', dashboard_path, class: 'navbar-item has-text-black' %>
