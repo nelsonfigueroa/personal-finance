@@ -5,7 +5,7 @@ class StatementsController < ApplicationController
   before_action :assign_account
 
   def new
-    if @user.has_statement_this_month?
+    if @user.has_statement_this_month?(@account)
       flash[:alert] = "You already have a statement for this month."
       redirect_to(account_path(@account))
     end
@@ -14,11 +14,11 @@ class StatementsController < ApplicationController
   end
 
   def create
-    if @user.has_statement_this_month?
+    if @user.has_statement_this_month?(@account)
       flash[:alert] = "You already have a statement for this month."
       redirect_to(account_path(@account))
     end
-    
+
     @statement = Statement.new(statement_params)
 
     # keep here for security

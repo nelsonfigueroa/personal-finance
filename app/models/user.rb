@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ } # only letters
 
-  def has_statement_this_month?
-    self.statements.where(date: Date.current.beginning_of_month..Date.current.end_of_month).exists?
+  def has_statement_this_month?(account)
+    account.statements.where(date: Date.current.beginning_of_month..Date.current.end_of_month).exists?
   end
 end
