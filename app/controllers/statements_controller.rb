@@ -69,6 +69,6 @@ class StatementsController < ApplicationController
   end
 
   def assign_account
-    @account = Account.find_by(id: params[:account_id])
+    @account = @user.accounts.find_by(id: params[:account_id])
   end
 end

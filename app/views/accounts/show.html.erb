@@ -11,11 +11,21 @@
 		</nav>
 
     <h1 class="title"><%= @account.name %></h1>
-		<%= link_to new_account_statement_path(account_id: @account.id), class: 'button is-link' do %>
-			<span class="icon">
-				<%= inline_svg_tag("plus.svg", size: '30 * 30') %>
-			</span>
-			<p>Add Statement</p>
+
+		<% if @user.has_statement_this_month?(@account)%>
+			<%= button_tag disabled: true, class: 'button is-link'  do %>
+				<span class="icon">
+					<%= inline_svg_tag("check.svg", size: '30 * 30') %>
+				</span>
+				<p>Monthly Statement Added!</p>
+			<% end %>
+		<% else %>
+			<%= link_to new_account_statement_path(account_id: @account.id), class: 'button is-link' do %>
+				<span class="icon">
+					<%= inline_svg_tag("plus.svg", size: '30 * 30') %>
+				</span>
+				<p>Add Statement</p>
+			<% end %>
 		<% end %>
 
     <%= link_to edit_account_path, class: 'button is-link' do %>
