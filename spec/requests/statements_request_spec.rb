@@ -73,6 +73,42 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
   end
 
   describe 'POST create' do
+    context 'if user already has a statement for this month' do
+      let(:date_in_current_month) { Faker::Date.in_date_period(year: 2020, month: Date.current.month) }
+      let(:valid_params) { { statement: { balance: balance, date: date_in_current_month } } }
+      before do
+        statement.date = date_in_current_month
+        statement.save!
+        post "/accounts/#{account.id}/statements", params: valid_params
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
+      end
+
+      it 'redirects to account_path of statement' do
+        expect(response).to redirect_to(account_path(account))
+      end
+
+      it 'renders accounts/show template' do
+        follow_redirect!
+        expect(response).to render_template('accounts/show')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     context 'when parameters are valid' do
       let(:valid_params) { { statement: { balance: balance, date: date } } }
       before do
