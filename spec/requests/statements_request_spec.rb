@@ -15,24 +15,60 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
   end
 
   describe 'GET new' do
-    before do
-      get "/accounts/#{account.id}/statements/new"
+    context 'if user has a statement for this month' do
+      before do
+        statement.date = Faker::Date.in_date_period(year: 2020, month: Date.current.month)
+        statement.save!
+        get "/accounts/#{account.id}/statements/new"
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to_not be(nil)
+      end
+
+      it 'redirects to account_path of statement' do
+        expect(response).to redirect_to(account_path(account))
+      end
+
+      it 'renders accounts/show template' do
+        follow_redirect!
+        expect(response).to render_template('accounts/show')
+      end
+
+      it 'returns 302 status before redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'returns 200 status after redirect' do
+        follow_redirect!
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'assigns @account' do
-      expect(assigns(:account)).to eq(account)
-    end
+    context 'if user does not have a statement for this month' do
+      before do
+        get "/accounts/#{account.id}/statements/new"
+      end
 
-    it 'renders new template' do
-      expect(response).to render_template(:new)
-    end
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
 
-    it 'assigns unsaved @statement' do
-      expect(assigns(:statement)).to_not eq(nil)
-    end
-
-    it 'returns 200 status' do
-      expect(response).to have_http_status(:ok)
+      it 'renders new template' do
+        expect(response).to render_template(:new)
+      end
+  
+      it 'assigns unsaved @statement' do
+        expect(assigns(:statement)).to_not eq(nil)
+      end
+  
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
