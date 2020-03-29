@@ -61,11 +61,11 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
       it 'renders new template' do
         expect(response).to render_template(:new)
       end
-  
+
       it 'assigns unsaved @statement' do
         expect(assigns(:statement)).to_not eq(nil)
       end
-  
+
       it 'returns 200 status' do
         expect(response).to have_http_status(:ok)
       end
