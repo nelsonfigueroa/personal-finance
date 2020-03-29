@@ -12,6 +12,8 @@ RSpec.describe 'Account Requests', type: :request do # rubocop:disable Metrics/B
   end
 
   describe 'GET index' do
+    let(:net_worth) { user.statements.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:balance) }
+    let(:net_worth_change) { net_worth - user.statements.where(date: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).sum(:balance) }
     before do
       get '/accounts'
     end
@@ -22,6 +24,14 @@ RSpec.describe 'Account Requests', type: :request do # rubocop:disable Metrics/B
 
     it 'assigns @accounts' do
       expect(assigns(:accounts)).to eq(user.accounts)
+    end
+
+    it 'assigns @net_worth' do
+      expect(assigns(:net_worth)).to eq(net_worth)
+    end
+
+    it 'assigns @net_worth_change' do
+      expect(assigns(:net_worth_change)).to eq(net_worth_change)
     end
 
     it 'returns 200 status' do

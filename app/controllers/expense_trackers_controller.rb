@@ -5,6 +5,7 @@ class ExpenseTrackersController < ApplicationController
 
   def index
     @expense_trackers = @user.expense_trackers.order(:category)
+    
     # total expenses for current month
     @expenses_this_month = @user.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:amount)
   end
