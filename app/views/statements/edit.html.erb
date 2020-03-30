@@ -12,24 +12,26 @@
 			</ul>
 		</nav>
 
-    <%= form_with model: @statement, url: {controller: 'statements', action: 'update'} do |f| %>
-      <div class="field">
-        <%= f.label :balance %>
-        <div class="control">
-          <%= f.number_field :balance, step: 0.01, class: 'input' %>
+    <div class="box">
+      <%= form_with model: @statement, url: {controller: 'statements', action: 'update'} do |f| %>
+        <div class="field">
+          <%= f.label :balance %>
+          <div class="control">
+            <%= f.number_field :balance, step: 0.01, class: 'input' %>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <%= f.label :date %>
-        <div class="control">
-          <%= f.date_field :date, class: 'input' %>
+        <div class="field">
+          <%= f.label :date %>
+          <div class="control">
+            <%= f.date_field :date, class: 'input' %>
+          </div>
         </div>
-      </div>
 
-      <div class="control">
-        <%= f.submit "Add", class: 'button is-primary' %>
-      </div>
-    <% end %>
+        <div class="control">
+          <%= f.submit "Add", class: 'button is-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>
