@@ -17,7 +17,7 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
   describe 'GET new' do
     context 'if user has a statement for this month' do
       before do
-        statement.date = Faker::Date.in_date_period(year: 2020, month: Date.current.month)
+        statement.date = Faker::Date.in_date_period(year: 2020, month: Date.today.month)
         statement.save!
         get "/accounts/#{account.id}/statements/new"
       end
@@ -74,7 +74,7 @@ RSpec.describe 'Statement Requests', type: :request do # rubocop:disable Metrics
 
   describe 'POST create' do
     context 'if user already has a statement for this month' do
-      let(:date_in_current_month) { Faker::Date.in_date_period(year: 2020, month: Date.current.month) }
+      let(:date_in_current_month) { Faker::Date.in_date_period(year: 2020, month: Date.today.month) }
       let(:valid_params) { { statement: { balance: balance, date: date_in_current_month } } }
       before do
         statement.date = date_in_current_month

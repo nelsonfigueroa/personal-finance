@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
 
     context 'if there is a statement for the current month' do
       it 'returns true' do
-        statement.date = Faker::Date.in_date_period(year: 2020, month: Date.current.month)
+        statement.date = Faker::Date.in_date_period(year: 2020, month: Date.today.month)
         statement.save!
         expect(user.has_statement_this_month?(account)).to be(true)
       end

@@ -24,7 +24,7 @@ RSpec.describe 'ExpenseTrackers', type: :request do # rubocop:disable Metrics/Bl
     end
 
     it 'assigns @expenses_this_month' do
-      expect(assigns(:expenses_this_month)).to eq(user.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).sum(:amount))
+      expect(assigns(:expenses_this_month)).to eq(user.expenses.where(date: Date.today.beginning_of_month..Date.today.end_of_month).sum(:amount))
     end
 
     it 'returns 200 status' do

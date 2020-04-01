@@ -15,6 +15,6 @@ class User < ApplicationRecord
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ } # only letters
 
   def has_statement_this_month?(account)
-    account.statements.where(date: Date.current.beginning_of_month..Date.current.end_of_month).exists?
+    account.statements.where(date: Date.today.beginning_of_month..Date.today.end_of_month).exists?
   end
 end

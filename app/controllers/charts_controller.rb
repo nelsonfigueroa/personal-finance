@@ -26,7 +26,7 @@ class ChartsController < ApplicationController
   # expense tracking
 
   def expenses_pie_chart
-    render json: @user.expenses.where(date: Date.current.beginning_of_month..Date.current.end_of_month).group(:category).sum(:amount)
+    render json: @user.expenses.where(date: Date.today.beginning_of_month..Date.today.end_of_month).group(:category).sum(:amount)
   end
 
   def expenses_column_chart
