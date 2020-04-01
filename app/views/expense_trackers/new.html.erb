@@ -11,19 +11,23 @@
 			</ul>
 		</nav>
 
-    <div class="box">
-      <%= form_with model: @expense_tracker do |f| %>
-        <div class="field">
-          <%= f.label :category %>
-          <div class="control">
-            <%= f.text_field :category, autofocus: true, autocomplete: "category", class: 'input' %>
-          </div>
-        </div>
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <%= form_with model: @expense_tracker do |f| %>
+            <div class="field">
+              <%= f.label :category %>
+              <div class="control">
+                <%= f.text_field :category, autofocus: true, autocomplete: "category", class: 'input' %>
+              </div>
+            </div>
 
-        <div class="control">
-          <%= f.submit "Create", class: 'button is-primary' %>
+            <div class="control">
+              <%= f.submit "Create", class: 'button is-primary' %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </section>

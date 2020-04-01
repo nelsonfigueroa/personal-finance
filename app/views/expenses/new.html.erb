@@ -12,26 +12,30 @@
 			</ul>
 		</nav>
 
-    <div class="box">
-      <%= form_with model: @expense, url: {controller: 'expenses', action: 'create'} do |f| %>
-        <div class="field">
-          <%= f.label :amount %>
-          <div class="control">
-            <%= f.number_field :amount, step: 0.01, class: 'input' %>
-          </div>
-        </div>
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <%= form_with model: @expense, url: {controller: 'expenses', action: 'create'} do |f| %>
+            <div class="field">
+              <%= f.label :amount %>
+              <div class="control">
+                <%= f.number_field :amount, step: 0.01, class: 'input' %>
+              </div>
+            </div>
 
-        <div class="field">
-          <%= f.label :date %>
-          <div class="control">
-            <%= f.date_field :date, class: 'input' %>
-          </div>
-        </div>
+            <div class="field">
+              <%= f.label :date %>
+              <div class="control">
+                <%= f.date_field :date, class: 'input' %>
+              </div>
+            </div>
 
-        <div class="control">
-          <%= f.submit "Add", class: 'button is-primary' %>
+            <div class="control">
+              <%= f.submit "Add", class: 'button is-primary' %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </section>
