@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
     @net_worth = @user.statements.where(date: Date.today.beginning_of_month..Date.today.end_of_month).sum(:balance)
 
     # statements this month - sum of statements from last month
-    @net_worth_change = @net_worth - @user.statements.where(date: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).sum(:balance)
+    @net_worth_change = @net_worth - @user.statements.where(date: Date.today.prev_month.beginning_of_month..Date.today.prev_month.end_of_month).sum(:balance)
   end
 
   def show
