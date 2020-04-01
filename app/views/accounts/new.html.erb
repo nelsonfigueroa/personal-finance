@@ -11,17 +11,19 @@
 			</ul>
 		</nav>
 
-    <%= form_with model: @account do |f| %>
-      <div class="field">
-        <%= f.label :name %>
-        <div class="control">
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input' %>
+    <div class="box">
+      <%= form_with model: @account do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <div class="control">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input' %>
+          </div>
         </div>
-      </div>
 
-      <div class="control">
-        <%= f.submit "Add", class: 'button is-primary' %>
-      </div>
-    <% end %>
+        <div class="control">
+          <%= f.submit "Add", class: 'button is-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>
