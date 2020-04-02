@@ -3,3 +3,10 @@ require: rubocop-rails
 Layout/LineLength:
   Enabled: false
   Max: 154
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

@@ -6,9 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :accounts
+  has_many :accounts, dependent: :destroy
   has_many :statements, through: :accounts
-  has_many :expense_trackers
+  has_many :expense_trackers, dependent: :destroy
   has_many :expenses, through: :expense_trackers
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
