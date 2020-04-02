@@ -6,7 +6,7 @@
   <div class="container">
     <h1 class="title">Expenses This Month</h1>
     <h2 class="title"><%= number_to_currency(@expenses_this_month, delimeter: ",") %></h2>
-    <%= pie_chart expenses_pie_chart_path, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+    <%= pie_chart expenses_pie_chart_path, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded this month."} %>
   </div>
 </section>
 
@@ -25,7 +25,7 @@
           <div class="tile">
             <article class="tile is-child notification is-primary has-text-black">
               <p class="title"><%= link_to tracker.category, tracker %></p>
-              <p class="subtitle">Expenses this month: <%= number_to_currency(tracker.expenses.where(date: Date.today.beginning_of_month..Date.today.end_of_month).sum(:amount)) %></p>
+              <p class="subtitle">Expenses this month: <%= number_to_currency(tracker.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:amount)) %></p>
             </article>
           </div>
         </div>

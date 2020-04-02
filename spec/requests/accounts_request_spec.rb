@@ -12,7 +12,7 @@ RSpec.describe 'Account Requests', type: :request do # rubocop:disable Metrics/B
   end
 
   describe 'GET index' do
-    let(:net_worth) { user.statements.where(date: Date.today.beginning_of_month..Date.today.end_of_month).sum(:balance) }
+    let(:net_worth) { user.statements.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:balance) }
     let(:net_worth_change) { net_worth - user.statements.where(date: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).sum(:balance) }
     before do
       get '/accounts'

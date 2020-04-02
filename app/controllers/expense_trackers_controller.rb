@@ -7,7 +7,7 @@ class ExpenseTrackersController < ApplicationController
     @expense_trackers = @user.expense_trackers.order(:category)
 
     # total expenses for current month
-    @expenses_this_month = @user.expenses.where(date: Date.today.beginning_of_month..Date.today.end_of_month).sum(:amount)
+    @expenses_this_month = @user.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:amount)
   end
 
   def show
