@@ -1,0 +1,22 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgresql://nelson:nelson@db:5432/development
+    volumes:
+      - .:/app
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+  db:
+    image: postgres:12.2-alpine
+    environment:
+      POSTGRES_USER: nelson
+      POSTGRES_PASSWORD: nelson
+      POSTGRES_DB: development
+    ports:
+      - "5432:5432"
