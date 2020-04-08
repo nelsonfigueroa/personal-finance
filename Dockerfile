@@ -15,16 +15,12 @@ RUN gem install bundler:2.0.1
 # for some reason it's still using older version to install, specify version
 RUN bundle _2.0.1_ install
 
-COPY ./package.json ./yarn.lock ./
-
-# node modules
-RUN yarn install
-RUN yarn check --integrity
-
 COPY . .
 
-RUN rails db:migrate
-RUN rails db:seed
+RUN yarn install --check-files
 
-EXPOSE 3000
+# RUN rails db:migrate
+# RUN rails db:seed
+
+# EXPOSE 3000
 # CMD ["rails", "s", "-b", "0.0.0.0"]

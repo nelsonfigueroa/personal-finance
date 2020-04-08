@@ -4,6 +4,34 @@ Under construction
 
 I am using TDD to develop features. I'm using [RSpec](https://github.com/rspec/rspec-rails) for testing, and [simplecov](https://github.com/colszowka/simplecov) for test coverage analysis. I'm also using [Rubocop](https://github.com/rubocop-hq/rubocop-rails) to keep my code clean.
 
+## Running Locally
+
+You can run this application locally using `docker-compose`.
+
+Build the image:
+
+```
+docker-compose build
+```
+
+Set up the database container:
+
+```
+docker-compose run web rake db:create db:setup
+```
+
+(Optional) Run all tests:
+
+```
+docker-compose run web bundle exec rspec
+```
+
+Start up the Rails server and database:
+
+```
+docker-compose up
+```
+
 ## For future AJAX forms
 
 https://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#form-with
