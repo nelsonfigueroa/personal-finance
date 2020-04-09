@@ -1,4 +1,6 @@
-Under construction
+# Personal Finance
+
+A finance tracking application. Currently tracks net worth and expenses month-to-month.
 
 ## Test-Driven Approach
 
@@ -32,31 +34,33 @@ Start up the Rails server and database:
 docker-compose up
 ```
 
-## For future AJAX forms
+## Notes and Lessons Learned
+
+### For future AJAX forms
 
 https://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#form-with
 
 Use `form_with`. `form_for` is soft deprecrated.
 
-## Paths
+### Paths
 You can use an endpoint instead of a path as such:
 
 ```rb
 <%= link_to "Improve Your Ruby Skills", "/ruby-book" %>
 ```
 
-## Routes testing
+### Routes testing
 
 This should be done separately from controllers.
 For example, redirects to the sign in page are handled at the router level, not controller. Test for this redirect in a routes_spec file.
 
-## Asserting flash messages
+### Asserting flash messages
 
 ```rb
 expect(flash[:notice]).to eq "Congratulations on buying our stuff!"
 ```
 
-## Running RSpec with descriptions
+### Running RSpec with descriptions
 
 ```shell
 bundle exec rspec --format documentation
@@ -64,7 +68,7 @@ bundle exec rspec --format documentation
 
 You can add this to `.rspec` and then you don't have to add the additional options.
 
-## Debugging RSpec
+### Debugging RSpec
 
 My specs were failing, I wasn't getting clear error messages.
 I ended up adding begin-rescue blocks and I used `binding.pry` from the `pry` gem.
@@ -95,7 +99,7 @@ I ran `account.save!` then `account.errors` in the console to see what the error
 
 I was stuck on this for a long time. I thought it might be the way I'm sending requests or an incorrect usage of `let()` and `let!()`. It never occurred to me that maybe I should take a peek at my model and see what validations I put in place...
 
-## Forms for Nested Resources
+### Forms for Nested Resources
 
 I have routes set up like this:
 
@@ -125,7 +129,7 @@ The problem is that when I create the form for a new Statement, I need to specif
 
 I'm still investigating to see if there's a cleaner way of doing this.
 
-## Adding SVGs to Button Links
+### Adding SVGs to Button Links
 
 I had links like this:
 
@@ -144,7 +148,7 @@ To create a block out of this `link_to` tag, I had to remove the text `Add Expen
 <% end %>
 ```
 
-## Multiple Redirects in a Single Action
+### Multiple Redirects in a Single Action
 
 When using `redirect_to` or `render` twice in one action, we get the `AbstractController::DoubleRenderError` error.
 
