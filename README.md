@@ -10,12 +10,6 @@ I am using TDD to develop features. I'm using [RSpec](https://github.com/rspec/r
 
 You can run this application locally using `docker-compose`.
 
-Build the image:
-
-```
-docker-compose build
-```
-
 Set up the database container:
 
 ```
@@ -33,6 +27,8 @@ Start up the Rails server and database:
 ```
 docker-compose up
 ```
+
+Then browse to `http://localhost:3000/`.
 
 ## Notes and Lessons Learned
 

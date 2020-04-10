@@ -18,6 +18,7 @@ RUN bundle _2.0.1_ install
 COPY . .
 
 RUN yarn install --check-files
+RUN bundle exec rails assets:precompile
 
 # RUN rails db:migrate
 # RUN rails db:seed
