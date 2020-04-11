@@ -294,4 +294,40 @@ RSpec.describe 'Account Requests', type: :request do # rubocop:disable Metrics/B
       end
     end
   end
+
+  describe 'DELETE' do
+    context 'if account exists' do
+      before do
+        delete "/accounts/#{account.id}"
+      end
+
+      it 'deletes account' do
+        expect(Account.find_by(id: account.id)).to be(nil)
+      end
+
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
+      it 'redirects to accounts_path' do
+        expect(response).to redirect_to(accounts_path)
+      end
+    end
+
+    context 'if account does not exist' do
+      let!(:other_user) { create(:user) }
+      let(:other_account) { create(:account, user: other_user) }
+      before do
+        delete "/accounts/#{other_account.id}"
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to be('Invalid ID')
+      end
+
+      it 'redirects to accounts_path' do
+        expect(response).to redirect_to(accounts_path)
+      end
+    end
+  end
 end

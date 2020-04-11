@@ -66,6 +66,11 @@ class AccountsController < ApplicationController
   def destroy
     @account = @user.accounts.find_by(id: params[:id])
 
+    if @account.nil?
+      flash[:alert] = 'Invalid ID'
+      redirect_to(accounts_path) and return
+    end
+
     if @account.destroy
       flash[:notice] = 'Account Deleted'
     else

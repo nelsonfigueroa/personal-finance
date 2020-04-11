@@ -62,6 +62,11 @@ class ExpenseTrackersController < ApplicationController
   def destroy
     @expense_tracker = @user.expense_trackers.find_by(id: params[:id])
 
+    if @expense_tracker.nil?
+      flash[:alert] = 'Invalid ID'
+      redirect_to(expense_trackers_path) and return
+    end
+
     if @expense_tracker.destroy
       flash[:notice] = 'Expense Tracker Deleted'
     else

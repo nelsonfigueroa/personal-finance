@@ -287,4 +287,40 @@ RSpec.describe 'ExpenseTrackers', type: :request do # rubocop:disable Metrics/Bl
       end
     end
   end
+
+  describe 'DELETE' do
+    context 'if expense_tracker exists' do
+      before do
+        delete "/expense_trackers/#{expense_tracker.id}"
+      end
+
+      it 'deletes expense_tracker' do
+        expect(ExpenseTracker.find_by(id: expense_tracker.id)).to be(nil)
+      end
+
+      it 'assigns flash[:notice]' do
+        expect(flash[:notice]).to_not be(nil)
+      end
+
+      it 'redirects to expense_trackers_path' do
+        expect(response).to redirect_to(expense_trackers_path)
+      end
+    end
+
+    context 'if expense_tracker does not exist' do
+      let!(:other_user) { create(:user) }
+      let(:other_expense_tracker) { create(:expense_tracker, user: other_user) }
+      before do
+        delete "/expense_trackers/#{other_expense_tracker.id}"
+      end
+
+      it 'assigns flash[:alert]' do
+        expect(flash[:alert]).to be('Invalid ID')
+      end
+
+      it 'redirects to expense_trackers_path' do
+        expect(response).to redirect_to(expense_trackers_path)
+      end
+    end
+  end
 end
