@@ -8,6 +8,7 @@ RSpec.describe Statement, type: :model do
   end
 
   describe 'validations' do
+    it { should validate_presence_of(:account) }
     it { should validate_presence_of(:balance) }
     it { should validate_presence_of(:date) }
     it {
@@ -15,6 +16,18 @@ RSpec.describe Statement, type: :model do
         .is_greater_than_or_equal_to(0)
         .is_less_than_or_equal_to(BigDecimal(10**8))
     }
+
+    # balance
+    it { should allow_value(Faker::Commerce.price).for(:balance) }
+    it { should_not allow_value(Faker::String.random).for(:balance) }
+
+    # date
+    it { should allow_value(Faker::Date.between(from: 14.days.ago, to: Date.today)).for(:date) }
+    it { should_not allow_value(Faker::String.random).for(:date) }
+
+    # notes
     it { should allow_value(nil).for(:notes) }
+    it { should allow_value('Testing12345 67890!@#  $%^&*()-_+=.:;/\[]\'",?').for(:notes) }
+    it { should_not allow_value(Faker::String.random).for(:notes) }
   end
 end
