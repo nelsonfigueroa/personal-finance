@@ -61,7 +61,7 @@ class StatementsController < ApplicationController
   private
 
   def statement_params
-    params.require(:statement).permit(:balance, :date, :account_id)
+    params.require(:statement).permit(:balance, :date, :notes, :account_id)
   end
 
   def assign_user
