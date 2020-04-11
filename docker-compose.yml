@@ -14,4 +14,4 @@ services:
     links:
       - db
     volumes:
-      - ./app:/Users/nelson/Projects/personal_finance
+      - /Users/nelson/Projects/personal_finance:/app

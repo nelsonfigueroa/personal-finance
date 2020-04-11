@@ -15,5 +15,6 @@ RSpec.describe Statement, type: :model do
         .is_greater_than_or_equal_to(0)
         .is_less_than_or_equal_to(BigDecimal(10**8))
     }
+    it { should allow_value(nil).for(:notes) }
   end
 end
