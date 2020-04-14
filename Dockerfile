@@ -1,4 +1,7 @@
-FROM ruby:2.6.5-alpine3.11
+FROM ruby:2.7.1-alpine3.11
+
+ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
+ENV RUBYOPT=$RUBYOPT
 
 # for nokogiri
 RUN apk add build-base
