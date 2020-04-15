@@ -184,3 +184,31 @@ end
 ```
 
 This guide explains it well: [Avoiding Double Render Errors](https://guides.rubyonrails.org/layouts_and_rendering.html#avoiding-double-render-errors)
+
+### Linting ERB
+
+`erb-lint` helps to lint .erb files. 
+
+```
+bundle exec erblint -a --lint-all
+```
+
+Configuration in `.erb-lint.yml`:
+
+```yaml
+---
+EnableDefaultLinters: true
+linters:
+  ErbSafety:
+    enabled: true
+    # better_html_config: .better-html.yml
+  Rubocop:
+    enabled: false
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      Style/FrozenStringLiteralComment:
+        Enabled: false
+```
+
+Rubocop was disabled due to issue when inserting `frozen_string_literal: true` throughout views and ruining indentation.
