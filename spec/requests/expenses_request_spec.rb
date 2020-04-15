@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Expenses', type: :request do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'Expenses', type: :request do
   let!(:user) { create(:user) }
   let(:expense_tracker) { create(:expense_tracker, user: user) }
   let(:expense) { create(:expense, expense_tracker: expense_tracker) }

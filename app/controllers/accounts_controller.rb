@@ -68,7 +68,7 @@ class AccountsController < ApplicationController
 
     if @account.nil?
       flash[:alert] = 'Invalid ID'
-      redirect_to(accounts_path) and return
+      redirect_to(accounts_path) && return
     end
 
     if @account.destroy

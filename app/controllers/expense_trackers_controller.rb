@@ -64,7 +64,7 @@ class ExpenseTrackersController < ApplicationController
 
     if @expense_tracker.nil?
       flash[:alert] = 'Invalid ID'
-      redirect_to(expense_trackers_path) and return
+      redirect_to(expense_trackers_path) && return
     end
 
     if @expense_tracker.destroy
