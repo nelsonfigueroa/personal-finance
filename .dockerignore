@@ -6,3 +6,5 @@ log/*
 coverage
 .git
 .DS_Store
+.rubocop.yml
+.erb-lint.yml

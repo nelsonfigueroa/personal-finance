@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  gem 'erb_lint', require: false
   gem 'factory_bot_rails'
   gem 'pry', '~> 0.12.2'
   # for rails 6 compatability
