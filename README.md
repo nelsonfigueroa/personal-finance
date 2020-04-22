@@ -1,6 +1,6 @@
 # Personal Finance
 
-A finance tracking application. Currently tracks net worth and expenses month-to-month. Includes an `infrastructure` repository for Terraform resources.
+A finance tracking application. Currently tracks net worth and expenses month-to-month. Includes an `infrastructure` repository for Terraform resources. In the future, this directory will also hold Kubernetes manifests.
 
 ## Test-Driven Approach
 
