@@ -1,6 +1,6 @@
 # Personal Finance
 
-A finance tracking application. Currently tracks net worth and expenses month-to-month.
+A finance tracking application. Currently tracks net worth and expenses month-to-month. Includes an `infrastructure` repository for Terraform resources.
 
 ## Test-Driven Approach
 

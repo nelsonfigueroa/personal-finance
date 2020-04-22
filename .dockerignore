@@ -9,3 +9,4 @@ coverage
 .DS_Store
 .rubocop.yml
 .erb-lint.yml
+infrastructure
