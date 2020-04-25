@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api, defaults: { format: :json } do
-    resources :accounts
+  namespace :api do
+    namespace :v1, defaults: { format: :json } do
+      resources :accounts
+    end
   end
 end
