@@ -12,7 +12,5 @@ jobs:
     - name: Build Docker image
       run: docker build -t nfigueroa/personal-finance .
     - name: Push Docker image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       run: docker push nfigueroa/personal-finance
