@@ -3,6 +3,8 @@ FROM ruby:2.7.1-alpine3.11
 ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
 
+RUN apk update
+
 # for nokogiri
 RUN apk add build-base
 # postgres

@@ -8,13 +8,13 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @accounts }
-      format.html { 
+      format.html do
         # sum of statements from each account for current month. Maybe this should be for previous month? Becase ending balances might be input at end of month
         @net_worth = @user.statements.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:balance)
-    
+
         # statements this month - sum of statements from last month
         @net_worth_change = @net_worth - @user.statements.where(date: Time.zone.today.prev_month.beginning_of_month..Time.zone.today.prev_month.end_of_month).sum(:balance)
-      }
+      end
     end
   end
 
