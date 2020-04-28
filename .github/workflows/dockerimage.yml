@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Docker image
       run: docker build -t nfigueroa/personal-finance .
-    - name: Push Docker image
+    - name: Login
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push Docker image
       run: docker push nfigueroa/personal-finance
