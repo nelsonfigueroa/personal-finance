@@ -146,7 +146,7 @@ To create a block out of this `link_to` tag, I had to remove the text `Add Expen
 
 ### Linting ERB
 
-`erb-lint` helps to lint .erb files. 
+The [erb-lint](https://github.com/Shopify/erb-lint) gem helps to lint .erb files. 
 
 ```
 bundle exec erblint -a --lint-all
@@ -170,4 +170,4 @@ linters:
         Enabled: false
 ```
 
-Rubocop was disabled due to issue when inserting `frozen_string_literal: true` throughout views and ruining indentation.
+I mainly used this to keep indentation consistent between views. Rubocop was disabled due to an issue where it inserts `frozen_string_literal: true` throughout views and ruins indentation.
