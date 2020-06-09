@@ -24,4 +24,10 @@ Rails.application.routes.draw do
       resources :expenses, only: %i[new create edit update]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :accounts
+    end
+  end
 end
