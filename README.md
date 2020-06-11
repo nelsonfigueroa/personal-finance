@@ -1,10 +1,9 @@
 # Personal Finance
 
-A finance tracking application. Currently tracks net worth and expenses month-to-month. Includes an `infrastructure` repository for Terraform resources. In the future, this directory will also hold Kubernetes manifests.
+## What is it?
 
-## Test-Driven Approach
 
-I am using TDD to develop features. I'm using [RSpec](https://github.com/rspec/rspec-rails) for testing, and [simplecov](https://github.com/colszowka/simplecov) for test coverage analysis. I'm also using [Rubocop](https://github.com/rubocop-hq/rubocop-rails) to keep my code clean.
+Personal Finance is a Ruby on Rails application that keeps track of net worth over time and expenses month to month. I built this with a focus on test-driven development. I'm using [RSpec](https://github.com/rspec/rspec-rails) for testing, [simplecov](https://github.com/colszowka/simplecov) for test coverage analysis, and [Rubocop](https://github.com/rubocop-hq/rubocop-rails) to keep my code clean. I used the [Bulma CSS framework](https://bulma.io/) for the design and [Chartkick](https://chartkick.com/) to generate graphs. A Dockerfile and docker-compose file are included for local development and previewing purposes. GitHub actions CI/CD was implemented to automatically build and push a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
 
 ## Running Locally
 
@@ -32,7 +31,7 @@ Then browse to `http://localhost:3000/`.
 
 ## Notes and Lessons Learned
 
-### For future AJAX forms
+### For AJAX forms in the future
 
 https://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#form-with
 
@@ -44,11 +43,6 @@ You can use an endpoint instead of a path as such:
 ```rb
 <%= link_to "Improve Your Ruby Skills", "/ruby-book" %>
 ```
-
-### Routes testing
-
-This should be done separately from controllers.
-For example, redirects to the sign in page are handled at the router level, not controller. Test for this redirect in a routes_spec file.
 
 ### Asserting flash messages
 
