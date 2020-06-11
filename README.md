@@ -1,9 +1,22 @@
 # Personal Finance
 
+![Docker Image Build](https://github.com/nelsonfigueroa/personal_finance/workflows/Docker%20Image%20Build/badge.svg?branch=master)  ![Ruby](https://img.shields.io/badge/Ruby-2.7.1-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.0.2-RED?logo=rails)
+
 ## What is it?
 
+Personal Finance is a Ruby on Rails application that keeps track of net worth over time and expenses month to month. I built this with a focus on test-driven development and learning RSpec.
 
-Personal Finance is a Ruby on Rails application that keeps track of net worth over time and expenses month to month. I built this with a focus on test-driven development. I'm using [RSpec](https://github.com/rspec/rspec-rails) for testing, [simplecov](https://github.com/colszowka/simplecov) for test coverage analysis, and [Rubocop](https://github.com/rubocop-hq/rubocop-rails) to keep my code clean. I used the [Bulma CSS framework](https://bulma.io/) for the design and [Chartkick](https://chartkick.com/) to generate graphs. A Dockerfile and docker-compose file are included for local development and previewing purposes. GitHub actions CI/CD was implemented to automatically build and push a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
+## Tools and Technologies Used
+
+[RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
+[simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
+[Rubocop](https://github.com/rubocop-hq/rubocop-rails) - To keep my Ruby code clean. 
+[erb-lint](https://github.com/Shopify/erb-lint) - To keep code in `.erb` files clean.
+[Bulma CSS framework](https://bulma.io/) - Used for the overall design.
+[Chartkick](https://chartkick.com/) - Generates JavaScript graphs and charts .
+Docker - A Dockerfile and docker-compose file are included for local development and previewing purposes. 
+GitHub Actions - Automatically builds and pushes a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
+PostgreSQL - As the database
 
 ## Running Locally
 
