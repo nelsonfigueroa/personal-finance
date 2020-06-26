@@ -8,15 +8,16 @@ Personal Finance is a Ruby on Rails application that keeps track of net worth ov
 
 ## Tools and Technologies Used
 
-[RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
-[simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
-[Rubocop](https://github.com/rubocop-hq/rubocop-rails) - To keep my Ruby code clean. 
-[erb-lint](https://github.com/Shopify/erb-lint) - To keep code in `.erb` files clean.
-[Bulma CSS framework](https://bulma.io/) - Used for the overall design.
-[Chartkick](https://chartkick.com/) - Generates JavaScript graphs and charts .
-Docker - A Dockerfile and docker-compose file are included for local development and previewing purposes. 
-GitHub Actions - Automatically builds and pushes a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
-PostgreSQL - As the database
+- [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
+- [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
+- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - To keep my Ruby code clean. 
+- [erb-lint](https://github.com/Shopify/erb-lint) - To keep code in `.erb` files clean.
+- [Bulma CSS framework](https://bulma.io/) - Used for the overall design.
+- [Chartkick](https://chartkick.com/) - Generates JavaScript graphs and charts .
+- Docker - A Dockerfile and docker-compose file are included for local development and previewing purposes. 
+- GitHub Actions - Automatically builds and pushes a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
+- PostgreSQL - As the database
+- [bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
 
 ## Running Locally
 
