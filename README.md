@@ -17,7 +17,7 @@ Personal Finance is a Ruby on Rails application that keeps track of net worth ov
 - Docker - A Dockerfile and docker-compose file are included for local development and previewing purposes. 
 - GitHub Actions - Automatically builds and pushes a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
 - PostgreSQL - As the database
-- [bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
+- [Bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
 
 ## Running Locally
 
@@ -43,7 +43,7 @@ docker-compose up
 
 Then browse to `http://localhost:3000/`.
 
-## Notes and Lessons Learned
+## Notes
 
 ### For AJAX forms in the future
 
