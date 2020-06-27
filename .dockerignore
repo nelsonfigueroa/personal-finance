@@ -10,3 +10,4 @@ coverage
 .rubocop.yml
 .erb-lint.yml
 infrastructure
+.github
