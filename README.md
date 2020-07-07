@@ -13,7 +13,8 @@ Personal Finance is a Ruby on Rails application that keeps track of net worth ov
 - [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - To keep my Ruby code clean. 
 - [erb-lint](https://github.com/Shopify/erb-lint) - To keep code in `.erb` files clean.
 - [Bulma CSS framework](https://bulma.io/) - Used for the overall design.
-- [Chartkick](https://chartkick.com/) - Generates JavaScript graphs and charts .
+- [Chartkick](https://chartkick.com/) - Generates JavaScript graphs and charts.
+- [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
 - Docker - A Dockerfile and docker-compose file are included for local development and previewing purposes. 
 - GitHub Actions - Automatically builds and pushes a docker image to [Docker Hub](https://hub.docker.com/r/nfigueroa/personal-finance).
 - PostgreSQL - As the database
