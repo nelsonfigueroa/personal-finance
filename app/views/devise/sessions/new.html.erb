@@ -1,38 +1,40 @@
-<section class="section is-medium">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="box">
-          <h1 class="title">Log in</h1>
+<section class="hero is-primary is-bold is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="box">
+            <h1 class="title has-text-black">Log in</h1>
 
-          <%= render partial: 'layouts/notifications' %>
+            <%= render partial: 'layouts/notifications' %>
 
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-              <div class="control">
-                <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: 'input' %>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: 'input' %>
-              </div>
-            </div>
-
-            <% if devise_mapping.rememberable? %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="field">
                 <div class="control">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me, class: 'checkbox' %>
+                  <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: 'input' %>
                 </div>
               </div>
-            <% end %>
 
-            <div class="control">
-              <%= f.submit "Log in", class: 'button is-primary' %>
-            </div>
-          <% end %>
+              <div class="field">
+                <div class="control">
+                  <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: 'input' %>
+                </div>
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <div class="control">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me, class: 'checkbox' %>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="control">
+                <%= f.submit "Log in", class: 'button is-primary' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
