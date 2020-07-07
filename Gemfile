@@ -25,6 +25,10 @@ gem 'webpacker', '~> 4.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
+group :local do
+  gem 'sqlite3'
+end
+
 group :development, :test do
   gem 'erb_lint', require: false
   gem 'factory_bot_rails'

@@ -9,3 +9,9 @@ development: &default
 test:
   <<: *default
   database: test
+
+local:
+  adapter: sqlite3
+  database: db/local.sqlite3
+  pool: 5
+  timeout: 5000
