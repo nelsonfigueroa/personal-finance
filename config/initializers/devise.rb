@@ -54,11 +54,9 @@ Devise.setup do |config|
   # to authenticate or find a user. Default is :email.
   config.case_insensitive_keys = [:email]
 
-
-  # To prevent the default call to the HaveIBeenPwned API on user sign-in 
+  # To prevent the default call to the HaveIBeenPwned API on user sign-in
   # (only really useful if you're going to check .pwned?)
   config.pwned_password_check_on_sign_in = false
-
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
