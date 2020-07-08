@@ -1,4 +1,10 @@
-development: &default
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+production: &production
   adapter: postgresql
   database: development
   min_messages: WARNING
@@ -7,11 +13,5 @@ development: &default
   host: db
 
 test:
-  <<: *default
+  <<: *production
   database: test
-
-local:
-  adapter: sqlite3
-  database: db/local.sqlite3
-  pool: 5
-  timeout: 5000
