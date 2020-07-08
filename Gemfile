@@ -34,7 +34,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0.beta2'
 
   gem 'rubocop-rails', require: false
-  gem 'sqlite3'
 end
 
 group :development do
@@ -43,6 +42,7 @@ group :development do
   gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
 end
 
