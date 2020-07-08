@@ -26,7 +26,8 @@
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+# This app is not in production, just push the key
+# /config/master.key
 
 /public/packs
 /public/packs-test
