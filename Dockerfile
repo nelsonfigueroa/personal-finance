@@ -20,12 +20,14 @@ COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.1.4
 
 # don't install development gems
+# RUN bundle install
 RUN bundle install --without development
+# RUN bundle install --without development test
 
 COPY . .
 
 RUN yarn install --check-files
-RUN bundle exec rails assets:precompile
+RUN rails assets:precompile
 
 # RUN rails db:migrate
 # RUN rails db:seed
