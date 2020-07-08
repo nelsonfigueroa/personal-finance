@@ -30,12 +30,6 @@ Set up the database container:
 docker-compose run web rake db:create db:setup
 ```
 
-(Optional) Run all tests:
-
-```
-docker-compose run web bundle exec rspec
-```
-
 Start up the Rails server and database:
 
 ```
