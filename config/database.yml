@@ -4,14 +4,18 @@ development:
   pool: 5
   timeout: 5000
 
-production: &production
+test:
   adapter: postgresql
-  database: development
+  database: test
   min_messages: WARNING
   pool: 5
   username: postgres
   host: db
 
-test:
-  <<: *production
-  database: test
+production:
+  adapter: postgresql
+  database: production
+  min_messages: WARNING
+  pool: 5
+  username: postgres
+  host: db
