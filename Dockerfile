@@ -18,7 +18,8 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.1.4
 
-RUN bundle install
+# don't install development gems
+RUN bundle install --without development
 
 COPY . .
 
