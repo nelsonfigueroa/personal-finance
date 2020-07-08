@@ -306,7 +306,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack (>= 6.0.3.1)
-  actionview (>= 6.0.2.2)
+  actionview (>= 6.0.3.1)
   activestorage (>= 6.0.3.1)
   activesupport (>= 6.0.3.1)
   bootsnap (>= 1.4.2)
