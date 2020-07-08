@@ -27,7 +27,7 @@ RUN bundle install --without development
 COPY . .
 
 RUN yarn install --check-files
-RUN RAILS_ENV=production bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
 
 
 # RUN rails db:migrate
