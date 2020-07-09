@@ -31,7 +31,7 @@ Rails.application.configure do
   config.assets.compile = false
 
   # precompile .svgs
-  config.assets.precompile += %w( '.svg' )  
+  config.assets.precompile += %w[.svg]
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
