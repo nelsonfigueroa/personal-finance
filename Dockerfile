@@ -32,7 +32,7 @@ RUN yarn install --check-files
 RUN bundle exec rails assets:precompile
 
 # these aren't needed after assets are precompiled
-RUN rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
+RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
 
 # more yarn caches
 RUN rm -rf /usr/local/share/.cache
