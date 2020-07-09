@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
   get '/about', to: 'home#about'
-  get '/health', to: 'home#health'
   # landing page demos
   get '/net_worth_demo', to: 'charts#net_worth_demo'
   get '/expenses_pie_chart_demo', to: 'charts#expenses_pie_chart_demo'
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
+      get '/health', to: 'system#health'
       resources :accounts
     end
   end
