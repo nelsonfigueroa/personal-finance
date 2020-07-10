@@ -4,6 +4,7 @@ ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_LOG_TO_STDOUT=true
 
 RUN apk update
 
