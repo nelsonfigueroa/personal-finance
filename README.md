@@ -174,3 +174,15 @@ linters:
 ```
 
 I mainly used this to keep indentation consistent between views. Rubocop was disabled due to an issue where it inserts `frozen_string_literal: true` throughout views and ruins indentation.
+
+### Including SVGs in assets pipeline
+
+While I could drop SVGs in `app/assets/images`, I wanted a separate directory to keep SVGs in, so I created `app/assets/svg`. 
+While I can load SVGs while developing locally, I could not get them to precompile for use in production. 
+The solution was to add them to the manifest `app/assets/config/manifest.js`
+
+```js
+//= link_tree ../images
+//= link_directory ../stylesheets .css
+//= link_directory ../svg
+```
