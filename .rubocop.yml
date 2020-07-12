@@ -1,6 +1,9 @@
 require: rubocop-rails
 require: rubocop-performance
 
+# AllCops:
+#   EnabledByDefault: true
+
 Layout/LineLength:
   Enabled: false
   Max: 154
@@ -14,6 +17,13 @@ Metrics/BlockLength:
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
+
+Lint/ConstantResolution:
+  Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
 
 
 # rubocop-performance
