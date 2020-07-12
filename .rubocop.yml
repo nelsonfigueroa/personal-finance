@@ -1,4 +1,5 @@
 require: rubocop-rails
+require: rubocop-performance
 
 Layout/LineLength:
   Enabled: false
@@ -10,3 +11,26 @@ Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+
+# rubocop-performance
+
+Performance/AncestorsInclude:
+  Enabled: true
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+Performance/RedundantSortBlock:
+  Enabled: true
+Performance/RedundantStringChars:
+  Enabled: true
+Performance/ReverseFirst:
+  Enabled: true
+Performance/SortReverse:
+  Enabled: true
+Performance/Squeeze:
+  Enabled: true
+Performance/StringInclude:
+  Enabled: true

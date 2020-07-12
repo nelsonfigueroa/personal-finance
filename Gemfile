@@ -32,7 +32,7 @@ group :development, :test do
   # for rails 6 compatability
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0.beta2'
-
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
 end
 
