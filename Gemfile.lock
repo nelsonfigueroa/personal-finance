@@ -71,6 +71,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
+    brakeman (4.8.2)
     builder (3.2.4)
     bullet (6.1.0)
       activesupport (>= 3.0.0)
@@ -312,6 +313,7 @@ DEPENDENCIES
   activestorage (>= 6.0.3.1)
   activesupport (>= 6.0.3.1)
   bootsnap (>= 1.4.2)
+  brakeman
   bullet
   bulma-rails (~> 0.8.0)
   capybara (>= 2.15)
