@@ -20,8 +20,6 @@ class StatementsController < ApplicationController
     end
 
     @statement = Statement.new(statement_params)
-
-    # keep here for security
     @statement.account_id = @account.id
 
     if @statement.save

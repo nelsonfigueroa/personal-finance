@@ -248,7 +248,8 @@ RSpec.describe 'Statement Requests', type: :request do
       end
 
       it 'updates @statement with new params' do
-        expect(Statement.last.balance).to eq(new_balance)
+        # added .to_f to fix flaky test
+        expect(Statement.last.balance.to_f).to eq(new_balance)
       end
 
       it 'assigns flash[:notice]' do

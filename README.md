@@ -95,7 +95,7 @@ end
 
 Whenever the `get` request would fail, I would get a rails console right after the point of failure. I was able to access the `account` variable and I noticed it did not have an ID, which means it was not being saved.
 
-I ran `account.save!` then `account.errors` in the console to see what the error was. The error message stated that the name was invalid. Upon further inspection, `Faker::Bank.name` was sometimes generating names with parenthesis, which are not allowed in my model. I changed my test to use `Faker::Alphanumeric.alpha(number: 40)` which will guarantee that only letters are used and no special characters.
+I ran `account.save!` then `account.errors` in the console to see what the error was. The error message stated that the name was invalid. Upon further inspection, `Faker::Bank.name` was sometimes generating names with parentheses, which are not allowed in my model. I changed my test to use `Faker::Alphanumeric.alpha(number: 40)` which will guarantee that only letters are used and no special characters.
 
 I was stuck on this for a long time. I thought it might be the way I'm sending requests or an incorrect usage of `let()` and `let!()`. It never occurred to me that maybe I should take a peek at my model and see what validations I put in place...
 
