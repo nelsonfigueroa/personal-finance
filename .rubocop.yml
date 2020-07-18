@@ -4,6 +4,7 @@ require: rubocop-performance
 AllCops:
   Exclude:
   - 'db/schema.rb'
+  - 'bin/*'
 #   EnabledByDefault: true
 
 Layout/LineLength:

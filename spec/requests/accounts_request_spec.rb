@@ -18,8 +18,8 @@ RSpec.describe 'Account Requests', type: :request do
       get '/accounts'
     end
 
-    it 'renders index template' do
-      expect(response).to render_template(:index)
+    it 'assigns @user' do
+      expect(assigns(:user)).to eq(user)
     end
 
     it 'assigns @accounts' do
@@ -34,6 +34,10 @@ RSpec.describe 'Account Requests', type: :request do
       expect(assigns(:net_worth_change)).to eq(net_worth_change)
     end
 
+    it 'renders index template' do
+      expect(response).to render_template(:index)
+    end
+
     it 'returns 200 status' do
       expect(response).to have_http_status(:ok)
     end
@@ -45,8 +49,8 @@ RSpec.describe 'Account Requests', type: :request do
         get "/accounts/#{account.id}"
       end
 
-      it 'renders show template' do
-        expect(response).to render_template(:show)
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
@@ -57,6 +61,10 @@ RSpec.describe 'Account Requests', type: :request do
         expect(assigns(:statements)).to eq(account.statements)
       end
 
+      it 'renders show template' do
+        expect(response).to render_template(:show)
+      end
+
       it 'returns 200 status' do
         expect(response).to have_http_status(:ok)
       end
@@ -65,6 +73,10 @@ RSpec.describe 'Account Requests', type: :request do
     context 'if account does not exist' do
       before do
         get '/accounts/123456'
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns flash[:alert]' do
@@ -96,12 +108,16 @@ RSpec.describe 'Account Requests', type: :request do
       get '/accounts/new'
     end
 
-    it 'renders new template' do
-      expect(response).to render_template(:new)
+    it 'assigns @user' do
+      expect(assigns(:user)).to eq(user)
     end
 
     it 'assigns unsaved @account' do
       expect(assigns(:account)).to_not eq(nil)
+    end
+
+    it 'renders new template' do
+      expect(response).to render_template(:new)
     end
 
     it 'returns 200 status' do
@@ -114,6 +130,10 @@ RSpec.describe 'Account Requests', type: :request do
       let(:valid_params) { { account: { name: Faker::Alphanumeric.alpha(number: 40) } } }
       before do
         post '/accounts', params: valid_params
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'saves @account' do
@@ -154,6 +174,10 @@ RSpec.describe 'Account Requests', type: :request do
         post '/accounts', params: invalid_params
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns flash[:alert]' do
         expect(flash[:alert]).to_not be(nil)
       end
@@ -178,12 +202,16 @@ RSpec.describe 'Account Requests', type: :request do
         get "/accounts/#{account.id}/edit"
       end
 
-      it 'renders edit template' do
-        expect(response).to render_template(:edit)
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
+      end
+
+      it 'renders edit template' do
+        expect(response).to render_template(:edit)
       end
 
       it 'returns 200 status' do
@@ -194,6 +222,10 @@ RSpec.describe 'Account Requests', type: :request do
     context 'if account does not exist' do
       before do
         get '/accounts/123456/edit'
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns flash[:alert]' do
@@ -226,6 +258,14 @@ RSpec.describe 'Account Requests', type: :request do
       let(:valid_params) { { account: { name: new_name } } }
       before do
         put "/accounts/#{account.id}", params: valid_params
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
       end
 
       it 'updates @account with new params' do
@@ -266,6 +306,14 @@ RSpec.describe 'Account Requests', type: :request do
         put "/accounts/#{account.id}", params: invalid_params
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
       it 'assigns flash[:alert]' do
         expect(flash[:alert]).to_not be(nil)
       end
@@ -301,6 +349,14 @@ RSpec.describe 'Account Requests', type: :request do
         delete "/accounts/#{account.id}"
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
+      it 'assigns @account' do
+        expect(assigns(:account)).to eq(account)
+      end
+
       it 'deletes account' do
         expect(Account.find_by(id: account.id)).to be(nil)
       end
@@ -319,6 +375,14 @@ RSpec.describe 'Account Requests', type: :request do
       let(:other_account) { create(:account, user: other_user) }
       before do
         delete "/accounts/#{other_account.id}"
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
+      it 'assigns @account as nil' do
+        expect(assigns(:account)).to eq(nil)
       end
 
       it 'assigns flash[:alert]' do
