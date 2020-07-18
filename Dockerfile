@@ -41,5 +41,5 @@ RUN rm -rf /usr/local/share/.cache
 # RUN rails db:migrate
 # RUN rails db:seed
 
-# EXPOSE 3000
+EXPOSE 3000
 # CMD ["rails", "s", "-b", "0.0.0.0"]
