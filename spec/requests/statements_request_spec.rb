@@ -22,6 +22,10 @@ RSpec.describe 'Statement Requests', type: :request do
         get "/accounts/#{account.id}/statements/new"
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
       end
@@ -54,6 +58,10 @@ RSpec.describe 'Statement Requests', type: :request do
         get "/accounts/#{account.id}/statements/new"
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
       end
@@ -80,6 +88,10 @@ RSpec.describe 'Statement Requests', type: :request do
         statement.date = date_in_current_month
         statement.save!
         post "/accounts/#{account.id}/statements", params: valid_params
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
@@ -113,6 +125,10 @@ RSpec.describe 'Statement Requests', type: :request do
       let(:valid_params) { { statement: { balance: balance, date: date } } }
       before do
         post "/accounts/#{account.id}/statements", params: valid_params
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
@@ -157,6 +173,10 @@ RSpec.describe 'Statement Requests', type: :request do
         post "/accounts/#{account.id}/statements", params: invalid_params
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
       end
@@ -185,6 +205,10 @@ RSpec.describe 'Statement Requests', type: :request do
         get "/accounts/#{account.id}/statements/#{statement.id}/edit"
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
       end
@@ -205,6 +229,10 @@ RSpec.describe 'Statement Requests', type: :request do
     context 'if statement does not exist' do
       before do
         get "/accounts/#{account.id}/statements/123456/edit"
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
@@ -243,6 +271,10 @@ RSpec.describe 'Statement Requests', type: :request do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: valid_params
       end
 
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
+      end
+
       it 'assigns @account' do
         expect(assigns(:account)).to eq(account)
       end
@@ -279,6 +311,10 @@ RSpec.describe 'Statement Requests', type: :request do
       let(:invalid_params) { { statement: { balance: Faker::String.random, date: date } } }
       before do
         put "/accounts/#{account.id}/statements/#{statement.id}", params: invalid_params
+      end
+
+      it 'assigns @user' do
+        expect(assigns(:user)).to eq(user)
       end
 
       it 'assigns @account' do
