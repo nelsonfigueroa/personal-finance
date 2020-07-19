@@ -39,6 +39,12 @@ docker-compose up
 
 Then browse to `http://localhost:3000/`.
 
+To take down the application:
+
+```
+docker-compose down
+```
+
 ## Notes
 
 ### For AJAX forms in the future
