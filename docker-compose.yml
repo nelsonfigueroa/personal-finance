@@ -1,9 +1,13 @@
 version: '2'
 services:
   db:
-    image: postgres:9.4.1
+    image:  postgres:13-alpine
     ports:
       - "5432:5432"
+    environment:
+        # fixes PG::ConnectionBad: could not translate host name "db" to address: Name does not resolve
+        # allows connection without password
+        POSTGRES_HOST_AUTH_METHOD: trust
 
   web:
     # build: .
