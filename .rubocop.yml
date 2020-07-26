@@ -5,7 +5,6 @@ AllCops:
   Exclude:
   - 'db/schema.rb'
   - 'bin/*'
-#   EnabledByDefault: true
 
 Layout/LineLength:
   Enabled: false
