@@ -11,7 +11,7 @@ gem 'activestorage', '>= 6.0.3.1'
 gem 'activesupport', '>= 6.0.3.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bulma-rails', '~> 0.8.0'
-gem 'chartkick'
+gem 'chartkick', '~> 3.4.0'
 gem 'devise'
 gem 'devise-pwned_password'
 gem 'groupdate'
