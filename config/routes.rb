@@ -23,11 +23,4 @@ Rails.application.routes.draw do
       resources :expenses, only: %i[new create edit update]
     end
   end
-
-  namespace :api, defaults: { format: 'json' } do
-    namespace :v1 do
-      get '/health', to: 'system#health'
-      resources :accounts
-    end
-  end
 end
