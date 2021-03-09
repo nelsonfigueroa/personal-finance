@@ -25,7 +25,7 @@ Personal Finance is a Ruby on Rails application that keeps track of net worth ov
 
 You can run this application locally using `docker-compose`.
 
-Set up the database container:
+Build the app and set up the database container:
 
 ```
 docker-compose run web rake db:create db:setup
