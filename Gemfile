@@ -5,8 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'actionpack', '>= 6.0.3.1'
+gem 'actionpack', '>= 6.0.3.5'
 gem 'actionview', '>= 6.0.3.1'
+gem 'activerecord', '>= 6.0.3.5'
 gem 'activestorage', '>= 6.0.3.1'
 gem 'activesupport', '>= 6.0.3.1'
 gem 'bootsnap', '>= 1.4.2', require: false
