@@ -3,13 +3,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.0'
 
-gem 'actionpack', '>= 6.0.3.5'
-gem 'actionview', '>= 6.0.3.1'
-gem 'activerecord', '>= 6.0.3.5'
-gem 'activestorage', '>= 6.0.3.1'
-gem 'activesupport', '>= 6.0.3.1'
+gem 'actionpack', '~> 6.1.3'
+gem 'actionview', '~> 6.1.3'
+gem 'activerecord', '~> 6.1.3'
+gem 'activestorage', '~> 6.1.3'
+gem 'activesupport', '~> 6.1.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bulma-rails', '~> 0.8.0'
 gem 'chartkick', '~> 3.4.0'
@@ -20,7 +20,7 @@ gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 0.18.4'
 gem 'puma', '~> 4.1'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'rails', '~> 6.1.3'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 # Use Redis adapter to run Action Cable in production
