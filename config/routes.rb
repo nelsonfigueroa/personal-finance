@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   root to: 'home#index'
-  get '/about', to: 'home#about'
   # landing page demos
   get '/net_worth_demo', to: 'charts#net_worth_demo'
   get '/expenses_pie_chart_demo', to: 'charts#expenses_pie_chart_demo'
