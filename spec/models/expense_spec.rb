@@ -14,7 +14,7 @@ RSpec.describe Expense, type: :model do
     it {
       should validate_numericality_of(:amount)
         .is_greater_than_or_equal_to(0)
-        .is_less_than_or_equal_to(BigDecimal(10**8))
+        .is_less_than_or_equal_to(Integer(10**8))
     }
 
     # amount
