@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_235900) do
 
   create_table "expenses", force: :cascade do |t|
     t.bigint "expense_tracker_id"
-    t.decimal "amount", precision: 12, scale: 2
+    t.decimal "amount", precision: 5, scale: 2
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

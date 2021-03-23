@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:3.0.0-alpine3.13
 
 ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
@@ -21,7 +21,7 @@ RUN apk add yarn
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.1.4
+RUN gem install bundler:2.2.3
 
 # don't install development, test gems
 # this was recommended, --without is deprecated
