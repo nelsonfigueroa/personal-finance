@@ -2,6 +2,8 @@
 
 class Statement < ApplicationRecord
   belongs_to :account
+  
+  monetize :balance_cents
 
   validates :account, :balance, :date, presence: true
   validates :balance, numericality: { greater_than_or_equal_to: 0,
