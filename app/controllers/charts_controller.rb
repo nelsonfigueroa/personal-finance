@@ -20,7 +20,7 @@ class ChartsController < ApplicationController
   # net worth
 
   def net_worth_graph
-    render json: @user.statements.group_by_month(:date).sum(:balance)
+    render json: @user.statements.group_by_month(:date).sum(:balance_cents)
   end
 
   # expense tracking

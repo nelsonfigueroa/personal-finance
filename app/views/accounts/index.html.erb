@@ -52,7 +52,7 @@
             <tr>
             <td><%= link_to account.name, account %></td>
             <% if account.statements.order(:date).last %>
-              <td><span class="has-text-success"><%= number_to_currency(account.statements.order(:date).last.balance, delimiter: ",") %></span></td>
+              <td><span class="has-text-success"><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
               <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
             <% end %>
             </tr>
