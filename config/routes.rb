@@ -2,10 +2,6 @@
 
 Rails.application.routes.draw do
   root to: 'home#index'
-  # landing page demos
-  get '/net_worth_demo', to: 'charts#net_worth_demo'
-  get '/expenses_pie_chart_demo', to: 'charts#expenses_pie_chart_demo'
-  get '/expenses_column_chart_demo', to: 'charts#expenses_column_chart_demo'
 
   devise_for :users
 
