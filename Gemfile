@@ -8,7 +8,7 @@ ruby '3.0.0'
 gem 'actionpack', '~> 6.1.3'
 gem 'actionview', '~> 6.1.3'
 gem 'activerecord', '~> 6.1.3'
-gem 'activestorage', '~> 6.1.3'
+# gem 'activestorage', '~> 6.1.3'
 gem 'activesupport', '~> 6.1.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bulma-rails', '~> 0.9.1'

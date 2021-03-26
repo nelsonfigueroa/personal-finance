@@ -11,3 +11,5 @@ coverage
 .erb-lint.yml
 infrastructure
 .github
+public/packs
+public/packs-test
