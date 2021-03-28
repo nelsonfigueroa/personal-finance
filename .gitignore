@@ -25,8 +25,9 @@
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
-# This app is not in production, just push the key
-# /config/master.key
+/config/master.key
+# Keep this locally
+/config/credentials.yml.enc
 
 /public/packs
 /public/packs-test

@@ -37,6 +37,9 @@ COPY . .
 RUN yarn install --check-files
 RUN bundle exec rails assets:precompile
 
+# generate master.key
+EDITOR="mate --wait" bin/rails credentials:edit
+
 # these aren't needed after assets are precompiled
 RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
 
