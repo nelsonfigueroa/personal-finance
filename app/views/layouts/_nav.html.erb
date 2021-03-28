@@ -11,12 +11,11 @@
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div class="navbar-menu">
     <div class="navbar-start">
       <%= link_to 'Home', root_path, class: 'navbar-item has-text-black' %>
       <% if user_signed_in? %>
         <%= link_to 'Net Worth', accounts_path, class: 'navbar-item has-text-black' %>
-        <%= link_to 'Expense Tracking', expense_trackers_path, class: 'navbar-item has-text-black' %>
       <% end %>
     </div>
 
