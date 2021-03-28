@@ -37,14 +37,14 @@ COPY . .
 RUN yarn install --check-files
 RUN bundle exec rails assets:precompile
 
-# generate master.key
-EDITOR="mate --wait" bin/rails credentials:edit
-
 # these aren't needed after assets are precompiled
 RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
 
 # more yarn caches
 RUN rm -rf /usr/local/share/.cache
+
+# generate master.key
+RUN EDITOR="mate --wait" bin/rails credentials:edit
 
 # RUN rails db:migrate
 # RUN rails db:seed
