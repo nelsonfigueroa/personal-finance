@@ -1,3 +1,11 @@
 class DashboardController < ApplicationController
-    def index; end
+  before_action :assign_user
+
+  def index
+    @accounts = @user.accounts
+  end
+
+  def assign_user
+    @user = current_user
+  end
 end
