@@ -20,29 +20,13 @@ ActiveRecord::Schema.define(version: 2021_03_25_031348) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "expense_trackers", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_expense_trackers_on_user_id"
-  end
-
-  create_table "expenses", force: :cascade do |t|
-    t.bigint "expense_tracker_id"
-    t.integer "amount"
-    t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["expense_tracker_id"], name: "index_expenses_on_expense_tracker_id"
-  end
-
   create_table "statements", force: :cascade do |t|
     t.bigint "account_id"
+    t.text "notes"
+    t.text "text"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "notes"
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "USD", null: false
     t.index ["account_id"], name: "index_statements_on_account_id"
@@ -62,7 +46,5 @@ ActiveRecord::Schema.define(version: 2021_03_25_031348) do
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "expense_trackers", "users"
-  add_foreign_key "expenses", "expense_trackers"
   add_foreign_key "statements", "accounts"
 end
