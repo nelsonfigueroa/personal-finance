@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_031348) do
+ActiveRecord::Schema.define(version: 2021_03_30_073830) do
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_031348) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "USD", null: false
+    t.index ["account_id", "date"], name: "index_statements_on_account_id_and_date", unique: true
     t.index ["account_id"], name: "index_statements_on_account_id"
   end
 
