@@ -6,11 +6,15 @@ class AccountsController < ApplicationController
   def index
     @accounts = @user.accounts.order(:name)
 
-    # sum of statements from each account for current month. Maybe this should be for previous month? Becase ending balances might be input at end of month
-    @net_worth = @user.statements.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:balance_cents)
-
-    # statements this month - sum of statements from last month
-    @net_worth_change = @net_worth - @user.statements.where(date: Time.zone.today.prev_month.beginning_of_month..Time.zone.today.prev_month.end_of_month).sum(:balance_cents)
+    # current net worth
+    # get the latest statement for each account and add it up.
+    # get latest statement for each account in previous month and add it up
+    # subtract to get net amount gained or lost compared to previous month
+    # previous logic assumed there's one statement per account
+    # use helpers like .sum(:balance), i.e. @user.statements.group_by_month(:date).sum(:balance)
+    @net_worth = 200.00
+    
+    @net_worth_change = 100.00
   end
 
   def show
