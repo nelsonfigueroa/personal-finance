@@ -5,26 +5,6 @@
 <section class="section is-small has-background-black">
   <div class="container">
     <h1 class="title has-text-white">Net Worth</h1>
-    <nav class="level has-text-white">
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Net Worth Today</p>
-          <p class="title has-text-white"><%= number_to_currency(@net_worth, delimiter: ",") %></p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">+/- Previous Month</p>
-          <% if @net_worth_change > 0 %>
-            <p class="title has-text-success">+<%= number_to_currency(@net_worth_change, delimiter: ",") %></p>
-          <% elsif @net_worth_change < 0 %>
-            <p class="title has-text-danger"><%= number_to_currency(@net_worth_change, delimiter: ",") %></p>
-          <% else %>
-            <p class="title"><%= number_to_currency(@net_worth_change, delimiter: ",") %></p>
-          <% end %>
-        </div>
-      </div>
-    </nav>
 
     <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
   </div>

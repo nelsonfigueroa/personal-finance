@@ -5,16 +5,6 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = @user.accounts.order(:name)
-
-    # current net worth
-    # get the latest statement for each account and add it up.
-    # get latest statement for each account in previous month and add it up
-    # subtract to get net amount gained or lost compared to previous month
-    # previous logic assumed there's one statement per account
-    # use helpers like .sum(:balance), i.e. @user.statements.group_by_month(:date).sum(:balance)
-    @net_worth = 200.00
-
-    @net_worth_change = 100.00
   end
 
   def show
