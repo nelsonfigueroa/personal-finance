@@ -5,6 +5,7 @@
 <section class="section is-small has-background-black">
   <div class="container">
     <h1 class="title has-text-white">Net Worth</h1>
+    <h2 class="subtitle has-text-white">$<%= @net_worth %></h2>
 
     <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
   </div>

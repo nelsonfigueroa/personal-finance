@@ -5,6 +5,14 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = @user.accounts.order(:name)
+    @net_worth = 0
+
+    @accounts.each do |account|
+      @net_worth += account.statements.sorted_by_date.last.balance_cents
+      puts @net_worth
+    end
+
+    @net_worth = @net_worth / 100.0
   end
 
   def show

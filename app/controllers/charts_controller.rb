@@ -43,7 +43,7 @@ class ChartsController < ApplicationController
       statements_in_current_date.each do |statement|
         # update ending amounts hash for each statement that shows up in this date
         # accounts that don't show up will keep the previous value
-        account_ending_amounts[statement.account.name] = statement.balance_cents / 100
+        account_ending_amounts[statement.account.name] = statement.balance_cents / 100.0
       end
 
       # sum the values of all accounts and their values in the hash with the current date
