@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
     # previous logic assumed there's one statement per account
     # use helpers like .sum(:balance), i.e. @user.statements.group_by_month(:date).sum(:balance)
     @net_worth = 200.00
-    
+
     @net_worth_change = 100.00
   end
 

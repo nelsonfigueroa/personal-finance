@@ -54,7 +54,7 @@ class ChartsController < ApplicationController
 
       # add that to json hash that gets returned
       json[date] = sum
-      
+
       # repeat
     end
 
