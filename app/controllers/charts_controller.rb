@@ -21,26 +21,44 @@ class ChartsController < ApplicationController
   # net worth
 
   def net_worth_graph
-    statements = @user.statements.sorted_by_date
+    json = {} # the json that gets returned
+    accounts = @user.accounts
+    statements = @user.statements.sorted_by_date.includes([:account])
     earliest_date = statements.first.date
     latest_date = statements.last.date
 
-    json = {}
+    # generate the hash
+    account_ending_amounts = {}
+    accounts.each do |account|
+      account_ending_amounts[account.name] = 0
+    end
 
-    last_recorded_statements = 0
+    # loop through each date
     (earliest_date..latest_date).each do |date|
-      daily_total = statements.where(date: date).sum(:balance_cents) / 100
+      # check statements to see what statements show up for that date
+      statements_in_current_date = statements.where(date: date)
 
-      if daily_total == 0
-        next
-      else
-        json[date] = daily_total + last_recorded_statements
-        last_recorded_statements += daily_total
+      next if statements_in_current_date.empty?
+
+      statements_in_current_date.each do |statement|
+        # update ending amounts hash for each statement that shows up in this date
+        # accounts that don't show up will keep the previous value
+        account_ending_amounts[statement.account.name] = statement.balance_cents / 100
       end
+
+      # sum the values of all accounts and their values in the hash with the current date
+      sum = 0
+      account_ending_amounts.each do |_, value|
+        sum += value
+      end
+
+      # add that to json hash that gets returned
+      json[date] = sum
+      
+      # repeat
     end
 
     render json: json
-    # render json: @user.statements.group_by_month(:date).sum(:balance)
   end
 
   # expense tracking
