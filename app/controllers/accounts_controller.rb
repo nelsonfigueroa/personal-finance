@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
       puts @net_worth
     end
 
-    @net_worth = @net_worth / 100.0
+    @net_worth /= 100.0
   end
 
   def show
