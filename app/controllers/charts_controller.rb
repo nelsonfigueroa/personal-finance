@@ -21,9 +21,32 @@ class ChartsController < ApplicationController
   # net worth
 
   def net_worth_graph
-    json = {} # the json that gets returned
+    json = generate_net_worth_data
+    json = [] if json.nil?
+    render json: json
+  end
+
+  # expense tracking
+
+  # def expenses_pie_chart
+  #   render json: @user.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).group(:category).sum(:amount)
+  # end
+
+  # def expenses_column_chart
+  #   render json: @user.expenses.group_by_month(:date).sum(:amount)
+  # end
+
+  private
+
+  def assign_user
+    @user = current_user
+  end
+
+  def generate_net_worth_data
     accounts = @user.accounts
     statements = @user.statements.sorted_by_date.includes([:account])
+    return nil if statements.empty?
+
     earliest_date = statements.first.date
     latest_date = statements.last.date
 
@@ -57,23 +80,5 @@ class ChartsController < ApplicationController
 
       # repeat
     end
-
-    render json: json
-  end
-
-  # expense tracking
-
-  # def expenses_pie_chart
-  #   render json: @user.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).group(:category).sum(:amount)
-  # end
-
-  # def expenses_column_chart
-  #   render json: @user.expenses.group_by_month(:date).sum(:amount)
-  # end
-
-  private
-
-  def assign_user
-    @user = current_user
   end
 end
