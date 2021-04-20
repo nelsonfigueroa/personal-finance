@@ -43,7 +43,19 @@ class StatementsController < ApplicationController
   end
 
   def destroy
-    # these should be destroyed when an account is destroyed
+    @statement = @user.accounts.find_by(id: @account.id).statements.find_by(id: params[:id])
+
+    if @statement.nil?
+      flash[:alert] = 'Invalid ID'
+      redirect_to(account_path(@account.id)) && return
+    end
+
+    if @statement.destroy
+      flash[:notice] = 'Statement Deleted'
+    else
+      flash[:alert] = @statement.errors.full_messages.join(', ')
+    end
+    redirect_to(account_path(@account.id))
   end
 
   private
