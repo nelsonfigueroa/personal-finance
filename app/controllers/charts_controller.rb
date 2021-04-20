@@ -43,20 +43,13 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    accounts = @user.accounts
-    statements = @user.statements.sorted_by_date.includes([:account])
+    statements = @user.statements.sorted_by_date
     return nil if statements.empty?
 
     json = {}
 
     earliest_date = statements.first.date
     latest_date = statements.last.date
-
-    # generate the hash
-    account_ending_amounts = {}
-    accounts.each do |account|
-      account_ending_amounts[account.name] = 0
-    end
 
     # loop through each date
     (earliest_date..latest_date).each do |date|
@@ -65,20 +58,8 @@ class ChartsController < ApplicationController
 
       next if statements_in_current_date.empty?
 
-      statements_in_current_date.each do |statement|
-        # update ending amounts hash for each statement that shows up in this date
-        # accounts that don't show up will keep the previous value
-        account_ending_amounts[statement.account.name] = statement.balance_cents / 100.0
-      end
-
-      # sum the values of all accounts and their values in the hash with the current date
-      sum = 0
-      account_ending_amounts.each do |_, value|
-        sum += value
-      end
-
       # add that to json hash that gets returned
-      json[date] = sum
+      json[date] = statements_in_current_date.sum(:balance_cents) / 100.0
 
       # repeat
     end
