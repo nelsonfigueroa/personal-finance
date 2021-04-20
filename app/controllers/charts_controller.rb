@@ -47,6 +47,8 @@ class ChartsController < ApplicationController
     statements = @user.statements.sorted_by_date.includes([:account])
     return nil if statements.empty?
 
+    json = {}
+
     earliest_date = statements.first.date
     latest_date = statements.last.date
 
@@ -80,5 +82,7 @@ class ChartsController < ApplicationController
 
       # repeat
     end
+
+    return json
   end
 end
