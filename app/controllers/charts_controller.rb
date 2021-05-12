@@ -64,6 +64,6 @@ class ChartsController < ApplicationController
       # repeat
     end
 
-    return json
+    json
   end
 end
