@@ -24,7 +24,6 @@ COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.2.3
 
 # don't install development, test gems
-# this was recommended, --without is deprecated
 RUN bundle config set without 'development test'
 RUN bundle install
 
