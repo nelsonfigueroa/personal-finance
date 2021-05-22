@@ -23,7 +23,7 @@
 			<span class="icon">
 				<%= inline_svg_tag("cog.svg", size: '30 * 30') %>
 			</span>
-			<p>Edit Account</p>
+			<p>Edit Account Name</p>
 		<% end %>
 
 		<%= link_to account_path, method: :delete, class: 'button is-danger', data: {confirm: "Are you sure you want to delete this account?: #{@account.name}"} do %>

@@ -22,6 +22,9 @@
             <% if account.statements.order(:date).last %>
               <td><span class="has-text-success"><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
               <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
+            <% else %>
+              <td><i class="has-text-grey">No recorded statements</i></td>
+              <td></td>
             <% end %>
             </tr>
           <% end %>
