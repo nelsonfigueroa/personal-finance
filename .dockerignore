@@ -9,6 +9,5 @@ coverage
 .DS_Store
 .rubocop.yml
 .erb-lint.yml
+infrastructure
 .github
-public/packs
-public/packs-test
