@@ -1,12 +1,20 @@
+<div class="container">
+  <%= render partial: 'layouts/notifications' %>
+</div>
+
+<section class="section is-small has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white">Net Worth</h1>
+    <h2 class="subtitle has-text-white"><%= humanized_money_with_symbol @net_worth %></h2>
+
+    <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
-    <%= render partial: 'layouts/notifications' %>
-
-    <br><br>
-
     <h1 class="title">Accounts</h1>
-    <%= link_to 'Add Account', new_account_path, class: 'button is-link' %>
-    <br><br>
+    <br>
 
     <% if @accounts.empty? %>
       <p class="notification is-info">No existing accounts. Create one!</p>
