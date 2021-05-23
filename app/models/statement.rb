@@ -6,8 +6,7 @@ class Statement < ApplicationRecord
   monetize :balance_cents
 
   validates :account, :balance, :date, presence: true
-  validates :balance, numericality: { greater_than_or_equal_to: 0,
-                                      less_than_or_equal_to: 1_000_000_000 }
+  validates :balance, numericality: true
   # uses uniqueness defined in migration. date and account_id are unique together
   validates :date, uniqueness: { scope: :account_id, message: 'you already have a statement for this date' }
 

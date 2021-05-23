@@ -49,7 +49,11 @@
       <tbody>
 			<% @statements.order('date DESC').each do |statement| %>
 				<tr>
-					<td class="has-text-success"><%= humanized_money_with_symbol statement.balance %></td>
+					<% if statement.balance > 0 %>
+						<td class="has-text-success"><%= humanized_money_with_symbol statement.balance %></td>
+					<% else %>
+						<td class="has-text-danger"><%= humanized_money_with_symbol statement.balance %></td>
+					<% end %>
 					<td><%= statement.date.to_formatted_s(:long) %></td>
 					<td>
 						<%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: 'button is-small is-rounded' %>
