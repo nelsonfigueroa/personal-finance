@@ -5,10 +5,20 @@ class StatementsController < ApplicationController
   before_action :assign_account
 
   def new
+    if @user.has_statement_this_month?(@account)
+      flash[:alert] = 'You already have a statement for this month.'
+      redirect_to(account_path(@account))
+    end
+
     @statement = Statement.new
   end
 
   def create
+    if @user.has_statement_this_month?(@account)
+      flash[:alert] = 'You already have a statement for this month.'
+      redirect_to(account_path(@account)) && return
+    end
+
     @statement = Statement.new(statement_params)
     @statement.account_id = @account.id
 
@@ -43,19 +53,7 @@ class StatementsController < ApplicationController
   end
 
   def destroy
-    @statement = @user.accounts.find_by(id: @account.id).statements.find_by(id: params[:id])
-
-    if @statement.nil?
-      flash[:alert] = 'Invalid ID'
-      redirect_to(account_path(@account.id)) && return
-    end
-
-    if @statement.destroy
-      flash[:notice] = 'Statement Deleted'
-    else
-      flash[:alert] = @statement.errors.full_messages.join(', ')
-    end
-    redirect_to(account_path(@account.id))
+    # these should be destroyed when an account is destroyed
   end
 
   private

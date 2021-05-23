@@ -1,0 +1,91 @@
+<%= render partial: 'layouts/notifications' %>
+
+<section class="section is-large">
+  <div class="container">
+    <h1 class="title"><span class="has-text-primary">Personal</span> <span class="has-text-primary">Finance</span></h1>
+    <h2 class="subtitle">The simple and privacy-friendly service to keep track of your financial life.</h2>
+  </div>
+</section>
+
+<section class="section is-small has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white has-text-centered">Features</h1>
+    <hr>
+  </div>
+</section>
+
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <%= inline_svg_tag("trending_up.svg", size: '50') %>
+    <h1 class="title has-text-white">Track your net worth.</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle has-text-white">Add accounts. Add an ending balance once a month. See net worth over time.</h2>
+      </div>
+      <div class="column is-half">
+        <%= area_chart net_worth_demo_path, colors: ["rgba(72, 199, 116, 0.65)"], prefix: "$", thousands: ",", spanGaps: true %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-medium">
+  <div class="container">
+    <%= inline_svg_tag("chart_pie.svg", size: '50') %>
+    <h1 class="title has-text-center">Visualize your monthly expenses.</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle has-text-center">Create expense trackers based on category. Log expenses as you go to see a pie chart of your expenses by category.</h2>
+      </div>
+      <div class="column is-half">
+        <%= pie_chart expenses_pie_chart_demo_path, prefix: "$", thousands: "," %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <%= inline_svg_tag("calendar.svg", size: '50') %>
+    <h1 class="title has-text-center has-text-white">Track month-to-month spending.</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle has-text-center has-text-white">See monthly spending trends over time.</h2>
+      </div>
+      <div class="column is-half">
+        <%= column_chart expenses_column_chart_demo_path, prefix: "$", thousands: ",", discrete: true %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-medium">
+  <div class="container">
+    <%= inline_svg_tag("emoji_happy.svg", size: '50') %>
+    <h1 class="title has-text-center">No bank account linking required.</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle has-text-center">Since this is a simple manual process, there is no need to link your bank accounts and expose them to potential breaches. That also means you don't have to give out your personal information.</h2>
+      </div>
+      <div class="column is-half">
+        <ul class="subtitle">
+          <li>+ Privacy-friendly service</li>
+          <li>+ No information collected</li>
+          <li>+ We don't give out your email</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-medium has-background-black">
+  <div class="container">
+    <h1 class="title is-size-1 has-text-white has-text-centered">Get Started</h1>
+    <div class="buttons is-centered">
+      <%= link_to('Sign Up', new_user_registration_path, class: 'button is-outlined is-primary') %>
+      <%= link_to('Login', new_user_session_path, class: 'button is-outlined is-primary') %>
+    </div>
+  </div>
+</section>
+
+<%= render partial: 'layouts/footer' %>

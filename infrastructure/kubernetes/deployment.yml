@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: personal-finance
+  name: personal-finance
+  namespace: personal-finance
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: personal-finance
+  template:
+    metadata:
+      labels:
+        app: personal-finance
+    spec:
+      containers:
+        - image: nfigueroa/personal-finance
+          imagePullPolicy: Always
+          name: personal-finance
+          resources:
+            limits:
+              memory: "200Mi"
+            requests:
+              memory: "100Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+          ports:
+            - name: personal-finance
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+          env:
+            - name: RAILS_ENV
+              value: 'production'

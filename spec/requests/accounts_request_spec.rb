@@ -30,6 +30,10 @@ RSpec.describe 'Account Requests', type: :request do
       expect(assigns(:net_worth)).to eq(net_worth)
     end
 
+    it 'assigns @net_worth_change' do
+      expect(assigns(:net_worth_change)).to eq(net_worth_change)
+    end
+
     it 'renders index template' do
       expect(response).to render_template(:index)
     end

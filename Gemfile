@@ -3,27 +3,26 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.7.1'
 
-gem 'actionpack', '~> 6.1.3'
-gem 'actionview', '~> 6.1.3'
-gem 'activerecord', '~> 6.1.3'
-# gem 'activestorage', '~> 6.1.3'
-gem 'activesupport', '~> 6.1.3'
+gem 'actionpack', '>= 6.0.3.5'
+gem 'actionview', '>= 6.0.3.1'
+gem 'activerecord', '>= 6.0.3.5'
+gem 'activestorage', '>= 6.0.3.1'
+gem 'activesupport', '>= 6.0.3.1'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'bulma-rails', '~> 0.9.1'
-gem 'chartkick', '~> 3.4.2'
+gem 'bulma-rails', '~> 0.8.0'
+gem 'chartkick', '~> 3.4.0'
 gem 'devise'
 gem 'devise-pwned_password'
 gem 'groupdate'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
-gem 'money-rails', '~>1.12'
-gem 'pg', '~> 1.2.3'
-gem 'puma', '~> 4.3'
-gem 'rails', '~> 6.1.3'
-gem 'turbolinks', '~> 5.2.1'
-gem 'webpacker', '~> 5.2.1'
+gem 'pg', '~> 0.18.4'
+gem 'puma', '~> 4.1'
+gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'turbolinks', '~> 5'
+gem 'webpacker', '~> 4.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
@@ -33,7 +32,7 @@ group :development, :test do
   gem 'pry', '~> 0.12.2'
   # for rails 6 compatability
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 5.0.1'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -45,7 +44,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'seed_dump'
   gem 'spring'
-  gem 'spring-watcher-listen'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
 end

@@ -1,0 +1,43 @@
+<div class="container">
+  <%= render partial: 'layouts/notifications' %>
+</div>
+
+<section class="section is-small">
+  <div class="container">
+    <h1 class="title">Expenses This Month</h1>
+    <h2 class="title"><%= number_to_currency(@expenses_this_month, delimeter: ",") %></h2>
+    <%= pie_chart expenses_pie_chart_path, title: "Expenses by Category", prefix: "$", thousands: ",", messages: {empty: "No expenses recorded this month."} %>
+  </div>
+</section>
+
+<section class="section is-small">
+  <div class="container">
+    <h1 class="title">Expense Trackers</h1>
+    <%= link_to 'Create Tracker', new_expense_tracker_path, class: 'button is-link' %>
+    <br><br>
+
+    <% if @expense_trackers.empty? %>
+      <h2 class="notification is-info">You have no trackers. Create one!</h2>
+    <% else %>
+      <div class="columns is-multiline">
+      <% @expense_trackers.each do |tracker| %>
+        <div class="column is-one-third">
+          <div class="tile">
+            <article class="tile is-child notification is-primary has-text-black">
+              <p class="title"><%= link_to tracker.category, tracker %></p>
+              <p class="subtitle">Expenses this month: <%= number_to_currency(tracker.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:amount)) %></p>
+            </article>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="section is-small has-background-black">
+  <div class="container">
+    <h1 class="title has-text-white">Spending Trends</h1>
+    <%= column_chart expenses_column_chart_path, prefix: "$", thousands: ",", messages: {empty: "No expenses recorded."} %>
+  </div>
+</section>
