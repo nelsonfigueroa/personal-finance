@@ -3,11 +3,13 @@
 class Statement < ApplicationRecord
   belongs_to :account
 
-  validates :account, :balance, :date, presence: true
-  validates :balance, numericality: { greater_than_or_equal_to: 0,
-                                      less_than_or_equal_to: BigDecimal(10**8) }
-  validates :notes, allow_nil: true, format: { with: /\A[\w\s[[:punct:]]]+\z/ }
+  monetize :balance_cents
 
-  scope :sorted_by_date, -> { order(date: :desc) }
+  validates :account, :balance, :date, presence: true
+  validates :balance, numericality: true
+  # uses uniqueness defined in migration. date and account_id are unique together
+  validates :date, uniqueness: { scope: :account_id, message: 'you already have a statement for this date' }
+
+  scope :sorted_by_date, -> { order(date: :asc) }
   scope :sorted_by_balance, -> { order(balance: :desc) }
 end

@@ -14,7 +14,7 @@ RSpec.describe Statement, type: :model do
     it {
       should validate_numericality_of(:balance)
         .is_greater_than_or_equal_to(0)
-        .is_less_than_or_equal_to(BigDecimal(10**8))
+        .is_less_than_or_equal_to(1_000_000_000)
     }
 
     # balance
@@ -28,6 +28,5 @@ RSpec.describe Statement, type: :model do
     # notes
     it { should allow_value(nil).for(:notes) }
     it { should allow_value('Testing12345 67890!@#  $%^&*()-_+=.:;/\[]\'",?').for(:notes) }
-    it { should_not allow_value(Faker::String.random).for(:notes) }
   end
 end

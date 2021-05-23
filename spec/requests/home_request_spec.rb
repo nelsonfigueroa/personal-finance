@@ -16,18 +16,4 @@ RSpec.describe 'Home Requests', type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
-
-  describe 'GET about' do
-    before do
-      get about_path
-    end
-
-    it 'renders about template' do
-      expect(response).to render_template('about')
-    end
-
-    it 'returns 200 status' do
-      expect(response).to have_http_status(:ok)
-    end
-  end
 end
