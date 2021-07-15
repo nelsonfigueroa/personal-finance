@@ -1,6 +1,6 @@
 # Personal Finance
 
-![Docker Image Build](https://github.com/nelsonfigueroa/personal_finance/workflows/Docker%20Image%20Build/badge.svg?branch=master)  ![Ruby](https://img.shields.io/badge/Ruby-2.7.1-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.0.2-RED?logo=rails)
+![Docker Image Build](https://github.com/nelsonfigueroa/personal_finance/workflows/Docker%20Image%20Build/badge.svg?branch=master)  ![Ruby](https://img.shields.io/badge/Ruby-3.0.0-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.1.3-RED?logo=rails)
 
 ## What is it?
 
