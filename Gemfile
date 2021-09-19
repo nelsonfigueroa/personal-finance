@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
-gem 'actionpack', '~> 6.1.3'
+gem 'actionpack', '~> 6.1.4.1'
 gem 'actionview', '~> 6.1.3'
 gem 'activerecord', '~> 6.1.3'
 # gem 'activestorage', '~> 6.1.3'
@@ -21,7 +21,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'money-rails', '~>1.12'
 gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 6.1.4.1'
 gem 'turbolinks', '~> 5.2.1'
 gem 'webpacker', '~> 5.2.1'
 # Use Redis adapter to run Action Cable in production

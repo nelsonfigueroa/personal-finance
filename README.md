@@ -1,12 +1,12 @@
 # Personal Finance
 
-![Docker Image Build](https://github.com/nelsonfigueroa/personal_finance/workflows/Docker%20Image%20Build/badge.svg?branch=master)  ![Ruby](https://img.shields.io/badge/Ruby-3.0.0-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.1.3-RED?logo=rails)
+![Docker Image Build](https://github.com/nelsonfigueroa/personal_finance/workflows/Docker%20Image%20Build/badge.svg?branch=master)  ![Ruby](https://img.shields.io/badge/Ruby-3.0.0-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.1.4-RED?logo=rails)
 
 ## What is it?
 
 Personal Finance is a Ruby on Rails application that keeps track of finances over time. I built it for myself because other apps are either too bloated for my taste, or privacy-invasive (i.e. Mint).
 
-## Tools and Technologies Used
+## Notable Gems and Libraries used:
 
 - [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
 - [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
