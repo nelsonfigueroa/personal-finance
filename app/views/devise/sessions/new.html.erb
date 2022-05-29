@@ -1,37 +1,37 @@
-<section class="hero is-primary is-bold is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-half">
-          <div class="box">
-            <h1 class="title has-text-black">Log in</h1>
+<section>
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <h1>Log in</h1>
 
             <%= render partial: 'layouts/notifications' %>
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="field">
-                <div class="control">
-                  <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: 'input' %>
+              <div>
+                <div>
+                  <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
                 </div>
               </div>
 
-              <div class="field">
-                <div class="control">
-                  <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: 'input' %>
+              <div>
+                <div>
+                  <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: '' %>
                 </div>
               </div>
 
               <% if devise_mapping.rememberable? %>
-                <div class="field">
-                  <div class="control">
+                <div>
+                  <div>
                     <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me, class: 'checkbox' %>
+                    <%= f.label :remember_me, class: '' %>
                   </div>
                 </div>
               <% end %>
 
-              <div class="control">
-                <%= f.submit "Log in", class: 'button is-primary' %>
+              <div>
+                <%= f.submit "Log in", class: '' %>
               </div>
             <% end %>
           </div>
