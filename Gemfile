@@ -11,7 +11,6 @@ gem 'activerecord', '~> 6.1.3'
 # gem 'activestorage', '~> 6.1.3'
 gem 'activesupport', '~> 6.1.3'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'bulma-rails', '~> 0.9.1'
 gem 'chartkick', '~> 3.4.2'
 gem 'devise'
 gem 'devise-pwned_password'
@@ -23,6 +22,7 @@ gem 'nokogiri', '>= 1.12.5'
 gem 'pg', '~> 1.2.3'
 gem 'puma', '>= 4.3.9'
 gem 'rails', '~> 6.1.4.1'
+gem "sassc-rails"
 gem 'turbolinks', '~> 5.2.1'
 gem 'webpacker', '~> 5.2.1'
 # Use Redis adapter to run Action Cable in production
