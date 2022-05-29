@@ -1,30 +1,30 @@
-<section class="section">
-  <div class="container">
+<section>
+  <div>
     <%= render partial: 'layouts/notifications' %>
 
-    <nav class="breadcrumb" aria-label="breadcrumbs">
+    <nav aria-label="breadcrumbs">
       <ul>
         <li><%= link_to 'Accounts', accounts_path %></li>
         <li><%= link_to "#{@account.name}", account_path(@account) %></li>
-        <li class="is-active"><a href="#" aria-current="page">Edit Account</a></li>
+        <li><a href="#" aria-current="page">Edit Account</a></li>
       </ul>
     </nav>
 
-    <h1 class="title">Edit Account</h1>
+    <h1>Edit Account</h1>
 
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="box">
+    <div>
+      <div>
+        <div>
           <%= form_with model: @account do |f| %>
-            <div class="field">
+            <div>
               <%= f.label :name %>
-              <div class="control">
-                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input' %>
+              <div>
+                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
               </div>
             </div>
 
-            <div class="control">
-              <%= f.submit "Update", class: 'button is-primary' %>
+            <div>
+              <%= f.submit "Update", class: '' %>
             </div>
           <% end %>
         </div>

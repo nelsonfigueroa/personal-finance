@@ -1,33 +1,33 @@
-<section class="section">
-  <div class="container">
+<section>
+  <div>
 
 	  <%= render partial: 'layouts/notifications' %>
 		
-		<nav class="breadcrumb" aria-label="breadcrumbs">
+		<nav aria-label="breadcrumbs">
 			<ul>
 				<li><%= link_to 'Accounts', accounts_path %></li>
-				<li class="is-active"><a href="#" aria-current="page"><%= @account.name %></a></li>
+				<li><a href="#" aria-current="page"><%= @account.name %></a></li>
 			</ul>
 		</nav>
 
-    <h1 class="title"><%= @account.name %></h1>
+    <h1><%= @account.name %></h1>
 
-		<%= link_to new_account_statement_path(account_id: @account.id), class: 'button is-link' do %>
-			<span class="icon">
+		<%= link_to new_account_statement_path(account_id: @account.id), class: '' do %>
+			<span>
 				<%= inline_svg_tag("plus.svg", size: '30 * 30') %>
 			</span>
 			<p>Add Statement</p>
 		<% end %>
 
-    <%= link_to edit_account_path, class: 'button is-link' do %>
-			<span class="icon">
+    <%= link_to edit_account_path, class: '' do %>
+			<span>
 				<%= inline_svg_tag("cog.svg", size: '30 * 30') %>
 			</span>
 			<p>Edit Account Name</p>
 		<% end %>
 
-		<%= link_to account_path, method: :delete, class: 'button is-danger', data: {confirm: "Are you sure you want to delete this account?: #{@account.name}"} do %>
-			<span class="icon">
+		<%= link_to account_path, method: :delete, class: '', data: {confirm: "Are you sure you want to delete this account?: #{@account.name}"} do %>
+			<span>
 				<%= inline_svg_tag("trash.svg", size: '30 * 30') %>
 			</span>
 			<p>Delete Account</p>
@@ -37,8 +37,8 @@
 
 		<% unless @statements.empty? %>
 		<br><br>
-		<h2 class="subtitle">Statements</h2>
-    <table class="table is-striped is-hoverable is-fullwidth">
+		<h2>Statements</h2>
+    <table>
       <thead>
         <tr>
           <th>Balance</th>
@@ -50,14 +50,14 @@
 			<% @statements.order('date DESC').each do |statement| %>
 				<tr>
 					<% if statement.balance > 0 %>
-						<td class="has-text-success"><%= humanized_money_with_symbol statement.balance %></td>
+						<td><%= humanized_money_with_symbol statement.balance %></td>
 					<% else %>
-						<td class="has-text-danger"><%= humanized_money_with_symbol statement.balance %></td>
+						<td><%= humanized_money_with_symbol statement.balance %></td>
 					<% end %>
 					<td><%= statement.date.to_formatted_s(:long) %></td>
 					<td>
-						<%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: 'button is-small is-rounded' %>
-						<%= link_to 'Delete', account_statement_path(account_id: @account.id, id: statement), method: :delete, data: {confirm: "Are you sure you want to delete this statment?"}, class: 'button is-small is-rounded' %>
+						<%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: '' %>
+						<%= link_to 'Delete', account_statement_path(account_id: @account.id, id: statement), method: :delete, data: {confirm: "Are you sure you want to delete this statment?"}, class: '' %>
 					</td>
 				</tr>
 			<% end %>
