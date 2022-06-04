@@ -8,7 +8,6 @@ ruby '3.0.0'
 gem 'actionpack', '~> 6.1.4.1'
 gem 'actionview', '~> 6.1.3'
 gem 'activerecord', '~> 6.1.3'
-# gem 'activestorage', '~> 6.1.3'
 gem 'activesupport', '~> 6.1.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'chartkick', '~> 3.4.2'
