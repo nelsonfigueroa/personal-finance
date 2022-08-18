@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# statements are associated to accounts and track ending balances for a certain date. Used for net worth calculation.
 class Statement < ApplicationRecord
   belongs_to :account
 
