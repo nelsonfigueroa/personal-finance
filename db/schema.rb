@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_18_020015) do
+ActiveRecord::Schema.define(version: 2022_10_21_061140) do
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2022_08_18_020015) do
     t.string "balance_currency", default: "USD", null: false
     t.index ["account_id"], name: "index_statements_on_account_id"
     t.index ["date", "account_id"], name: "index_statements_on_date_and_account_id", unique: true
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.date "date"
+    t.string "category"
+    t.text "notes"
+    t.index ["category"], name: "index_transactions_on_category"
   end
 
   create_table "users", force: :cascade do |t|
