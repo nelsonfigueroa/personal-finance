@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_21_061140) do
+ActiveRecord::Schema.define(version: 2022_10_21_063743) do
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2022_10_21_061140) do
     t.date "date"
     t.string "category"
     t.text "notes"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
     t.index ["category"], name: "index_transactions_on_category"
   end
 
