@@ -15,6 +15,6 @@ Rails.application.routes.draw do
       resources :statements
     end
 
-    resources :transactions
+    resources :transactions, except: [:show]
   end
 end
