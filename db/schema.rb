@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_10_21_063743) do
 
   create_table "accounts", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_10_21_063743) do
   end
 
   create_table "statements", force: :cascade do |t|
-    t.bigint "account_id"
+    t.integer "account_id"
     t.text "notes"
     t.text "text"
     t.date "date"
