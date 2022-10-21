@@ -13,26 +13,18 @@
 ActiveRecord::Schema.define(version: 2022_10_21_063743) do
 
   create_table "accounts", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "statements", force: :cascade do |t|
-    t.integer "account_id"
+    t.bigint "account_id"
     t.text "notes"
     t.text "text"
     t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "USD", null: false
     t.index ["account_id"], name: "index_statements_on_account_id"
@@ -40,12 +32,14 @@ ActiveRecord::Schema.define(version: 2022_10_21_063743) do
   end
 
   create_table "transactions", force: :cascade do |t|
+    t.integer "user_id"
     t.date "date"
     t.string "category"
     t.text "notes"
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.index ["category"], name: "index_transactions_on_category"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,4 +57,5 @@ ActiveRecord::Schema.define(version: 2022_10_21_063743) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "statements", "accounts"
+  add_foreign_key "transactions", "users"
 end

@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     resources :accounts do
       resources :statements
     end
+
+    resources :transactions
   end
 end

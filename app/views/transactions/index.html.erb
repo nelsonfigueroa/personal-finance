@@ -1,0 +1,36 @@
+<section>
+  <div>
+    <%= render partial: 'layouts/notifications' %>
+
+    <br><br>
+
+    <h1>Transactions</h1>
+    <%= link_to 'Create Transaction', new_transaction_path, class: '' %>
+    <br><br>
+
+    <% if @transactions.empty? %>
+      <p>No existing transactions. Create one!</p>
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.category %></td>
+              <td><%= transaction.date %></td>
+              <td><%= humanized_money_with_symbol transaction.amount %></td>
+              <td><%= transaction.notes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</section>

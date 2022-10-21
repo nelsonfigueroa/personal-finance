@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user_id = @user.id
-
+    puts "I think it's working"
     if @transaction.save
       flash[:notice] = 'Transaction created'
       redirect_to(transactions_path)
@@ -70,7 +70,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:amount, :date, :notes)
+    params.require(:transaction).permit(:category, :amount, :date, :notes)
   end
 
   def assign_user
