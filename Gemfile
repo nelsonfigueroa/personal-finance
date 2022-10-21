@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'money-rails', '~>1.12'
 gem 'nokogiri', '>= 1.13.9'
 gem 'pg', '~> 1.2.3'
-gem 'puma', '>= 4.3.9'
+gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 6.1.4.1'
 gem "sassc-rails"
 gem 'turbolinks', '~> 5.2.1'
