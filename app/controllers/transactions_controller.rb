@@ -44,7 +44,7 @@ class TransactionsController < ApplicationController
     @transaction = @user.transactions.find_by(id: params[:id])
     if @transaction.update(transaction_params)
       flash[:notice] = 'Transaction updated'
-      redirect_to(@transaction)
+      redirect_to(transactions_path)
     else
       flash[:alert] = @transaction.errors.full_messages.join(', ')
       redirect_to(edit_transaction_path(@transaction))

@@ -1,0 +1,34 @@
+<section>
+  <div>
+    <%= render partial: 'layouts/notifications' %>
+
+    <nav aria-label="breadcrumbs">
+      <ul>
+        <li><%= link_to 'Transactions', transactions_path %></li>
+        <li><%= link_to "#{@transaction.id}", transaction_path(@transaction) %></li>
+        <li><a href="#" aria-current="page">Edit Transaction</a></li>
+      </ul>
+    </nav>
+
+    <h1>Edit Transaction</h1>
+
+    <div>
+      <div>
+        <div>
+          <%= form_with model: @transaction do |f| %>
+              <%= f.label :category %>
+              <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
+              <%= f.label :date %>
+              <%= f.date_field :date, autofocus: true, autocomplete: "date", class: '' %>
+              <%= f.label :amount %>
+              <%= f.text_field :amount, autofocus: true, class: '' %>
+              <%= f.label :notes %>
+              <%= f.text_field :notes, autofocus: true, class: '' %>
+
+              <%= f.submit "Save", class: '' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
