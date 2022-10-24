@@ -1,42 +1,40 @@
 <section>
-  <div>
-    <%= render partial: 'layouts/notifications' %>
+  <%= render partial: 'layouts/notifications' %>
 
-    <br><br>
+  <br><br>
 
-    <h1>Transactions</h1>
-    <%= link_to 'Create Transaction', new_transaction_path, class: '' %>
-    <br><br>
+  <h1>Transactions</h1>
+  <%= link_to 'Create Transaction', new_transaction_path, class: '' %>
+  <br><br>
 
-    <% if @transactions.empty? %>
-      <p>No existing transactions. Create one!</p>
-    <% else %>
-      <table>
-        <thead>
+  <% if @transactions.empty? %>
+    <p>No existing transactions. Create one!</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Notes</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |transaction| %>
           <tr>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Notes</th>
-            <th>Edit</th>
+            <td><%= transaction.category %></td>
+            <td><%= transaction.date %></td>
+            <td><%= humanized_money_with_symbol transaction.amount %></td>
+            <td><%= transaction.notes %></td>
+            <td>
+              <%= link_to edit_transaction_path(transaction.id), class: '' do %>
+                <p>Edit</p>
+              <% end %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @transactions.each do |transaction| %>
-            <tr>
-              <td><%= transaction.category %></td>
-              <td><%= transaction.date %></td>
-              <td><%= humanized_money_with_symbol transaction.amount %></td>
-              <td><%= transaction.notes %></td>
-              <td>
-                <%= link_to edit_transaction_path(transaction.id), class: '' do %>
-                  <p>Edit</p>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </section>

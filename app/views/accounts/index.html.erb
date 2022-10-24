@@ -1,43 +1,41 @@
 <section>
-  <div>
-    <%= render partial: 'layouts/notifications' %>
+  <%= render partial: 'layouts/notifications' %>
 
-    <br><br>
+  <br><br>
 
-    <h1>Accounts</h1>
-    <%= link_to 'Add Account', new_account_path, class: '' %>
-    <br><br>
+  <h1>Accounts</h1>
+  <%= link_to 'Add Account', new_account_path, class: '' %>
+  <br><br>
 
-    <% if @accounts.empty? %>
-      <p>No existing accounts. Create one!</p>
-    <% else %>
-      <table>
-        <thead>
+  <% if @accounts.empty? %>
+    <p>No existing accounts. Create one!</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Latest Statement</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @accounts.each do |account| %>
           <tr>
-            <th>Name</th>
-            <th>Latest Statement</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @accounts.each do |account| %>
-            <tr>
-            <td><%= link_to account.name, account %></td>
-            <% if account.statements.order(:date).last %>
-              <% if account.statements.order(:date).last.balance >= 0 %>
-                <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-              <% else %>
-                <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-              <% end %>
-              <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
+          <td><%= link_to account.name, account %></td>
+          <% if account.statements.order(:date).last %>
+            <% if account.statements.order(:date).last.balance >= 0 %>
+              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <% else %>
-              <td><i>No recorded statements</i></td>
-              <td></td>
+              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <% end %>
-            </tr>
+            <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
+          <% else %>
+            <td><i>No recorded statements</i></td>
+            <td></td>
           <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </section>
