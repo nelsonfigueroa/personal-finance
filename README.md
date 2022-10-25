@@ -17,6 +17,7 @@ Long-term goals:
 
 ## Notable Gems and Libraries used:
 
+- [Water.css](https://watercss.kognise.dev/) - Drop-in CSS styles.
 - [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
 - [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
 - [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - To keep my Ruby code clean. 
