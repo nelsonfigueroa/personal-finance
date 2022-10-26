@@ -49,8 +49,12 @@
 </section>
 
 <section>
-  <h1>Spending</h1>
+  <h1>Transactions</h1>
   <br>
+
+  <p>Yearly income: <%= humanized_money_with_symbol @yearly_income %></p>
+  <p>Yearly saved: <%= humanized_money_with_symbol @yearly_saved %></p>
+  <p>Yearly invested: <%= humanized_money_with_symbol @yearly_invested %></p>
 
   <% if @transactions.empty? %>
     <p>No transactions. Add some!</p>
