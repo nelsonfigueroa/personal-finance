@@ -18,19 +18,21 @@
           <th>Amount</th>
           <th>Notes</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <% @transactions.each do |transaction| %>
+        <% @transactions.sorted_by_date.each do |transaction| %>
           <tr>
             <td><%= transaction.category %></td>
             <td><%= transaction.date %></td>
             <td><%= humanized_money_with_symbol transaction.amount %></td>
             <td><%= transaction.notes %></td>
             <td>
-              <%= link_to edit_transaction_path(transaction.id), class: '' do %>
-                <p>Edit</p>
-              <% end %>
+              <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
+            </td>
+            <td>
+              <%= link_to transaction_path(transaction.id), method: :delete, data: {confirm: "Are you sure you want to delete this transaction?"}, class: '' do %>Delete<% end %>
             </td>
           </tr>
         <% end %>
