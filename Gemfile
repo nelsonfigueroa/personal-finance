@@ -5,10 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-gem 'actionpack', '~> 6.1.4.1'
-gem 'actionview', '~> 6.1.3'
-gem 'activerecord', '~> 6.1.3'
-gem 'activesupport', '~> 6.1.3'
+gem 'actionpack', '>= 6.1.7'
+gem 'actionview', '>= 6.1.7'
+gem 'activerecord', '>= 6.1.7'
+gem 'activesupport', '>= 6.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'chartkick', '~> 3.4.2'
 gem 'devise'
@@ -20,7 +20,8 @@ gem 'money-rails', '~>1.12'
 gem 'nokogiri', '>= 1.13.9'
 gem 'pg', '~> 1.2.3'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 6.1.4.1'
+gem 'psych', '< 4' # fixes Psych::BadAlias errors
+gem 'rails', '~> 7.0.4'
 gem "sassc-rails"
 gem 'turbolinks', '~> 5.2.1'
 gem 'webpacker', '~> 5.2.1'
