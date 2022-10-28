@@ -17,5 +17,3 @@ services:
       - "3000:3000"
     links:
       - db
-    # volumes:
-    #   - /Users/nelson/Projects/personal_finance:/app
