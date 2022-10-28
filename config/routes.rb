@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     end
 
     resources :transactions, except: [:show]
+
+    get 'transactions/download', to: 'transactions#download'
   end
 end
