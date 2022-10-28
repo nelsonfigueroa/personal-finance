@@ -1,19 +1,15 @@
 # Personal Finance
 
-![Ruby](https://img.shields.io/badge/Ruby-3.0.0-RED?logo=ruby) ![Rails](https://img.shields.io/badge/Rails-6.1.4-RED?logo=rails)
-
-## What is it?
-
 Personal Finance is a Ruby on Rails application that keeps track of finances over time. I built it for myself because other apps are either too bloated for my taste, or privacy-invasive (i.e. Mint).
 
 It is currently barebones as I'm reworking the entire thing.
 
 Long-term goals:
-- Net worth tracking over time
-- Expense tracking
-- Income vs expenses per month
-- Stock dividend tracking
-- Liability tracking
+- [x] Net worth tracking over time
+- [ ] Expense tracking
+- [ ] Income vs expenses per month
+- [ ] Stock dividend tracking
+- [ ] iability tracking
 
 ## Notable Gems and Libraries used:
 
