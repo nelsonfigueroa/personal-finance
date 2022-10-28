@@ -67,6 +67,10 @@ class TransactionsController < ApplicationController
     redirect_to(transactions_path)
   end
 
+  def download
+    render json: @user.transactions.to_json
+  end
+
   private
 
   def transaction_params
