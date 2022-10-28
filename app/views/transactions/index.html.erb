@@ -4,7 +4,8 @@
   <br><br>
 
   <h1>Transactions</h1>
-  <%= link_to 'Create Transaction', new_transaction_path, class: '' %>
+  <%= link_to 'Create Transaction', new_transaction_path, class: '' %> |
+  <%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
   <br><br>
 
   <% if @transactions.empty? %>
