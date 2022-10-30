@@ -25,6 +25,7 @@ gem 'rails', '~> 7.0.4'
 gem "sassc-rails"
 gem 'turbolinks', '~> 5.2.1'
 gem 'webpacker', '~> 5.2.1'
+gem 'sqlite3'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
@@ -47,7 +48,6 @@ group :development do
   gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen'
-  gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
 end
 
