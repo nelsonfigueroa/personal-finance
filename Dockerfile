@@ -1,4 +1,4 @@
-FROM ruby:3.0.0-alpine3.13
+FROM ruby:3.1.2-alpine3.16
 
 ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
@@ -17,11 +17,12 @@ RUN apk add build-base
 RUN apk add postgresql-dev
 # for webpacker
 RUN apk add yarn
+RUN rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.2.3
+RUN gem install bundler:2.3.7
 
 # don't install development, test gems
 RUN bundle config set without 'development test'
