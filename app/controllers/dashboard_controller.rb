@@ -39,7 +39,11 @@ class DashboardController < ApplicationController
           amount = @user.transactions.by_year(year).where(category: category).sum(:amount_cents) / 100.0
           @transactions_by_category_per_year[year].merge!(category => amount)
         end
+
+        # sort hash for each year by values, descending
+        @transactions_by_category_per_year[year] = @transactions_by_category_per_year[year].sort_by {|k, v| -v}.to_h
       end
+
     # structure of @transactions_by_category_per_year
     # {
     #   "year": {
