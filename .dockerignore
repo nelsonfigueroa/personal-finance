@@ -1,14 +1,23 @@
-README.md
-node_modules
-tmp
-db/*.sqlite3
-.gitignore
-log/*
-coverage
-.git
-.DS_Store
-.rubocop.yml
+**.DS_Store
+.dockerignore
 .erb-lint.yml
+.git
 .github
+.gitignore
+.rspec
+.rubocop.yml
+.ruby-version
+Dockerfile
+README.md
+config/master.key #testing
+coverage
+db/*.sqlite3
+docker-compose.yml
+config/environments/development.rb #testing
+config/environments/test.rb #testing
+log/*
+node_modules
 public/packs
 public/packs-test
+spec
+tmp
