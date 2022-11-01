@@ -35,6 +35,10 @@ RUN rm -rf /usr/local/bundle/cache/*.gem \
 COPY . .
 
 RUN yarn install --check-files
+
+# generate master.key and encrypted credentials
+RUN EDITOR="mate --wait" bin/rails credentials:edit
+
 RUN bundle exec rails assets:precompile
 
 # these aren't needed after assets are precompiled
@@ -42,9 +46,6 @@ RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
 
 # more yarn caches
 RUN rm -rf /usr/local/share/.cache
-
-# generate master.key
-RUN EDITOR="mate --wait" bin/rails credentials:edit
 
 # RUN rails db:migrate
 # RUN rails db:seed
