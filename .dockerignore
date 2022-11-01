@@ -1,4 +1,8 @@
 **.DS_Store
+*/*/development.rb
+*/*/test.rb
+*/credentials.yml.enc
+*/master.key
 .dockerignore
 .erb-lint.yml
 .git
@@ -9,9 +13,6 @@
 .ruby-version
 Dockerfile
 README.md
-*/*/development.rb
-*/*/test.rb
-*/master.key
 coverage
 db/*.sqlite3
 docker-compose.yml
