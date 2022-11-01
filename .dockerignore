@@ -9,12 +9,12 @@
 .ruby-version
 Dockerfile
 README.md
-config/master.key #testing
+*/*/development.rb
+*/*/test.rb
+*/master.key
 coverage
 db/*.sqlite3
 docker-compose.yml
-config/environments/development.rb #testing
-config/environments/test.rb #testing
 log/*
 node_modules
 public/packs
