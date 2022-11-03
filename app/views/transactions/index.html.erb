@@ -27,7 +27,15 @@
           <tr>
             <td><%= transaction.category %></td>
             <td><%= transaction.date %></td>
-            <td><%= humanized_money_with_symbol transaction.amount %></td>
+            <% if transaction.category. == "Income" %>
+              <td style='color: #5AC33B'><%= humanized_money_with_symbol transaction.amount %></td>
+            <% elsif transaction.category. == "Savings" %>
+              <td style='color: cyan'><%= humanized_money_with_symbol transaction.amount %></td>
+            <% elsif transaction.category. == "Investing" %>
+              <td style='color: cyan'><%= humanized_money_with_symbol transaction.amount %></td>
+            <% else %>
+              <td style='color: red'><%= humanized_money_with_symbol transaction.amount %></td>
+            <% end %>
             <td><%= transaction.notes %></td>
             <td>
               <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
