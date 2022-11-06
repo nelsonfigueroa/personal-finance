@@ -55,6 +55,7 @@
   <p>Yearly income: <%= humanized_money_with_symbol @yearly_income %></p>
   <p>Yearly saved: <%= humanized_money_with_symbol @yearly_saved %></p>
   <p>Yearly invested: <%= humanized_money_with_symbol @yearly_invested %></p>
+  <p>Yearly expenses: <%= humanized_money_with_symbol @yearly_expenses %></p>
 
   <% if @transactions.empty? %>
     <p>No transactions. Add some!</p>
