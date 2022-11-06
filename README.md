@@ -6,7 +6,7 @@ It is currently barebones as I'm reworking the entire thing.
 
 Long-term goals:
 - [x] Net worth tracking over time
-- [ ] Expense tracking
+- [x] Expense tracking
 - [ ] Income vs expenses per month
 - [ ] Stock dividend tracking
 - [ ] iability tracking
