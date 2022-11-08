@@ -9,7 +9,7 @@ Long-term goals:
 - [x] Expense tracking
 - [ ] Income vs expenses per month
 - [ ] Stock dividend tracking
-- [ ] iability tracking
+- [ ] Liability tracking
 
 ## Notable Gems and Libraries used:
 
