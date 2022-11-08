@@ -5,7 +5,6 @@
     "@rails/actioncable": "^7.0.4",
     "@rails/activestorage": "^7.0.4",
     "@rails/ujs": "^7.0.4",
-    "@rails/webpacker": "5.4.3",
     "chart.js": "^3.9.1",
     "chartkick": "^4.2.0",
     "turbolinks": "^5.2.0"
