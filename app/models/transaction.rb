@@ -3,6 +3,7 @@
 class Transaction < ApplicationRecord
   belongs_to :user
   validates :date, :category, :amount, presence: true
+  validates :amount, numericality: true
 
   monetize :amount_cents
 
