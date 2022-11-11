@@ -1,42 +1,17 @@
 <section>
-  <div>
-    <div>
-      <div>
-        <div>
-          <div>
-            <h1>Log in</h1>
+  <h1>Log in</h1>
 
-            <%= render partial: 'layouts/notifications' %>
+  <%= render partial: 'layouts/notifications' %>
 
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div>
-                <div>
-                  <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
-                </div>
-              </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
+    <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: '' %>
 
-              <div>
-                <div>
-                  <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: '' %>
-                </div>
-              </div>
+    <% if devise_mapping.rememberable? %>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, class: '' %>
+    <% end %>
 
-              <% if devise_mapping.rememberable? %>
-                <div>
-                  <div>
-                    <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me, class: '' %>
-                  </div>
-                </div>
-              <% end %>
-
-              <div>
-                <%= f.submit "Log in", class: '' %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <%= f.submit "Log in", class: '' %>
+  <% end %>
 </section>
