@@ -1,14 +1,10 @@
-<div>
-  <%= render partial: 'layouts/notifications' %>
-</div>
+<%= render partial: 'layouts/notifications' %>
 
 <section>
-  <div>
-    <h1>Net Worth</h1>
-    <h2><%= humanized_money_with_symbol @net_worth %></h2>
+  <h1>Net Worth</h1>
+  <h2><%= humanized_money_with_symbol @net_worth %></h2>
 
-    <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
-  </div>
+  <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
 </section>
 
 <section>
