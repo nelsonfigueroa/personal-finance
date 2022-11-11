@@ -1,22 +1,18 @@
 <nav role="navigation" aria-label="main navigation">
-  <div>
-    <a href="/">
-      <%= inline_svg_tag("currency-dollar.svg", size: '80*40') %>
-    </a>
-  </div>
+  <a href="/">
+    <%= inline_svg_tag("currency-dollar.svg", size: '80*40') %>
+  </a>
 
-  <div>
-    <% if user_signed_in? %>
-      <%= link_to 'Dashboard', dashboard_path, class: '' %> |
-      <%= link_to 'Accounts', accounts_path, class: '' %> |
-      <%= link_to 'Transactions', transactions_path, class: '' %> |
-    <% end %>
+  <% if user_signed_in? %>
+    <%= link_to 'Dashboard', dashboard_path, class: '' %> |
+    <%= link_to 'Accounts', accounts_path, class: '' %> |
+    <%= link_to 'Transactions', transactions_path, class: '' %> |
+  <% end %>
 
-    <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete, class: '') %>
-    <% else %>
-      <%= link_to('Sign Up', new_user_registration_path, class: '') %> |
-      <%= link_to('Login', new_user_session_path, class: '') %>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete, class: '') %>
+  <% else %>
+    <%= link_to('Sign Up', new_user_registration_path, class: '') %> |
+    <%= link_to('Login', new_user_session_path, class: '') %>
+  <% end %>
 </nav>
