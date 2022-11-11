@@ -12,30 +12,12 @@
   <h1>Add Statement</h1>
 
   <%= form_with model: @statement, url: {controller: 'statements', action: 'create'} do |f| %>
-    <div>
-      <%= f.label :balance %>
-      <div>
-        <%= f.number_field :balance, step: 0.01, class: '' %>
-      </div>
-    </div>
-
-    <div>
-      <%= f.label :date %>
-      <div>
-        <%= f.date_field :date, class: '' %>
-      </div>
-    </div>
-
-    <div>
-      <%= f.label :notes %>
-      <div>
-        <%= f.text_field :notes, class: '' %>
-      </div>
-    </div>
-
-    <div>
-      <%= f.submit "Add", class: '' %>
-    </div>
+    <%= f.label :balance %>
+    <%= f.number_field :balance, step: 0.01, class: '' %>
+    <%= f.label :date %>
+    <%= f.date_field :date, class: '' %>
+    <%= f.label :notes %>
+    <%= f.text_field :notes, class: '' %>
+    <%= f.submit "Add", class: '' %>
   <% end %>
-
 </section>

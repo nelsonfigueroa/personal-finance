@@ -1,48 +1,23 @@
 <section>
-  <div>
-    <%= render partial: 'layouts/notifications' %>
+  <%= render partial: 'layouts/notifications' %>
 
-    <nav aria-label="breadcrumbs">
-      <ul>
-        <li><%= link_to 'Accounts', accounts_path %></li>
-        <li><%= link_to "#{@account.name}", account_path(@account) %></li>
-        <li><a href="#" aria-current="page">Edit Statement</a></li>
-      </ul>
-    </nav>
+  <nav aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+      <li><%= link_to "#{@account.name}", account_path(@account) %></li>
+      <li><a href="#" aria-current="page">Edit Statement</a></li>
+    </ul>
+  </nav>
 
-    <h1>Edit Statement</h1>
+  <h1>Edit Statement</h1>
 
-    <div>
-      <div>
-        <div>
-          <%= form_with model: @statement, url: {controller: 'statements', action: 'update'} do |f| %>
-            <div>
-              <%= f.label :balance %>
-              <div>
-                <%= f.number_field :balance, step: 0.01, class: '' %>
-              </div>
-            </div>
-
-            <div>
-              <%= f.label :date %>
-              <div>
-                <%= f.date_field :date, class: '' %>
-              </div>
-            </div>
-
-            <div>
-              <%= f.label :notes %>
-              <div>
-                <%= f.text_field :notes, class: '' %>
-              </div>
-            </div>
-
-            <div>
-              <%= f.submit "Update", class: '' %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= form_with model: @statement, url: {controller: 'statements', action: 'update'} do |f| %>
+    <%= f.label :balance %>
+    <%= f.number_field :balance, step: 0.01, class: '' %>
+    <%= f.label :date %>
+    <%= f.date_field :date, class: '' %>
+    <%= f.label :notes %>
+    <%= f.text_field :notes, class: '' %>
+    <%= f.submit "Update", class: '' %>
+  <% end %>
 </section>
