@@ -23,11 +23,7 @@
           <tr>
           <td><%= link_to account.name, account %></td>
           <% if account.statements.order(:date).last %>
-            <% if account.statements.order(:date).last.balance >= 0 %>
-              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-            <% else %>
-              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-            <% end %>
+            <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
           <% else %>
             <td><i>No recorded statements</i></td>

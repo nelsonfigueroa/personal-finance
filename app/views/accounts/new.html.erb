@@ -1,5 +1,4 @@
 <section>
-  <div>
     <%= render partial: 'layouts/notifications' %>
 
     <nav aria-label="breadcrumbs">
@@ -10,24 +9,9 @@
     </nav>
 
     <h1>Add Account</h1>
-
-    <div>
-      <div>
-        <div>
-          <%= form_with model: @account do |f| %>
-            <div>
-              <%= f.label :name %>
-              <div>
-                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
-              </div>
-            </div>
-
-            <div>
-              <%= f.submit "Add", class: '' %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+    <%= form_with model: @account do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+      <%= f.submit "Add", class: '' %>
+    <% end %>
 </section>

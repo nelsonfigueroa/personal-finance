@@ -1,34 +1,19 @@
 <section>
-  <div>
-    <%= render partial: 'layouts/notifications' %>
+  <%= render partial: 'layouts/notifications' %>
 
-    <nav aria-label="breadcrumbs">
-      <ul>
-        <li><%= link_to 'Accounts', accounts_path %></li>
-        <li><%= link_to "#{@account.name}", account_path(@account) %></li>
-        <li><a href="#" aria-current="page">Edit Account</a></li>
-      </ul>
-    </nav>
+  <nav aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Accounts', accounts_path %></li>
+      <li><%= link_to "#{@account.name}", account_path(@account) %></li>
+      <li><a href="#" aria-current="page">Edit Account</a></li>
+    </ul>
+  </nav>
 
-    <h1>Edit Account</h1>
+  <h1>Edit Account</h1>
 
-    <div>
-      <div>
-        <div>
-          <%= form_with model: @account do |f| %>
-            <div>
-              <%= f.label :name %>
-              <div>
-                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
-              </div>
-            </div>
-
-            <div>
-              <%= f.submit "Update", class: '' %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= form_with model: @account do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+    <%= f.submit "Update", class: '' %>
+  <% end %>
 </section>
