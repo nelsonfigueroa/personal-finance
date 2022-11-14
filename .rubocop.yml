@@ -1,7 +1,9 @@
-require: rubocop-rails
-require: rubocop-performance
+require:
+  - rubocop-rails
+  - rubocop-performance
 
 AllCops:
+  NewCops: enable
   Exclude:
   - 'db/schema.rb'
   - 'bin/*'
