@@ -33,7 +33,6 @@ group :development, :test do
   gem 'erb_lint', require: false
   gem 'factory_bot_rails'
   gem 'pry', '~> 0.12.2'
-  # for rails 6 compatability
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop', require: false
