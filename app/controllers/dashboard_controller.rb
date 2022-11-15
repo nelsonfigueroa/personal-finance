@@ -20,10 +20,10 @@ class DashboardController < ApplicationController
 
     ### transactions and spending ###
     @transactions = @user.transactions
-    @yearly_income = @transactions.by_year(Time.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
-    @yearly_saved = @transactions.by_year(Time.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
-    @yearly_invested = @transactions.by_year(Time.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
-    @yearly_expenses = @transactions.by_year(Time.now.year).where.not(category: %w[Savings Investing Income]).sum(:amount_cents) / 100.0
+    @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
+    @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
+    @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
+    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income]).sum(:amount_cents) / 100.0
 
     unless @transactions.empty?
       # @transactions_by_category_per_month = {} # to do
