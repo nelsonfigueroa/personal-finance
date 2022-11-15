@@ -38,7 +38,7 @@ class DashboardController < ApplicationController
       @transactions_by_category_per_year[year] = {}
       categories.each do |category|
         # sum of transactions by year, by category
-        amount = @user.transactions.by_year(year).where(category:).sum(:amount_cents) / 100.0
+        amount = @user.transactions.by_year(year).where(category: category).sum(:amount_cents) / 100.0
         @transactions_by_category_per_year[year].merge!(category => amount)
       end
 
@@ -50,6 +50,13 @@ class DashboardController < ApplicationController
     # {
     #   "year": {
     #     "category": "amount"
+    #   }
+    # }
+    #
+    # example:
+    # {
+    #   "2022": {
+    #     "entertainment": "500.12"
     #   }
     # }
   end
