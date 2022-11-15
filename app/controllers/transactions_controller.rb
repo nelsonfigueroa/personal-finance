@@ -23,7 +23,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user_id = @user.id
-    puts "I think it's working"
     if @transaction.save
       flash[:notice] = 'Transaction created'
       redirect_to(transactions_path)
