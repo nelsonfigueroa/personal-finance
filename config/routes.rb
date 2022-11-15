@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/expenses_column_chart', to: 'charts#expenses_column_chart'
 
     resources :accounts do
-      resources :statements
+      resources :statements, except: [:show]
     end
 
     resources :transactions, except: [:show]
