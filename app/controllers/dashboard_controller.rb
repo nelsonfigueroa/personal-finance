@@ -25,33 +25,33 @@ class DashboardController < ApplicationController
     @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income]).sum(:amount_cents) / 100.0
 
-    unless @transactions.empty?
-      # @transactions_by_category_per_month = {} # to do
-      @transactions_by_category_per_year = {}
+    return if @transactions.empty?
 
-      years = @user.transactions.pluck('date').uniq.map(&:year).uniq
-      # don't include Savings, Investing, and Income categories for expense tracking
-      categories = @user.transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
+    # @transactions_by_category_per_month = {} # to do
+    @transactions_by_category_per_year = {}
 
-      years.each do |year|
-        @transactions_by_category_per_year[year] = {}
-        categories.each do |category|
-          # sum of transactions by year, by category
-          amount = @user.transactions.by_year(year).where(category:).sum(:amount_cents) / 100.0
-          @transactions_by_category_per_year[year].merge!(category => amount)
-        end
+    years = @user.transactions.pluck('date').uniq.map(&:year).uniq
+    # don't include Savings, Investing, and Income categories for expense tracking
+    categories = @user.transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
 
-        # sort hash for each year by values, descending
-        @transactions_by_category_per_year[year] = @transactions_by_category_per_year[year].sort_by { |_k, v| -v }.to_h
+    years.each do |year|
+      @transactions_by_category_per_year[year] = {}
+      categories.each do |category|
+        # sum of transactions by year, by category
+        amount = @user.transactions.by_year(year).where(category:).sum(:amount_cents) / 100.0
+        @transactions_by_category_per_year[year].merge!(category => amount)
       end
 
-      # structure of @transactions_by_category_per_year
-      # {
-      #   "year": {
-      #     "category": "amount"
-      #   }
-      # }
+      # sort hash for each year by values, descending
+      @transactions_by_category_per_year[year] = @transactions_by_category_per_year[year].sort_by { |_k, v| -v }.to_h
     end
+
+    # structure of @transactions_by_category_per_year
+    # {
+    #   "year": {
+    #     "category": "amount"
+    #   }
+    # }
   end
 
   def assign_user
