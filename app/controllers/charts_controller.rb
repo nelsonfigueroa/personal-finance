@@ -36,15 +36,25 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    statements = @user.statements.sorted_by_date.includes([:account])
+    accounts = @user.accounts
+    statements = @user.statements
     return nil if statements.empty?
 
     graph_data = {}
 
     dates = statements.pluck(:date)
 
+    # there has to be a better way of doing this...but it works.
+
     dates.each do |date|
-      sum = statements.where(date: date).sum(:balance_cents) / 100.0
+      sum = 0
+      accounts.each do |account|
+        statement = statements.where(account_id: account.id).where('date <= ?', date).order(date: :desc).limit(1)[0]
+        next if statement.nil?
+        sum += statement.balance_cents
+      end
+
+      sum /= 100.0
       next if sum == 0.0
 
       # add that to json hash that gets returned
