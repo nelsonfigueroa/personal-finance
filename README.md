@@ -27,7 +27,7 @@ Long-term goals:
 
 ## Running Locally
 
-You can run this application locally using `docker-compose`.
+You can run this application locally using Docker.
 
 Build the app and set up the database container:
 
@@ -43,8 +43,22 @@ docker-compose up
 
 Then browse to `http://localhost:3000/`.
 
-To take down the application:
+You can use the demo user credentials to try out the app:
+- Email: `demo@demo`
+- Password: `demouser123!`
+
+Or you can create a new account.
+
+## Cleaning Up
+
+To take down the application run:
 
 ```
 docker-compose down
+```
+
+If you don't plan on using Docker for other purposes, you can clean up the Docker images that were downloaded as well:
+
+```
+docker system prune -a --volumes
 ```
