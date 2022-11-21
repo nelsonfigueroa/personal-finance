@@ -2,6 +2,7 @@
 
 <section>
   <h1>Net Worth</h1>
+  <small>Sum of the latest account statements</small>
   <h2><%= humanized_money_with_symbol @net_worth %></h2>
 
   <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
@@ -56,7 +57,7 @@
   <% if @transactions.empty? %>
     <p>No transactions. Add some!</p>
   <% else %>
-    <p>Yearly Spending by Category</p>
+    <p>Yearly expenses breakdown:</p>
     <table>
       <thead>
         <tr>
