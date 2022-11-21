@@ -4,9 +4,20 @@
   <br><br>
 
   <h1>Transactions</h1>
-  <%= link_to 'Create Transaction', new_transaction_path, class: '' %> |
-  <%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
+  <small>Create transactions to track spending in the dashboard.</small>
+  <br>
+  <small>Transactions under the "Income", "Savings", and "Investing" categories are special in that they're aggregated separately in the dashboard.</small>
+  <br>
+  <small>Transactions with the "Income" category will be <span style='color: #5AC33B'>green</span>.</small>
+  <br>
+  <small>Transactions with the "Savings" category will be <span style='color: cyan'>cyan</span>.</small>
+  <br>
+  <small>Transactions with the "Investing" category will be <span style='color: cyan'>cyan</span>.</small>
+  <br>
+  <small>All other transaction categories will fall under expenses and will be <span style='color: red'>red</span>.</small>
   <br><br>
+  <button><%= link_to 'Create Transaction', new_transaction_path, class: '' %></button>
+  <button><%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %></button>
 
   <% if @transactions.empty? %>
     <p>No existing transactions. Create one!</p>
