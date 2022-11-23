@@ -56,8 +56,8 @@ class ChartsController < ApplicationController
         sum += statement.balance_cents
       end
 
+      next if sum == 0
       sum /= 100.0
-      next if sum == 0.0
 
       # add that to json hash that gets returned
       graph_data[date] = sum
