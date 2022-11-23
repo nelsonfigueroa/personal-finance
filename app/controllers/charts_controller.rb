@@ -7,7 +7,7 @@ class ChartsController < ApplicationController
 
   def net_worth_graph
     graph_data = generate_net_worth_data
-    graph_data = [] if graph_data.nil?
+    graph_data = [] if graph_data == {} # don't generate graph if data is empty
     render json: graph_data
   end
 
