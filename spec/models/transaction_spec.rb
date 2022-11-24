@@ -28,5 +28,4 @@ RSpec.describe Transaction, type: :model do
     it { should_not allow_value(nil).for(:category) }
     it { should allow_value('Testing12345 67890!@#  $%^&*()-_+=.:;/\[]\'",?').for(:category) }
   end
-
 end
