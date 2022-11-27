@@ -22,7 +22,7 @@ RSpec.describe Statement, type: :model do
     it { should_not allow_value(Faker::String.random).for(:balance) }
 
     # date
-    it { should allow_value(Faker::Date.between(from: 14.days.ago, to: Date.today)).for(:date) }
+    it { should allow_value(Faker::Date.between(from: 14.days.ago, to: Time.zone.today)).for(:date) }
     it { should_not allow_value(Faker::String.random).for(:date) }
 
     # notes
