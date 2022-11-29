@@ -26,7 +26,6 @@ Lint/ConstantResolution:
   Enabled: false
 
 # rubocop-performance
-
 Performance/AncestorsInclude:
   Enabled: true
 Performance/BigDecimalWithNumericArgument:
