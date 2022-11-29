@@ -61,6 +61,8 @@ class DashboardController < ApplicationController
     # }
   end
 
+  private
+
   def assign_user
     @user = current_user
   end
