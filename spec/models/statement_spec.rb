@@ -9,16 +9,11 @@ RSpec.describe Statement, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:account) }
-    it { should validate_presence_of(:balance) }
     it { should validate_presence_of(:date) }
-    it {
-      should validate_numericality_of(:balance)
-        .is_greater_than_or_equal_to(0)
-        .is_less_than_or_equal_to(1_000_000_000)
-    }
+    it { should validate_numericality_of(:balance_cents) }
 
     # balance
-    it { should allow_value(Faker::Commerce.price).for(:balance) }
+    it { should allow_value(Faker::Commerce.price).for(:balance_cents) }
     it { should_not allow_value(Faker::String.random).for(:balance) }
 
     # date
