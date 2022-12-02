@@ -15,7 +15,7 @@
     <%= f.label :balance %>
     <%= f.number_field :balance, step: 0.01, class: '' %>
     <%= f.label :date %>
-    <%= f.date_field :date, class: '' %>
+    <%= f.date_field :date, value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
     <%= f.label :notes %>
     <%= f.text_field :notes, class: '' %>
     <%= f.submit "Add", class: '' %>
