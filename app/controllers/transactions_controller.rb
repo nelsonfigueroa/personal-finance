@@ -10,10 +10,10 @@ class TransactionsController < ApplicationController
   def show
     @transaction = @user.transactions.find_by(id: params[:id])
 
-    if @transaction.nil?
-      flash[:alert] = 'Invalid ID'
-      redirect_to(transactions_path)
-    end
+    return unless @transaction.nil?
+
+    flash[:alert] = 'Invalid ID'
+    redirect_to(transactions_path)
   end
 
   def new
