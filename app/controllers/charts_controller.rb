@@ -11,7 +11,7 @@ class ChartsController < ApplicationController
     render json: graph_data
   end
 
-  # demos for future reference 
+  # demos for future reference
 
   # def expenses_pie_chart_demo
   #   render json: { 'Clothing' => 0.20454e3, 'Restaurants' => 0.9888e2, 'Entertainment' => 0.5977e2, 'Groceries' => 0.14943e3 }
@@ -53,10 +53,12 @@ class ChartsController < ApplicationController
       accounts.each do |account|
         statement = statements.where(account_id: account.id).where('date <= ?', date).order(date: :desc).limit(1)[0]
         next if statement.nil?
+
         sum += statement.balance_cents
       end
 
-      next if sum == 0
+      next if sum.zero?
+
       sum /= 100.0
 
       # add that to json hash that gets returned
