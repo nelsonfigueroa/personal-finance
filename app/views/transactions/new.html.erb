@@ -14,7 +14,7 @@
     <%= f.label :category %>
     <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
     <%= f.label :date %>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", class: '' %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
     <%= f.label :amount %>
     <%= f.text_field :amount, autofocus: true, class: '' %>
     <%= f.label :notes %>
