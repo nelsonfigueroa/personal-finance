@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
 
     years = @transactions.pluck('date').uniq.map(&:year).uniq
     # don't include Savings, Investing, and Income categories for expense tracking
-    categories = @user.transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
+    categories = @transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
 
     years.each do |year|
       @transactions_by_category_per_year[year] = {}
