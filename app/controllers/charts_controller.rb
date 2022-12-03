@@ -28,7 +28,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    statements = @user.statements.where('balance_cents > ?', 0)
+    statements = @user.statements.where('balance_cents != ?', 0)
     return nil if statements.empty?
 
     graph_data = {}
