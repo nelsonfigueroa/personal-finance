@@ -18,6 +18,8 @@ class DashboardController < ApplicationController
       @net_worth /= 100.0
     end
 
+    # 1843ms (Views: 0.4ms | ActiveRecord: 115.9ms
+
     ### transactions and spending ###
     @transactions = @user.transactions
     @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
@@ -30,7 +32,7 @@ class DashboardController < ApplicationController
     # @transactions_by_category_per_month = {} # to do
     @transactions_by_category_per_year = {}
 
-    years = @user.transactions.pluck('date').uniq.map(&:year).uniq
+    years = @transactions.pluck('date').uniq.map(&:year).uniq
     # don't include Savings, Investing, and Income categories for expense tracking
     categories = @user.transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
 
