@@ -28,13 +28,12 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    accounts = @user.accounts
     statements = @user.statements
     return nil if statements.empty?
 
     graph_data = {}
 
-    account_ids = accounts.pluck(:id)
+    account_ids = @user.accounts.pluck(:id)
     dates = statements.pluck(:date).uniq
 
     # there has to be a better way of doing this...but it works.
