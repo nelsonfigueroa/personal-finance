@@ -36,8 +36,6 @@ class ChartsController < ApplicationController
     account_ids = @user.accounts.pluck(:id)
     dates = statements.pluck(:date).uniq
 
-    # there has to be a better way of doing this...but it works.
-
     dates.each do |date|
       sum = 0
       account_ids.each do |account_id|
