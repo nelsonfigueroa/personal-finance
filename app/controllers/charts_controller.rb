@@ -34,14 +34,15 @@ class ChartsController < ApplicationController
 
     graph_data = {}
 
-    dates = statements.pluck(:date)
+    account_ids = accounts.pluck(:id)
+    dates = statements.pluck(:date).uniq
 
     # there has to be a better way of doing this...but it works.
 
     dates.each do |date|
       sum = 0
-      accounts.each do |account|
-        statement = statements.where(account_id: account.id).where('date <= ?', date).order(date: :desc).limit(1)[0]
+      account_ids.each do |account_id|
+        statement = statements.where(account_id: account_id).where('date <= ?', date).order(date: :desc).limit(1)[0]
         next if statement.nil?
 
         sum += statement.balance_cents
