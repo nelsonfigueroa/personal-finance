@@ -18,8 +18,6 @@ class DashboardController < ApplicationController
       @net_worth /= 100.0
     end
 
-    # 1843ms (Views: 0.4ms | ActiveRecord: 115.9ms
-
     ### transactions and spending ###
     @transactions = @user.transactions
     @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
