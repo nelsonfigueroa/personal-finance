@@ -49,7 +49,6 @@ class ChartsController < ApplicationController
 
       sum /= 100.0
 
-      # add that to json hash that gets returned
       graph_data[date] = sum
     end
     graph_data
