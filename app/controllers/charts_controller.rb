@@ -21,16 +21,6 @@ class ChartsController < ApplicationController
   #   render json: { 'Jan 2019' => 0.484132e4, 'Feb 2019' => 0.422839e4, 'Mar 2019' => 0.320202e4, 'Apr 2019' => 0.415266e4, 'May 2019' => 0.400948e4 }
   # end
 
-  # expense tracking
-
-  # def expenses_pie_chart
-  #   render json: @user.expenses.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).group(:category).sum(:amount)
-  # end
-
-  # def expenses_column_chart
-  #   render json: @user.expenses.group_by_month(:date).sum(:amount)
-  # end
-
   private
 
   def assign_user
