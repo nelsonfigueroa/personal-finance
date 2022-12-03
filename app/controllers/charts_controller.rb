@@ -45,8 +45,6 @@ class ChartsController < ApplicationController
         sum += statement.balance_cents
       end
 
-      next if sum.zero?
-
       sum /= 100.0
 
       graph_data[date] = sum
