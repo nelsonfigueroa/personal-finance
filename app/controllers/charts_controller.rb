@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChartsController < ApplicationController
-  before_action :assign_user, only: %i[net_worth_graph]
+  before_action :assign_user
 
   # net worth
 
