@@ -27,7 +27,6 @@ class DashboardController < ApplicationController
 
     return if @transactions.empty?
 
-    # @transactions_by_category_per_month = {} # to do
     @transactions_by_category_per_year = {}
 
     years = @transactions.pluck('date').uniq.map(&:year).uniq
