@@ -19,7 +19,7 @@ gem 'importmap-rails'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
 gem 'money-rails', '~>1.12'
-gem 'nokogiri', '>= 1.13.9'
+gem 'nokogiri', '>= 1.13.10'
 gem 'pg', '~> 1.2.3'
 gem 'psych', '< 4' # fixes Psych::BadAlias errors
 gem 'puma', '>= 5.6.4'
