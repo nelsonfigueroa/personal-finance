@@ -38,7 +38,7 @@
           <tr>
             <td><%= transaction.category %></td>
             <td><%= transaction.date %></td>
-            <% if transaction.category. == "Income" %>
+            <% if transaction.category == "Income" || transaction.category == "Dividends" %>
               <td style='color: #5AC33B'><%= humanized_money_with_symbol transaction.amount %></td>
             <% elsif transaction.category. == "Savings" %>
               <td style='color: cyan'><%= humanized_money_with_symbol transaction.amount %></td>
