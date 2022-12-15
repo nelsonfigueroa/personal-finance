@@ -23,6 +23,7 @@ class DashboardController < ApplicationController
     @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
     @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
     @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
+    @yearly_dividends = @transactions.by_year(Time.zone.now.year).where(category: 'Dividends').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income]).sum(:amount_cents) / 100.0
 
     return if @transactions.empty?
