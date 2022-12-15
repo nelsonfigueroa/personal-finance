@@ -24,15 +24,15 @@ class DashboardController < ApplicationController
     @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
     @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
     @yearly_dividends = @transactions.by_year(Time.zone.now.year).where(category: 'Dividends').sum(:amount_cents) / 100.0
-    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income]).sum(:amount_cents) / 100.0
+    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income Dividends]).sum(:amount_cents) / 100.0
 
     return if @transactions.empty?
 
     @transactions_by_category_per_year = {}
 
     years = @transactions.pluck('date').uniq.map(&:year).uniq
-    # don't include Savings, Investing, and Income categories for expense tracking
-    categories = @transactions.where.not(category: %w[Savings Investing Income]).pluck('category').uniq
+    # don't include Savings, Investing, Income, and Dividends categories for expense tracking
+    categories = @transactions.where.not(category: %w[Savings Investing Income Dividends]).pluck('category').uniq
 
     years.each do |year|
       @transactions_by_category_per_year[year] = {}
