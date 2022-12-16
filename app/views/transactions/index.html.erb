@@ -10,9 +10,7 @@
   <br>
   <small>Transactions with the "Income" or "Dividends" category will be <span style='color: #5AC33B'>green</span>.</small>
   <br>
-  <small>Transactions with the "Savings" category will be <span style='color: cyan'>cyan</span>.</small>
-  <br>
-  <small>Transactions with the "Investing" category will be <span style='color: cyan'>cyan</span>.</small>
+  <small>Transactions with the "Savings" or "Investing" category will be <span style='color: cyan'>cyan</span>.</small>
   <br>
   <small>All other transaction categories will fall under expenses and will be <span style='color: red'>red</span>.</small>
   <br><br>
@@ -38,7 +36,7 @@
           <tr>
             <td><%= transaction.category %></td>
             <td><%= transaction.date %></td>
-            <% if transaction.category == "Income" || transaction.category == "Dividends" %>
+            <% if transaction.category == "Income" || transaction.category == "Dividends" || transaction.category == "Interest" %>
               <td style='color: #5AC33B'><%= humanized_money_with_symbol transaction.amount %></td>
             <% elsif transaction.category. == "Savings" %>
               <td style='color: cyan'><%= humanized_money_with_symbol transaction.amount %></td>
