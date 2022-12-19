@@ -47,26 +47,54 @@
 
 <section>
   <h1>Transactions</h1>
-  <br>
 
-  <p>Yearly income: <%= humanized_money_with_symbol @yearly_income %></p>
-  <p>Yearly saved: <%= humanized_money_with_symbol @yearly_saved %></p>
-  <p>Yearly invested: <%= humanized_money_with_symbol @yearly_invested %></p>
-  <p>Yearly dividends: <%= humanized_money_with_symbol @yearly_dividends %></p>
-  <p>Yearly interest: <%= humanized_money_with_symbol @yearly_interest %></p>
-  <p>Yearly expenses: <%= humanized_money_with_symbol @yearly_expenses %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Yearly Overview</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Income</td>
+        <td><%= humanized_money_with_symbol @yearly_income %></td>
+      </tr>
+      <tr>
+        <td>Savings</td>
+        <td><%= humanized_money_with_symbol @yearly_saved %></td>
+      </tr>
+      <tr>
+        <td>Investments</td>
+        <td><%= humanized_money_with_symbol @yearly_invested %></td>
+      </tr>
+      <tr>
+        <td>Dividends</td>
+        <td><%= humanized_money_with_symbol @yearly_dividends %></td>
+      </tr>
+      <tr>
+        <td>Interest Earnings</td>
+        <td><%= humanized_money_with_symbol @yearly_interest %></td>
+      </tr>
+      <tr>
+        <td>Expenses</td>
+        <td><%= humanized_money_with_symbol @yearly_expenses %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
 
   <% if @transactions.empty? %>
     <p>No transactions. Add some!</p>
   <% else %>
-    <p>Yearly expenses breakdown:</p>
     <table>
       <thead>
         <tr>
-          <th>Category</th>
-          <th>Amount</th>
+          <th>Yearly Expenses by Category</th>
         </tr>
       </thead>
+
       <tbody>
         <% @transactions_by_category_per_year.each do |_year, categories| %>
           <% categories.each do |category, amount| %>
