@@ -60,6 +60,12 @@
         <td>Income</td>
         <td><%= humanized_money_with_symbol @yearly_income %></td>
       </tr>
+      <% if @rent_to_income_percentage %>
+        <tr>
+          <td>Rent to Income Percentage</td>
+          <td><%= @rent_to_income_percentage %>%</td>
+        </tr>
+      <% end %>
       <tr>
         <td>Savings</td>
         <td><%= humanized_money_with_symbol @yearly_saved %></td>
