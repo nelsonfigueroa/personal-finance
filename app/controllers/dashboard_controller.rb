@@ -27,7 +27,7 @@ class DashboardController < ApplicationController
     @yearly_interest = @transactions.by_year(Time.zone.now.year).where(category: 'Interest').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
 
-    if @transactions.pluck(:category).uniq.include? 'Rent'
+    if @transactions.by_year(Time.zone.now.year).pluck(:category).uniq.include? 'Rent'
       yearly_rent = @transactions.by_year(Time.zone.now.year).where(category: 'Rent').sum(:amount_cents) / 100.0
       @rent_to_income_percentage = (yearly_rent / @yearly_income * 100).round
     end
