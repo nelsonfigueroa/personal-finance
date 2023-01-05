@@ -34,6 +34,7 @@ class DashboardController < ApplicationController
 
     return if @transactions.empty?
 
+    # for Yearly Expenses by Category
     @transactions_by_category_per_year = {}
 
     years = @transactions.pluck('date').uniq.map(&:year).uniq
