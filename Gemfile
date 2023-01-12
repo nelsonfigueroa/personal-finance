@@ -24,7 +24,7 @@ gem 'nokogiri', '>= 1.13.10'
 gem 'pg', '~> 1.2.3'
 gem 'psych', '< 4' # fixes Psych::BadAlias errors
 gem 'puma', '>= 5.6.4'
-gem 'rack-mini-profiler' # must be below unde pg/mysql gems
+gem 'rack-mini-profiler', require: false # must be below unde pg/mysql gems
 gem 'rails', '~> 7.0.4'
 gem 'sassc-rails'
 gem 'sqlite3'
