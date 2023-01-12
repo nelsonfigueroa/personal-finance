@@ -18,11 +18,13 @@ gem 'hotwire-rails', '~> 0.1.3'
 gem 'importmap-rails'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
+gem 'memory_profiler' # used with rack-mini-profiler
 gem 'money-rails', '~>1.12'
 gem 'nokogiri', '>= 1.13.10'
 gem 'pg', '~> 1.2.3'
 gem 'psych', '< 4' # fixes Psych::BadAlias errors
 gem 'puma', '>= 5.6.4'
+gem 'rack-mini-profiler' # must be below unde pg/mysql gems
 gem 'rails', '~> 7.0.4'
 gem 'sassc-rails'
 gem 'sqlite3'
