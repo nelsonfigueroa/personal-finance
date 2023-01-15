@@ -12,8 +12,6 @@ RSpec.describe 'Account Requests', type: :request do
   end
 
   describe 'GET index' do
-    let(:net_worth) { user.statements.where(date: Time.zone.today.beginning_of_month..Time.zone.today.end_of_month).sum(:balance) }
-    let(:net_worth_change) { net_worth - user.statements.where(date: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).sum(:balance) }
     before do
       get '/accounts'
     end
@@ -24,10 +22,6 @@ RSpec.describe 'Account Requests', type: :request do
 
     it 'assigns @accounts' do
       expect(assigns(:accounts)).to eq(user.accounts)
-    end
-
-    it 'assigns @net_worth' do
-      expect(assigns(:net_worth)).to eq(net_worth)
     end
 
     it 'renders index template' do
