@@ -5,10 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-gem 'actionpack', '>= 7.0.4'
-gem 'actionview', '>= 7.0.4'
-gem 'activerecord', '>= 7.0.4'
-gem 'activesupport', '>= 7.0.4'
+gem 'actionpack', '>= 7.0.4.1'
+gem 'actionview', '>= 7.0.4.1'
+gem 'activerecord', '>= 7.0.4.1'
+gem 'activesupport', '>= 7.0.4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'chartkick', '~> 4.2.1'
 gem 'devise'
