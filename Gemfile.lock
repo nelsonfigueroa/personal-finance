@@ -360,10 +360,10 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  actionpack (>= 7.0.4)
-  actionview (>= 7.0.4)
-  activerecord (>= 7.0.4)
-  activesupport (>= 7.0.4)
+  actionpack (>= 7.0.4.1)
+  actionview (>= 7.0.4.1)
+  activerecord (>= 7.0.4.1)
+  activesupport (>= 7.0.4.1)
   bootsnap (>= 1.4.2)
   brakeman
   bullet
