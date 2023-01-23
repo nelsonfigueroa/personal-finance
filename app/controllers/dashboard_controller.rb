@@ -19,6 +19,8 @@ class DashboardController < ApplicationController
     end
 
     ### transactions and spending ###
+
+    # TODO would this be faster if I looped through everything instead of making database queries?
     @transactions = @user.transactions
     @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
     @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
