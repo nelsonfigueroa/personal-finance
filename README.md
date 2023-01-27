@@ -1,6 +1,6 @@
 # Personal Finance
 
-Personal Finance is a Ruby on Rails application that keeps track of finances over time. I built it for myself because other apps are either too bloated for my taste, or privacy-invasive (i.e. Mint).
+Personal Finance is a Ruby on Rails application that keeps track of finances over time. I built it for myself because other apps are either too bloated for my taste, or privacy-invasive (i.e. Mint). I also don't like connecting financial accounts to third party sites, so this is a manual approach to keeping track of money.
 
 It is currently barebones as I'm reworking the entire thing.
 
