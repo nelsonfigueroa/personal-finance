@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   authenticated :user do
     get '/dashboard', to: 'dashboard#index'
     get '/net_worth_graph', to: 'charts#net_worth_graph'
-    get '/expenses_pie_chart', to: 'charts#expenses_pie_chart'
-    get '/expenses_column_chart', to: 'charts#expenses_column_chart'
+    get '/pie_chart', to: 'charts#pie_chart'
 
     resources :accounts do
       resources :statements, except: [:show]
