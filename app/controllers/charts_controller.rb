@@ -12,7 +12,7 @@ class ChartsController < ApplicationController
 
   # pie chart
 
-  def pie_chart
+  def yearly_expenses_pie_chart
     data = {
       "Rent": 2002,
       "Groceries": 198.2
