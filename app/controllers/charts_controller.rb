@@ -10,6 +10,16 @@ class ChartsController < ApplicationController
     render json: graph_data
   end
 
+  # pie chart
+
+  def pie_chart
+    data = {
+      "Rent": 2002,
+      "Groceries": 198.2
+    }
+    render json: data
+  end
+
   private
 
   def assign_user
