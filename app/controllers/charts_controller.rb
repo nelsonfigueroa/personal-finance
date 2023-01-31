@@ -13,17 +13,23 @@ class ChartsController < ApplicationController
   # pie chart
 
   def yearly_expenses_pie_chart
-    data = {
-      "Rent": 2002,
-      "Groceries": 198.2
-    }
-    render json: data
+    chart_data = generate_chart_data
+    render json: chart_data
   end
 
   private
 
   def assign_user
     @user = current_user
+  end
+
+  def generate_chart_data  
+    data = {
+      "Rent": 2002,
+      "Groceries": 198.2
+    }
+
+    data
   end
 
   def generate_net_worth_data
