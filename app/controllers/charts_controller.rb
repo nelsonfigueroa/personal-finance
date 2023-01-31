@@ -23,11 +23,19 @@ class ChartsController < ApplicationController
     @user = current_user
   end
 
-  def generate_chart_data  
-    data = {
-      "Rent": 2002,
-      "Groceries": 198.2
-    }
+  def generate_chart_data
+    year = Time.now.year
+    transactions = @user.transactions.by_year(Time.zone.now.year)
+
+    return {} if transactions.empty?
+
+    data = {}
+
+    # this is what the structure should look like
+    # data = {
+    #   "Rent": 2002,
+    #   "Groceries": 198.2
+    # }
 
     data
   end
