@@ -29,14 +29,14 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
+    categories = transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).pluck('category').uniq
     data = {}
 
-    # this is what the structure should look like
-    # data = {
-    #   "Rent": 2002,
-    #   "Groceries": 198.2
-    # }
-
+    categories.each do |category|
+      amount = transactions.where(category: category).sum(:amount_cents) / 100.0
+      data.merge!(category => amount)
+    end
+  
     data
   end
 
