@@ -13,7 +13,7 @@ class ChartsController < ApplicationController
   # pie chart
 
   def yearly_expenses_pie_chart
-    chart_data = generate_chart_data
+    chart_data = generate_yearly_expenses_chart_data
     render json: chart_data
   end
 
@@ -23,7 +23,7 @@ class ChartsController < ApplicationController
     @user = current_user
   end
 
-  def generate_chart_data
+  def generate_yearly_expenses_chart_data
     year = Time.now.year
     transactions = @user.transactions.by_year(Time.zone.now.year)
 
