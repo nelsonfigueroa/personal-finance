@@ -34,8 +34,9 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    # Not including Savings since that is generally a transfer of money rather than new money coming in
-    categories = %w[Investing Income Dividends Interest]
+    # Not including Savings or Investing since those are generally a transfer of money rather than new money coming in
+    # May need "Gains" category for capital gains when stock is sold
+    categories = %w[Income Dividends Interest]
     data = {}
 
     categories.each do |category|
