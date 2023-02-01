@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
     get '/net_worth_graph', to: 'charts#net_worth_graph'
     get '/yearly_expenses_pie_chart', to: 'charts#yearly_expenses_pie_chart'
+    get '/yearly_income_pie_chart', to: 'charts#yearly_income_pie_chart'
 
     resources :accounts do
       resources :statements, except: [:show]
