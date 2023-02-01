@@ -28,16 +28,13 @@ class ChartsController < ApplicationController
     @user = current_user
   end
 
-    # then I can figure out how to add titles or labels to the pie chart on the site
-    # and I also need to move over the pie chart to the appropriate section on the view
-
   def generate_yearly_income_chart_data
     year = Time.now.year
     transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
 
-    categories = transactions.where(category: %w[Savings Investing Income Dividends Interest]).pluck('category').uniq # maybe just hardcode this? will it be faster?
+    categories = %w[Savings Investing Income Dividends Interest]
     data = {}
 
     categories.each do |category|
