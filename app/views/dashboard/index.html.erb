@@ -8,9 +8,6 @@
   <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
 </section>
 
-<%= pie_chart yearly_expenses_pie_chart_path %>
-<%= pie_chart yearly_income_pie_chart_path %>
-
 <section>
   <h1>Accounts</h1>
   <br>
@@ -51,10 +48,19 @@
 <section>
   <h1>Transactions</h1>
 
+  <h2>Income</h2>
+  <p>Where your money comes from</p>
+  <%= pie_chart yearly_income_pie_chart_path %>
+
+  <h2>Expenses</h2>
+  <p>Where your money is being spent</p>
+  <%= pie_chart yearly_expenses_pie_chart_path %>
+
+  <h2>Yearly Overview</h2>
   <table>
     <thead>
       <tr>
-        <th>Yearly Overview</th>
+        <th><%= Time.now.year %></th>
       </tr>
     </thead>
 
