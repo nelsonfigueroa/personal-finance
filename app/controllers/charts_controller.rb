@@ -10,6 +10,13 @@ class ChartsController < ApplicationController
     render json: graph_data
   end
 
+  # single account graph
+
+  def single_account_graph(account_id)
+    graph_data = generate_single_account_graph_data(account_id)
+    render json: graph_data
+  end
+
   # pie charts
 
   def yearly_expenses_pie_chart
@@ -63,7 +70,6 @@ class ChartsController < ApplicationController
   
     data
   end
-
 
   def generate_single_account_graph_data(account_id)
     account = @user.accounts.find_by_id(account_id)
