@@ -64,6 +64,15 @@ class ChartsController < ApplicationController
     data
   end
 
+
+  def generate_single_account_graph_data(account_id)
+    account = @user.accounts.find_by_id(account_id)
+    return {} if account.empty?
+    return {} if account.statements.empty?
+
+
+  end
+
   def generate_net_worth_data
     statements = @user.statements
     return [] if statements.empty?
