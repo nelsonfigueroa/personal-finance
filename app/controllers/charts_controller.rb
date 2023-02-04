@@ -12,8 +12,8 @@ class ChartsController < ApplicationController
 
   # single account graph
 
-  def single_account_graph(account_id)
-    graph_data = generate_single_account_graph_data(account_id)
+  def single_account_graph
+    graph_data = generate_single_account_graph_data(params[:account_id])
     render json: graph_data
   end
 
@@ -73,10 +73,16 @@ class ChartsController < ApplicationController
 
   def generate_single_account_graph_data(account_id)
     account = @user.accounts.find_by_id(account_id)
-    return {} if account.empty?
+    return {} if account.nil?
     return {} if account.statements.empty?
 
+    graph_data = {}
 
+    account.statements.each do |statement|
+      graph_data[statement.date] = statement.balance_cents / 100.0
+    end
+
+    graph_data
   end
 
   def generate_net_worth_data
