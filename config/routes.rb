@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   authenticated :user do
     get '/dashboard', to: 'dashboard#index'
     get '/net_worth_graph', to: 'charts#net_worth_graph'
+    get '/single_account_graph', to: 'charts#single_account_graph'
+
     get '/yearly_expenses_pie_chart', to: 'charts#yearly_expenses_pie_chart'
     get '/yearly_income_pie_chart', to: 'charts#yearly_income_pie_chart'
 
