@@ -10,7 +10,6 @@
 
   <h1><%= @account.name %></h1>
 
-  <%# make a note of how to pass in parameters. HAve to give them a name then pass in a value for them. It's been a long time %>
   <%= area_chart single_account_graph_path(account_id: @account.id) %>
 
   <%= link_to new_account_statement_path(account_id: @account.id), class: '' do %>
