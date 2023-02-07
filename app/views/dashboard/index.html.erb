@@ -69,6 +69,10 @@
         <td>Income</td>
         <td><%= humanized_money_with_symbol @yearly_income %></td>
       </tr>
+      <tr>
+        <td>Expenses</td>
+        <td><%= humanized_money_with_symbol @yearly_expenses %></td>
+      </tr>
       <% if @rent_to_income_percentage %>
         <tr>
           <td>Rent to Income Percentage</td>
@@ -90,10 +94,6 @@
       <tr>
         <td>Interest Earnings</td>
         <td><%= humanized_money_with_symbol @yearly_interest %></td>
-      </tr>
-      <tr>
-        <td>Expenses</td>
-        <td><%= humanized_money_with_symbol @yearly_expenses %></td>
       </tr>
     </tbody>
   </table>
