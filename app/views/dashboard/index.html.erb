@@ -50,11 +50,11 @@
 
   <h2>Income</h2>
   <p>Where your money comes from</p>
-  <%= pie_chart yearly_income_pie_chart_path, prefix: "$" %>
+  <%= pie_chart yearly_income_pie_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
 
   <h2>Expenses</h2>
   <p>Where your money is being spent</p>
-  <%= pie_chart yearly_expenses_pie_chart_path, prefix: "$" %>
+  <%= pie_chart yearly_expenses_pie_chart_path, prefix: "$", messages: {empty: "No expense transactions recorded."} %>
 
   <h2>Yearly Overview</h2>
   <table>
