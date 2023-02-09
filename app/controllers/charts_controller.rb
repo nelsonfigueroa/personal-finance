@@ -19,6 +19,11 @@ class ChartsController < ApplicationController
 
   # pie charts
 
+  def yearly_income_vs_expenses_pie_chart
+    chart_data = generate_yearly_income_vs_expenses_chart_data
+    render json: chart_data
+  end
+
   def yearly_expenses_pie_chart
     chart_data = generate_yearly_expenses_chart_data
     render json: chart_data
@@ -33,6 +38,21 @@ class ChartsController < ApplicationController
 
   def assign_user
     @user = current_user
+  end
+
+  def generate_yearly_income_vs_expenses_chart_data
+    year = Time.now.year
+    transactions = @user.transactions.by_year(year)
+
+    return {} if transactions.empty?
+
+    income = transactions.where(category: %w[Income Dividends Interest]).sum(:amount_cents) / 100.0
+    expenses = transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
+
+    data = {
+      "Income": income,
+      "Expenses": expenses
+    }
   end
 
   def generate_yearly_income_chart_data
