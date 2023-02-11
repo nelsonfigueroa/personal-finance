@@ -48,6 +48,10 @@
 <section>
   <h1>Transactions</h1>
 
+  <h2>Income vs Expenses</h2>
+  <p>Ratio: ???</p>
+  <%= pie_chart yearly_income_vs_expenses_pie_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
+
   <h2>Income</h2>
   <p>Where your money comes from</p>
   <%= pie_chart yearly_income_pie_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
