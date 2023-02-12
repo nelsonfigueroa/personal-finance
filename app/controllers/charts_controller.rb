@@ -41,7 +41,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_income_vs_expenses_chart_data
-    year = Time.now.year
+    year = Time.zone.now.year
     transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
@@ -50,13 +50,13 @@ class ChartsController < ApplicationController
     expenses = transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
 
     data = {
-      "Income": income,
-      "Expenses": expenses
+      Income: income,
+      Expenses: expenses
     }
   end
 
   def generate_yearly_income_chart_data
-    year = Time.now.year
+    year = Time.zone.now.year
     transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
@@ -75,7 +75,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_expenses_chart_data
-    year = Time.now.year
+    year = Time.zone.now.year
     transactions = @user.transactions.by_year(Time.zone.now.year) # change this to year
 
     return {} if transactions.empty?
@@ -87,7 +87,7 @@ class ChartsController < ApplicationController
       amount = transactions.where(category: category).sum(:amount_cents) / 100.0
       data.merge!(category => amount)
     end
-  
+
     data
   end
 
