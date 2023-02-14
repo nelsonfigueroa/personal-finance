@@ -22,6 +22,15 @@ class AccountsController < ApplicationController
     @account = Account.new
   end
 
+  def edit
+    @account = @user.accounts.find_by(id: params[:id])
+
+    return unless @account.nil?
+
+    flash[:alert] = 'Invalid ID'
+    redirect_to(accounts_path)
+  end
+
   def create
     @account = Account.new(account_params)
     @account.user_id = @user.id
@@ -32,15 +41,6 @@ class AccountsController < ApplicationController
     else
       flash[:alert] = @account.errors.full_messages.join(', ')
       render('new')
-    end
-  end
-
-  def edit
-    @account = @user.accounts.find_by(id: params[:id])
-
-    if @account.nil?
-      flash[:alert] = 'Invalid ID'
-      redirect_to(accounts_path)
     end
   end
 
