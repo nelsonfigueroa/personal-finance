@@ -8,6 +8,15 @@ class StatementsController < ApplicationController
     @statement = Statement.new
   end
 
+  def edit
+    @statement = @user.accounts.find_by(id: @account.id).statements.find_by(id: params[:id])
+
+    return unless @statement.nil?
+
+    flash[:alert] = 'Invalid ID'
+    redirect_to(account_path(@account))
+  end
+
   def create
     @statement = Statement.new(statement_params)
     @statement.account_id = @account.id
@@ -18,15 +27,6 @@ class StatementsController < ApplicationController
     else
       flash[:alert] = @statement.errors.full_messages.join(', ')
       render('new')
-    end
-  end
-
-  def edit
-    @statement = @user.accounts.find_by(id: @account.id).statements.find_by(id: params[:id])
-
-    if @statement.nil?
-      flash[:alert] = 'Invalid ID'
-      redirect_to(account_path(@account))
     end
   end
 
