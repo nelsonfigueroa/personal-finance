@@ -20,6 +20,15 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
   end
 
+  def edit
+    @transaction = @user.transactions.find_by(id: params[:id])
+
+    return unless @transaction.nil?
+
+    flash[:alert] = 'Invalid ID'
+    redirect_to(transactions_path)
+  end
+
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user_id = @user.id
@@ -29,15 +38,6 @@ class TransactionsController < ApplicationController
     else
       flash[:alert] = @transaction.errors.full_messages.join(', ')
       render('new')
-    end
-  end
-
-  def edit
-    @transaction = @user.transactions.find_by(id: params[:id])
-
-    if @transaction.nil?
-      flash[:alert] = 'Invalid ID'
-      redirect_to(transactions_path)
     end
   end
 
