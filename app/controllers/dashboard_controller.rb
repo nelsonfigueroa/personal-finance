@@ -18,9 +18,17 @@ class DashboardController < ApplicationController
       @net_worth /= 100.0
     end
 
+    # Initializing for calculations
+    @transactions = @user.transactions
+
+    ### Income vs Expenses
+
+    income = @transactions.by_year(Time.zone.now.year).where(category: %w[Income Dividends Interest]).sum(:amount_cents) / 100.0
+    expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
+    @income_vs_expenses_percentage = (expenses / income * 100).round
+
     ### transactions and spending ###
 
-    @transactions = @user.transactions
     @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
     @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
     @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
