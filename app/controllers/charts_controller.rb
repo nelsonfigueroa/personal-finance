@@ -3,21 +3,21 @@
 class ChartsController < ApplicationController
   before_action :assign_user
 
-  # net worth
+  ### net worth graph ###
 
   def net_worth_graph
     graph_data = generate_net_worth_data
     render json: graph_data
   end
 
-  # single account graph
+  ### single account graph ###
 
   def single_account_graph
     graph_data = generate_single_account_graph_data(params[:account_id])
     render json: graph_data
   end
 
-  # pie charts
+  ### pie charts ###
 
   def yearly_income_vs_expenses_pie_chart
     chart_data = generate_yearly_income_vs_expenses_chart_data
