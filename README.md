@@ -7,13 +7,12 @@ It is currently barebones as I'm reworking the entire thing.
 Long-term goals:
 - [x] Net worth tracking over time
 - [x] Expense tracking
-- [ ] Income vs expenses per month
+- [x] Income vs expenses per month
 - [ ] Stock dividend tracking
 - [ ] Liability tracking
 
 ## Notable Gems and Libraries used:
 
-- [Water.css](https://watercss.kognise.dev/) - Drop-in CSS styles.
 - [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
 - [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
 - [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code. 
