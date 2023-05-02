@@ -6,7 +6,7 @@
   <h1>Accounts</h1>
   <small>Create accounts and then then create statements to keep track of balances periodically. Statements are aggregated to calculate net worth in the dashboard.</small>
   <br><br>
-  <button><%= link_to 'Add Account', new_account_path, class: '' %></button>
+  <%= link_to 'Add Account', new_account_path, class: '' %>
 
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
