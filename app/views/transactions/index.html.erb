@@ -14,8 +14,8 @@
   <br>
   <small>All other transaction categories will fall under expenses and will be <span style='color: red'>red</span>.</small>
   <br><br>
-  <button><%= link_to 'Create Transaction', new_transaction_path, class: '' %></button>
-  <button><%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %></button>
+  <%= link_to 'Create Transaction', new_transaction_path, class: '' %>
+  <%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
 
   <% if @transactions.empty? %>
     <p>No existing transactions. Create one!</p>
