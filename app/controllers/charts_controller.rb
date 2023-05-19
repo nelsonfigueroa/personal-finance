@@ -82,7 +82,6 @@ class ChartsController < ApplicationController
     return {} if transactions.empty?
 
     # Not including Savings or Investing since those are generally a transfer of money rather than new money coming in
-    # May need "Gains" category for capital gains when stock is sold
     data = {}
 
     @@income_categories.each do |category|
