@@ -3,6 +3,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # single place to set categories that count as income, and categories to exclude when calculating expenses
+  @@income_categories = %w[Income Dividends Interest]
+  @@not_expense_categories = %w[Savings Investing Income Dividends Interest Sale]
+
   protected
 
   def configure_permitted_parameters
