@@ -23,8 +23,8 @@ class DashboardController < ApplicationController
 
     ### Income vs Expenses
 
-    income = @transactions.by_year(Time.zone.now.year).where(category: %w[Income Dividends Interest]).sum(:amount_cents) / 100.0
-    expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
+    income = @transactions.by_year(Time.zone.now.year).where(category: @@income_categories).sum(:amount_cents) / 100.0
+    expenses = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
     @income_vs_expenses_percentage = (expenses / income * 100).round
 
     ### transactions and spending ###
@@ -34,7 +34,7 @@ class DashboardController < ApplicationController
     @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
     @yearly_dividends = @transactions.by_year(Time.zone.now.year).where(category: 'Dividends').sum(:amount_cents) / 100.0
     @yearly_interest = @transactions.by_year(Time.zone.now.year).where(category: 'Interest').sum(:amount_cents) / 100.0
-    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
+    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
     if @transactions.by_year(Time.zone.now.year).pluck(:category).uniq.include? 'Rent'
       yearly_rent = @transactions.by_year(Time.zone.now.year).where(category: 'Rent').sum(:amount_cents) / 100.0
@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
 
     years = @transactions.pluck('date').uniq.map(&:year).uniq
     # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
-    categories = @transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).pluck('category').uniq
+    categories = @transactions.where.not(category: @@not_expense_categories).pluck('category').uniq
 
     years.each do |year|
       @transactions_by_category_per_year[year] = {}
