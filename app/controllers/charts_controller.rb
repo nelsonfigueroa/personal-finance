@@ -51,8 +51,8 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    income = transactions.where(category: %w[Income Dividends Interest]).sum(:amount_cents) / 100.0
-    expenses = transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).sum(:amount_cents) / 100.0
+    income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
+    expenses = transactions.where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
     data = {
       Income: income,
@@ -66,7 +66,7 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    income = transactions.where(category: %w[Income Dividends Interest]).sum(:amount_cents) / 100.0
+    income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
     expenses = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
 
     data = {
@@ -83,10 +83,9 @@ class ChartsController < ApplicationController
 
     # Not including Savings or Investing since those are generally a transfer of money rather than new money coming in
     # May need "Gains" category for capital gains when stock is sold
-    categories = %w[Income Dividends Interest]
     data = {}
 
-    categories.each do |category|
+    @@income_categories.each do |category|
       amount = transactions.where(category: category).sum(:amount_cents) / 100.0
       data.merge!(category => amount)
     end
@@ -100,7 +99,7 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    categories = transactions.where.not(category: %w[Savings Investing Income Dividends Interest]).pluck('category').uniq
+    categories = transactions.where.not(category: @@not_expense_categories).pluck('category').uniq
     data = {}
 
     categories.each do |category|
