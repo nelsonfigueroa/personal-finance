@@ -4,22 +4,14 @@
   <%= render partial: 'layouts/notifications' %>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="mb-3">
-      <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
-    </div>
-    <div class="mb-3">
-      <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: '' %>
-    </div>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
+    <%= f.password_field :password, placeholder: 'Password', autocomplete: "new-password", class: '' %>
 
     <% if devise_mapping.rememberable? %>
-    <div class="mb-3">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me, class: '' %>
-    </div>
     <% end %>
 
-    <div class="mb-3">
-      <%= f.submit "Log in", class: '' %>
-    </div>
+    <%= f.submit "Log in", class: '' %>
   <% end %>
 </section>
