@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-alpine3.16
+FROM ruby:3.1.3-alpine
 
 ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
