@@ -2,8 +2,6 @@ html {
     font-family: Menlo, Consolas, Monaco, Lucida Console, monospace;
     background-color: #040f1b;
     color: rgb(212, 212, 212);
-    padding-left: 20%;
-    padding-right: 20%;
 }
 
 a {
@@ -20,4 +18,13 @@ nav {
     padding-bottom: 1em;
     padding-top: 1em;
     border-bottom: 1px dashed rgb(212, 212, 212);;
+}
+
+
+/* This applies from 600px onwards */
+@media (min-width: 600px) {
+  body {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }
