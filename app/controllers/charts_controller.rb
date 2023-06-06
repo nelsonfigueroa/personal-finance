@@ -76,8 +76,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_income_chart_data
-    year = Time.zone.now.year
-    transactions = @user.transactions.by_year(year)
+    transactions = @user.transactions.by_year(Time.zone.now.year)
 
     return {} if transactions.empty?
 
@@ -92,7 +91,6 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_expenses_chart_data
-    year = Time.zone.now.year
     transactions = @user.transactions.by_year(Time.zone.now.year)
 
     return {} if transactions.empty?
