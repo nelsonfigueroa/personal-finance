@@ -54,7 +54,7 @@ class ChartsController < ApplicationController
     income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
     expenses = transactions.where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
-    data = {
+    {
       Income: income,
       Expenses: expenses
     }
@@ -69,7 +69,7 @@ class ChartsController < ApplicationController
     income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
     expenses = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
 
-    data = {
+    {
       Income: income,
       Rent: expenses
     }
@@ -107,7 +107,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_single_account_graph_data(account_id)
-    account = @user.accounts.find_by_id(account_id)
+    account = @user.accounts.find_by(id: account_id)
     return {} if account.nil?
     return {} if account.statements.empty?
 
