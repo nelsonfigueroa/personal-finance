@@ -57,7 +57,7 @@ Rails.application.configure do
 
   # delete local dev logs after exiting
   at_exit do
-    puts "Deleting development.log..."
+    Rails.logger.debug 'Deleting development.log...'
     File.delete(Rails.application.config.paths['log'].first)
   end
 

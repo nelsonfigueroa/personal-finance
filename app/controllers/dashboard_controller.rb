@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
     @transactions = @user.transactions
 
     ### Income vs Expenses
-    @income_vs_expenses_percentage = "N/A"
+    @income_vs_expenses_percentage = 'N/A'
     income = @transactions.by_year(Time.zone.now.year).where(category: @@income_categories).sum(:amount_cents) / 100.0
     expenses = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
     unless income == 0.0 or expenses == 0.0
