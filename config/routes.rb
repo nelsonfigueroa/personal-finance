@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :statements, except: [:show]
     end
 
+    resources :dividends
     resources :transactions, except: [:show]
 
     get 'transactions/download', to: 'transactions#download'
