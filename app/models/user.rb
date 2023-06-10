@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :accounts, dependent: :destroy
   has_many :statements, through: :accounts
   has_many :transactions, dependent: :destroy
+  has_many :dividends, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ } # only letters
