@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_21_063743) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_030749) do
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "dividends", force: :cascade do |t|
+    t.integer "user_id"
+    t.date "date"
+    t.string "ticker"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.index ["ticker"], name: "index_dividends_on_ticker"
+    t.index ["user_id"], name: "index_dividends_on_user_id"
   end
 
   create_table "statements", force: :cascade do |t|
@@ -54,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_063743) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "dividends", "users"
   add_foreign_key "statements", "accounts"
   add_foreign_key "transactions", "users"
 end
