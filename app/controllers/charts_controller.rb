@@ -122,7 +122,7 @@ class ChartsController < ApplicationController
 
   def generate_net_worth_data
     # hardcoding year
-    statements = @user.statements.from_year(2018)
+    statements = @user.statements.from_year(Time.now.year - 5)
     return [] if statements.empty?
 
     graph_data = {}
