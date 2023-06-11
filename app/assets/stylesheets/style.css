@@ -4,6 +4,10 @@ html {
     color: rgb(212, 212, 212);
 }
 
+h2:before {
+  content: "# ";
+}
+
 a {
     color: rgb(43, 149, 255);
     transition: 0.2s;
@@ -18,6 +22,51 @@ nav {
     padding-bottom: 1em;
     padding-top: 1em;
     border-bottom: 1px dashed rgb(212, 212, 212);;
+}
+
+section {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* syling for all tables */
+
+table {
+  /* border: 1px solid; */
+  width: 100%;
+  border-collapse: collapse;
+  /* border-left: 1px dashed;
+  border-bottom: 1px dashed; */
+}
+
+th {
+  background-color: rgb(195, 195, 195);
+  color:black;
+}
+
+td, th {
+  padding: 0.4rem;
+}
+
+td {
+  border-bottom: 1px solid rgb(50, 50, 50);
+}
+
+tr:nth-child(even) {
+  background-color: rgb(17, 17, 17);
+}
+
+tr:hover {
+  background-color: rgb(195, 195, 195);
+  color:black;
+}
+
+tr:hover a {
+  color: rgb(0, 30, 255);
+}
+
+tr a:hover {
+  color:rgb(0, 0, 0);
 }
 
 
