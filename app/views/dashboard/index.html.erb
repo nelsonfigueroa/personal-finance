@@ -1,9 +1,11 @@
 <%= render partial: 'layouts/notifications' %>
 
+<h1><i>Dashboard</i></h1>
+
 <section>
-  <h1>Net Worth</h1>
+  <h2>Net Worth</h2>
   <small>Sum of the latest account statements</small>
-  <h2><%= humanized_money_with_symbol @net_worth %></h2>
+  <p><b><%= humanized_money_with_symbol @net_worth %></b></p>
 
   <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
 </section>
@@ -70,7 +72,7 @@
   <table>
     <thead>
       <tr>
-        <th><%= Time.now.year %></th>
+        <th colspan="2"><%= Time.now.year %></th>
       </tr>
     </thead>
 
@@ -112,7 +114,7 @@
     <table>
       <thead>
         <tr>
-          <th><%= year %></th>
+          <th colspan="2"><%= year %></th>
         </tr>
       </thead>
       <tbody>
@@ -125,5 +127,6 @@
     <% end %>
       </tbody>
     </table>
+    <br>
   <% end %>
 </section>
