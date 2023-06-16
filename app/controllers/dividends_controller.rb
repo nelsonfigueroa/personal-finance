@@ -8,6 +8,8 @@ class DividendsController < ApplicationController
 
     def show
         @dividend = @user.dividends.find_by(id: params[:id])
+        @dividends = @user.dividends.where(ticker: @dividend.ticker).by_year(Time.now.year)
+        @total_dividends_this_year = @dividends.sum(:amount_cents) / 100.0
 
         return unless @dividend.nil?
 
