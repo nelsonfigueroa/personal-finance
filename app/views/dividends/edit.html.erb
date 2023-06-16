@@ -1,0 +1,23 @@
+<section>
+  <%= render partial: 'layouts/notifications' %>
+
+  <nav aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Dividends', dividends_path %></li>
+      <li><%= link_to "#{@dividend.id}", dividend_path(@dividend) %></li>
+      <li><a href="#" aria-current="page">Edit Dividend</a></li>
+    </ul>
+  </nav>
+
+  <h1>Edit Dividend</h1>
+
+  <%= form_with model: @dividend do |f| %>
+    <%= f.label :date %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", class: '' %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount, autofocus: true, class: '' %>
+    <%= f.label :ticker %>
+    <%= f.text_field :ticker, autofocus: true, class: '' %>
+    <%= f.submit "Save", class: '' %>
+  <% end %>
+</section>

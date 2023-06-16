@@ -1,0 +1,44 @@
+<h1><i>Dividends</i></h1>
+
+<section>
+  <%= render partial: 'layouts/notifications' %>
+
+  <%= link_to 'Create Dividend', new_dividend_path, class: '' %>
+
+  <br><br>
+
+  <% if @dividends.empty? %>
+    <p>No existing dividends. Create one!</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Ticker</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dividends.sorted_by_date.each do |dividend| %>
+          <tr>
+            <td><%= humanized_money_with_symbol dividend.amount %></td>
+            <td><%= dividend.date %></td>
+            <td><%= dividend.ticker %></td>
+            <td>
+              <%= link_to dividend_path(dividend.id), class: '' do %>View<% end %>
+            </td>
+            <td>
+              <%= link_to edit_dividend_path(dividend.id), class: '' do %>Edit<% end %>
+            </td>
+            <td>
+              <%= link_to dividend_path(dividend.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this dividend?", class: ''} do %>Delete<% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>
