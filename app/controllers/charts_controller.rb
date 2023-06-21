@@ -77,7 +77,7 @@ class ChartsController < ApplicationController
 
   def generate_yearly_income_chart_data
     transactions = @user.transactions.by_year(Time.zone.now.year)
-    dividends = @user.dividends.by_year(Time.now.year)
+    dividends = @user.dividends.by_year(Time.zone.now.year)
   
     return {} if transactions.empty?
 
