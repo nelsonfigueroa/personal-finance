@@ -78,7 +78,7 @@ class ChartsController < ApplicationController
   def generate_yearly_income_chart_data
     transactions = @user.transactions.by_year(Time.zone.now.year)
     dividends = @user.dividends.by_year(Time.zone.now.year)
-  
+
     return {} if transactions.empty?
 
     data = {}
@@ -90,7 +90,7 @@ class ChartsController < ApplicationController
 
     unless dividends.empty?
       dividends_total = dividends.sum(:amount_cents) / 100.0
-      data.merge!('Dividends' => dividends_total)
+      data['Dividends'] = dividends_total
     end
 
     data
