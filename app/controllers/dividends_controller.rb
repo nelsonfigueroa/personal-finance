@@ -6,6 +6,7 @@ class DividendsController < ApplicationController
 
   def index
     @dividends = @user.dividends
+    @total_dividends_this_year = @user.dividends.by_year(Time.zone.now.year).sum(:amount_cents) / 100.0
   end
 
   def show
