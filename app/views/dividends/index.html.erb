@@ -10,6 +10,7 @@
   <% if @dividends.empty? %>
     <p>No existing dividends</p>
   <% else %>
+    <p style="font-size: 1.5rem;">Total Dividends this year: <span style="color: limegreen;"><%= humanized_money_with_symbol @total_dividends_this_year %></span></p>
     <table>
       <thead>
         <tr>
