@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   @@income_categories = %w[Income Interest]
   @@not_expense_categories = %w[Savings Investing Income Interest Sale]
 
+  # current year to be used throughout app
+  CURRENT_YEAR = Time.zone.now.year
+
   protected
 
   def configure_permitted_parameters
