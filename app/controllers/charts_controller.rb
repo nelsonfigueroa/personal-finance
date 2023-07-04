@@ -95,7 +95,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_expenses_chart_data
-    transactions = @user.transactions.by_year(Time.zone.now.year)
+    transactions = @user.transactions.by_year(CURRENT_YEAR)
 
     return {} if transactions.empty?
 
@@ -126,7 +126,7 @@ class ChartsController < ApplicationController
 
   def generate_net_worth_data
     # hardcoding year
-    statements = @user.statements.from_year(Time.zone.now.year - 5)
+    statements = @user.statements.from_year(CURRENT_YEAR - 5)
     return [] if statements.empty?
 
     graph_data = {}
