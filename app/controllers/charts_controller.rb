@@ -60,8 +60,7 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_income_vs_rent_chart_data
-    year = Time.zone.now.year
-    transactions = @user.transactions.by_year(year)
+    transactions = @user.transactions.by_year(CURRENT_YEAR)
 
     return {} if transactions.empty?
 
@@ -75,8 +74,8 @@ class ChartsController < ApplicationController
   end
 
   def generate_yearly_income_chart_data
-    transactions = @user.transactions.by_year(Time.zone.now.year)
-    dividends = @user.dividends.by_year(Time.zone.now.year)
+    transactions = @user.transactions.by_year(CURRENT_YEAR)
+    dividends = @user.dividends.by_year(CURRENT_YEAR)
 
     return {} if transactions.empty?
 
