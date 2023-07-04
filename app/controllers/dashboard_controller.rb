@@ -23,23 +23,23 @@ class DashboardController < ApplicationController
 
     ### Income vs Expenses
     @income_vs_expenses_percentage = 'N/A'
-    income = @transactions.by_year(Time.zone.now.year).where(category: @@income_categories).sum(:amount_cents) / 100.0
-    expenses = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
+    income = @transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) / 100.0
+    expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
     unless income == 0.0 or expenses == 0.0
       @income_vs_expenses_percentage = (expenses / income * 100).round
     end
 
     ### transactions and spending ###
 
-    @yearly_income = @transactions.by_year(Time.zone.now.year).where(category: 'Income').sum(:amount_cents) / 100.0
-    @yearly_saved = @transactions.by_year(Time.zone.now.year).where(category: 'Savings').sum(:amount_cents) / 100.0
-    @yearly_invested = @transactions.by_year(Time.zone.now.year).where(category: 'Investing').sum(:amount_cents) / 100.0
-    @yearly_dividends = @user.dividends.by_year(Time.zone.now.year).sum(:amount_cents) / 100.0
-    @yearly_interest = @transactions.by_year(Time.zone.now.year).where(category: 'Interest').sum(:amount_cents) / 100.0
-    @yearly_expenses = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
+    @yearly_income = @transactions.by_year(CURRENT_YEAR).where(category: 'Income').sum(:amount_cents) / 100.0
+    @yearly_saved = @transactions.by_year(CURRENT_YEAR).where(category: 'Savings').sum(:amount_cents) / 100.0
+    @yearly_invested = @transactions.by_year(CURRENT_YEAR).where(category: 'Investing').sum(:amount_cents) / 100.0
+    @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
+    @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: 'Interest').sum(:amount_cents) / 100.0
+    @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
-    if @transactions.by_year(Time.zone.now.year).pluck(:category).uniq.include? 'Rent'
-      yearly_rent = @transactions.by_year(Time.zone.now.year).where(category: 'Rent').sum(:amount_cents) / 100.0
+    if @transactions.by_year(CURRENT_YEAR).pluck(:category).uniq.include? 'Rent'
+      yearly_rent = @transactions.by_year(CURRENT_YEAR).where(category: 'Rent').sum(:amount_cents) / 100.0
       @rent_to_income_percentage = (yearly_rent / @yearly_income * 100).round
     end
 
@@ -49,17 +49,17 @@ class DashboardController < ApplicationController
     @transactions_by_category_per_year = {}
 
     # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
-    categories = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).pluck('category').uniq
+    categories = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).pluck('category').uniq
 
-    @transactions_by_category_per_year[Time.zone.now.year] = {}
+    @transactions_by_category_per_year[CURRENT_YEAR] = {}
     categories.each do |category|
       # sum of transactions by year, by category
-      amount = @transactions.by_year(Time.zone.now.year).where(category: category).sum(:amount_cents) / 100.0
-      @transactions_by_category_per_year[Time.zone.now.year].merge!(category => amount)
+      amount = @transactions.by_year(CURRENT_YEAR).where(category: category).sum(:amount_cents) / 100.0
+      @transactions_by_category_per_year[CURRENT_YEAR].merge!(category => amount)
     end
 
     # sort hash for each year by values, descending
-    @transactions_by_category_per_year[Time.zone.now.year] = @transactions_by_category_per_year[Time.zone.now.year].sort_by { |_k, v| -v }.to_h
+    @transactions_by_category_per_year[CURRENT_YEAR] = @transactions_by_category_per_year[CURRENT_YEAR].sort_by { |_k, v| -v }.to_h
 
 
     # structure of @transactions_by_category_per_year
