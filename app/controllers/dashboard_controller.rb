@@ -48,21 +48,19 @@ class DashboardController < ApplicationController
     # for Yearly Expenses by Category
     @transactions_by_category_per_year = {}
 
-    years = @transactions.pluck('date').uniq.map(&:year).uniq
     # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
-    categories = @transactions.where.not(category: @@not_expense_categories).pluck('category').uniq
+    categories = @transactions.by_year(Time.zone.now.year).where.not(category: @@not_expense_categories).pluck('category').uniq
 
-    years.each do |year|
-      @transactions_by_category_per_year[year] = {}
-      categories.each do |category|
-        # sum of transactions by year, by category
-        amount = @transactions.by_year(year).where(category: category).sum(:amount_cents) / 100.0
-        @transactions_by_category_per_year[year].merge!(category => amount)
-      end
-
-      # sort hash for each year by values, descending
-      @transactions_by_category_per_year[year] = @transactions_by_category_per_year[year].sort_by { |_k, v| -v }.to_h
+    @transactions_by_category_per_year[Time.zone.now.year] = {}
+    categories.each do |category|
+      # sum of transactions by year, by category
+      amount = @transactions.by_year(Time.zone.now.year).where(category: category).sum(:amount_cents) / 100.0
+      @transactions_by_category_per_year[Time.zone.now.year].merge!(category => amount)
     end
+
+    # sort hash for each year by values, descending
+    @transactions_by_category_per_year[Time.zone.now.year] = @transactions_by_category_per_year[Time.zone.now.year].sort_by { |_k, v| -v }.to_h
+
 
     # structure of @transactions_by_category_per_year
     # {
