@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
-    @transactions = @user.transactions.by_year(Time.zone.now.year)
+    @transactions = @user.transactions.by_year(CURRENT_YEAR)
   end
 
   def show
