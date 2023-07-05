@@ -6,12 +6,12 @@ class DividendsController < ApplicationController
 
   def index
     @dividends = @user.dividends
-    @total_dividends_this_year = @user.dividends.by_year(Time.zone.now.year).sum(:amount_cents) / 100.0
+    @total_dividends_this_year = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
   end
 
   def show
     @dividend = @user.dividends.find_by(id: params[:id])
-    @dividends = @user.dividends.where(ticker: @dividend.ticker).by_year(Time.zone.now.year)
+    @dividends = @user.dividends.where(ticker: @dividend.ticker).by_year(CURRENT_YEAR)
     @total_dividends_this_year = @dividends.sum(:amount_cents) / 100.0
 
     return unless @dividend.nil?
