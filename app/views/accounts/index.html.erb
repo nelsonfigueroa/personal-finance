@@ -11,6 +11,7 @@
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
+    <p style="font-size: 1.5rem;">Net Worth: <span style="color: limegreen;"><%= humanized_money_with_symbol @net_worth %></span></p>
     <table>
       <thead>
         <tr>
