@@ -8,15 +8,15 @@ class AccountsController < ApplicationController
 
     @net_worth = 0
 
-    unless @user.statements.empty?
-      # get the last statement for each account to determine net worth
-      @accounts.each do |account|
-        next if account.statements.empty?
+    return if @user.statements.empty?
 
-        @net_worth += account.statements.sorted_by_date.last.balance_cents
-      end
-      @net_worth /= 100.0
+    # get the last statement for each account to determine net worth
+    @accounts.each do |account|
+      next if account.statements.empty?
+
+      @net_worth += account.statements.sorted_by_date.last.balance_cents
     end
+    @net_worth /= 100.0
   end
 
   def show
