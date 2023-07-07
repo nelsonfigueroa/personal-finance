@@ -25,9 +25,7 @@ class DashboardController < ApplicationController
     @income_vs_expenses_percentage = 'N/A'
     income = @transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) / 100.0
     expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
-    unless income == 0.0 or expenses == 0.0
-      @income_vs_expenses_percentage = (expenses / income * 100).round
-    end
+    @income_vs_expenses_percentage = (expenses / income * 100).round unless (income == 0.0) || (expenses == 0.0)
 
     ### transactions and spending ###
 
@@ -60,7 +58,6 @@ class DashboardController < ApplicationController
 
     # sort hash for each year by values, descending
     @transactions_by_category_per_year[CURRENT_YEAR] = @transactions_by_category_per_year[CURRENT_YEAR].sort_by { |_k, v| -v }.to_h
-
 
     # structure of @transactions_by_category_per_year
     # {
