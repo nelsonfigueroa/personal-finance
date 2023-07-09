@@ -27,7 +27,11 @@
           <tr>
             <td><%= transaction.category %></td>
             <td><%= transaction.date %></td>
+            <% if transaction.category == "Income" %>
+            <td style="color:limegreen;"><%= humanized_money_with_symbol transaction.amount %></td>
+            <% else %>
             <td><%= humanized_money_with_symbol transaction.amount %></td>
+            <% end %>
             <td><%= transaction.notes %></td>
             <td>
               <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
