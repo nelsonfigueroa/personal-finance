@@ -1,47 +1,47 @@
 <h1><i>Transactions</i></h1>
 
 
-  <%= render partial: 'layouts/notifications' %>
+<%= render partial: 'layouts/notifications' %>
 
-  <%= link_to 'Create a Transaction', new_transaction_path, class: '' %>
-  <%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
+<%= link_to 'Create a Transaction', new_transaction_path, class: '' %>
+<%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
 
-  <br><br>
+<br><br>
 
-  <% if @transactions.empty? %>
-    <p>No existing transactions. Create one!</p>
-  <% else %>
-    <table>
-      <thead>
+<% if @transactions.empty? %>
+  <p>No existing transactions. Create one!</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Notes</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.sorted_by_date.each do |transaction| %>
         <tr>
-          <th>Category</th>
-          <th>Date</th>
-          <th>Amount</th>
-          <th>Notes</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <td><%= transaction.category %></td>
+          <td><%= transaction.date %></td>
+          <% if transaction.category == "Income" %>
+          <td style="color:limegreen;"><%= humanized_money_with_symbol transaction.amount %></td>
+          <% else %>
+          <td><%= humanized_money_with_symbol transaction.amount %></td>
+          <% end %>
+          <td><%= transaction.notes %></td>
+          <td>
+            <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
+          </td>
+          <td>
+            <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @transactions.sorted_by_date.each do |transaction| %>
-          <tr>
-            <td><%= transaction.category %></td>
-            <td><%= transaction.date %></td>
-            <% if transaction.category == "Income" %>
-            <td style="color:limegreen;"><%= humanized_money_with_symbol transaction.amount %></td>
-            <% else %>
-            <td><%= humanized_money_with_symbol transaction.amount %></td>
-            <% end %>
-            <td><%= transaction.notes %></td>
-            <td>
-              <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
-            </td>
-            <td>
-              <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
