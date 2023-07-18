@@ -4,7 +4,8 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
-    @transactions = @user.transactions
+    # @transactions = @user.transactions.by_year(CURRENT_YEAR)
+    @transactions = @user.transactions # temporarily showing all
   end
 
   def show
