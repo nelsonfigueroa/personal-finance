@@ -6,6 +6,10 @@ Personal Finance is a Ruby on Rails application to keep track of finances.
 
 I built this for myself because other apps are either too complex ([Firefly III](https://www.firefly-iii.org/)), privacy-invasive ([Mint](https://mint.intuit.com/)), or have a subscription-based business model ([Copilot Money](https://copilot.money/)). I also don't like connecting my financial accounts to third party sites for security reasons, so this is a manual approach to tracking money. Since I built this for myself, it's a highly opinionated way of tracking finances.
 
+## To Do
+
+- [ ] Add a way to track individual stocks along with capital gains/losses
+
 ## Running Locally
 
 You can run this application locally using Docker.
