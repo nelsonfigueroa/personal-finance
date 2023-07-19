@@ -20,19 +20,20 @@ class DashboardController < ApplicationController
 
     # Initializing for calculations
     @transactions = @user.transactions
+    @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
 
     ### Income vs Expenses
     @income_vs_expenses_percentage = 'N/A'
-    income = @transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) / 100.0
+
+    income = (@transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) + @yearly_dividends) / 100.0
     expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
     @income_vs_expenses_percentage = (expenses / income * 100).round unless (income == 0.0) || (expenses == 0.0)
 
     ### transactions and spending ###
 
-    @yearly_income = @transactions.by_year(CURRENT_YEAR).where(category: 'Income').sum(:amount_cents) / 100.0
+    @yearly_income = (@transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) + @yearly_dividends) / 100.0
     @yearly_saved = @transactions.by_year(CURRENT_YEAR).where(category: 'Savings').sum(:amount_cents) / 100.0
     @yearly_invested = @transactions.by_year(CURRENT_YEAR).where(category: 'Investing').sum(:amount_cents) / 100.0
-    @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: 'Interest').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
