@@ -1,23 +1,10 @@
 # Personal Finance
 
-Personal Finance is a Ruby on Rails application that keeps track of finances over time. I built it for myself because other apps are either too bloated for my taste, or privacy-invasive (i.e. Mint). I also don't like connecting financial accounts to third party sites, so this is a manual approach to keeping track of money.
+Personal Finance is a Ruby on Rails application to keep track of finances.
 
-It is currently barebones as I'm reworking the entire thing.
+## Motivation
 
-Long-term goals:
-- [ ] Stock dividend tracking
-- [ ] Liability tracking
-
-## Notable Gems and Libraries used:
-
-- [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
-- [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
-- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code. 
-- [erb-lint](https://github.com/Shopify/erb-lint) - Linting for `.erb` files.
-- [Chartkick](https://chartkick.com/) - Chart and graph generation.
-- [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
-- [Bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
-- [brakeman](https://github.com/presidentbeef/brakeman) - To check for security vulnerabiliies
+I built this for myself because other apps are either too complex ([Firefly III](https://www.firefly-iii.org/)), privacy-invasive ([Mint](https://mint.intuit.com/)), or have a subscription-based business model ([Copilot Money](https://copilot.money/)). I also don't like connecting my financial accounts to third party sites for security reasons, so this is a manual approach to tracking money. Since I built this for myself, it's a highly opinionated way of tracking finances.
 
 ## Running Locally
 
@@ -56,3 +43,14 @@ If you don't plan on using Docker for other purposes, you can clean up the Docke
 ```
 docker system prune -a --volumes
 ```
+
+## Notable Gems and Libraries used:
+
+- [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
+- [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
+- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code. 
+- [erb-lint](https://github.com/Shopify/erb-lint) - Linting for `.erb` files.
+- [Chartkick](https://chartkick.com/) - Chart and graph generation.
+- [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
+- [Bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
+- [brakeman](https://github.com/presidentbeef/brakeman) - To check for security vulnerabiliies
