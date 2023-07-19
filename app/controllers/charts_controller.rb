@@ -50,7 +50,8 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
+    dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
+    income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
     expenses = transactions.where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
     {
@@ -64,7 +65,8 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    income = transactions.where(category: @@income_categories).sum(:amount_cents) / 100.0
+    dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
+    income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
     expenses = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
 
     {
