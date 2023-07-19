@@ -67,11 +67,11 @@ class ChartsController < ApplicationController
 
     dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
     income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
-    expenses = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
+    rent = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
 
     {
       Income: income,
-      Rent: expenses
+      Rent: rent
     }
   end
 
