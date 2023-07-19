@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # single place to set categories that count as income, and categories to exclude when calculating expenses
+  # not including stock sales yet. Need to figure out how to calculate capital gains (or losses) and count that as income.
+  # might need a new Stock model
   @@income_categories = %w[Income Interest]
   @@not_expense_categories = %w[Savings Investing Income Interest Sale]
 
