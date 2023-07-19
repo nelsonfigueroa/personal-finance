@@ -52,13 +52,13 @@
 
   <h2>Income vs Expenses</h2>
   <p>Percentage of income spent on expenses: <%= @income_vs_expenses_percentage %>%</p>
-  <%= column_chart yearly_income_vs_expenses_bar_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
+  <%= column_chart yearly_income_vs_expenses_bar_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
 
   <h2>Income vs Rent</h2>
     <% if @rent_to_income_percentage %>
       <p>Percentage of income spent on rent: <%= @rent_to_income_percentage %>% (Try to keep this at 30% or under!)</p>
     <% end %>
-  <%= column_chart yearly_income_vs_rent_bar_chart_path, prefix: "$", messages: {empty: "No rent transactions recorded."} %>
+  <%= column_chart yearly_income_vs_rent_bar_chart_path, prefix: "$", messages: {empty: "No rent transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
 
   <h2>Income</h2>
   <small>Where your money comes from</small>
