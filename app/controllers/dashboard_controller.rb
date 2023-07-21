@@ -22,13 +22,6 @@ class DashboardController < ApplicationController
     @transactions = @user.transactions
     @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
 
-    ### Income vs Expenses
-    @income_vs_expenses_percentage = 'N/A'
-
-    income = (@transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) + @yearly_dividends) / 100.0
-    expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
-    @income_vs_expenses_percentage = (expenses / income * 100).round unless (income == 0.0) || (expenses == 0.0)
-
     ### transactions and spending ###
 
     @yearly_income = (@transactions.by_year(CURRENT_YEAR).where(category: @@income_categories).sum(:amount_cents) + @yearly_dividends) / 100.0
@@ -36,6 +29,10 @@ class DashboardController < ApplicationController
     @yearly_invested = @transactions.by_year(CURRENT_YEAR).where(category: 'Investing').sum(:amount_cents) / 100.0
     @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: 'Interest').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
+
+    ### Income vs Expenses
+    @income_vs_expenses_percentage = 'N/A'
+    @income_vs_expenses_percentage = (@yearly_expenses / @yearly_income * 100).round unless (@yearly_income == 0.0) || (@yearly_expenses == 0.0)
 
     if @transactions.by_year(CURRENT_YEAR).pluck(:category).uniq.include? 'Rent'
       yearly_rent = @transactions.by_year(CURRENT_YEAR).where(category: 'Rent').sum(:amount_cents) / 100.0
