@@ -77,3 +77,12 @@ tr a:hover {
     padding-right: 20%;
   }
 }
+
+/* custom */
+.badge {
+  background-color: rgba(89, 255, 0, 0.459);
+  color:rgb(255, 255, 255);
+  border-radius: 0.3rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
