@@ -120,7 +120,7 @@
       <tbody>
         <% @transactions_by_category_per_year[year].each do |category, amount| %>
           <tr>
-          <td><%= category %></td>
+          <td><span class="badge"><%= category %></span></td>
           <td><span><%= humanized_money_with_symbol amount %></span></td>
           </tr>
         <% end %>
