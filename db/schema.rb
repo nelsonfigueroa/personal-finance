@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_030749) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_014913) do
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "dividends", force: :cascade do |t|
@@ -46,7 +55,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_030749) do
     t.text "notes"
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
+    t.integer "category_id"
     t.index ["category"], name: "index_transactions_on_category"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -64,7 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_030749) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "categories", "users"
   add_foreign_key "dividends", "users"
   add_foreign_key "statements", "accounts"
+  add_foreign_key "transactions", "categories"
   add_foreign_key "transactions", "users"
 end
