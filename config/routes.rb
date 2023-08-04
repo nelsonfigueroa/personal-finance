@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     resources :dividends
     resources :transactions, except: [:show]
+    resources :categories
 
     get 'transactions/download', to: 'transactions#download'
   end
