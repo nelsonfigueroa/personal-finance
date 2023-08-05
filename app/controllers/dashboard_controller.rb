@@ -30,6 +30,9 @@ class DashboardController < ApplicationController
     @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: 'Interest').sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
+    # adding decimal for display purposes in dashboard
+    @yearly_dividends /= 100.0
+
     ### Income vs Expenses
     @income_vs_expenses_percentage = 'N/A'
     @income_vs_expenses_percentage = (@yearly_expenses / @yearly_income * 100).round unless (@yearly_income == 0.0) || (@yearly_expenses == 0.0)
