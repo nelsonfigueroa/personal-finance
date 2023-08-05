@@ -25,13 +25,13 @@
     <tbody>
       <% @transactions.sorted_by_date.each do |transaction| %>
         <tr>
-          <td><span class="badge"><%= transaction.category %></span></td>
-          <td><%= transaction.date %></td>
-          <% if transaction.category == "Income" %>
-          <td style="color:limegreen;"><%= humanized_money_with_symbol transaction.amount %></td>
+          <% if transaction.category %>
+          <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
           <% else %>
-          <td><%= humanized_money_with_symbol transaction.amount %></td>
+          <td>(uncategorized)</td>
           <% end %>
+          <td><%= transaction.date %></td>
+          <td><%= humanized_money_with_symbol transaction.amount %></td>
           <td><%= transaction.notes %></td>
           <td>
             <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
