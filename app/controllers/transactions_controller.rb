@@ -4,8 +4,7 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
-    # @transactions = @user.transactions.by_year(CURRENT_YEAR)
-    @transactions = @user.transactions # temporarily showing all
+    @transactions = @user.transactions.includes([:category]) # temporarily showing all
   end
 
   def show
@@ -31,8 +30,21 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+    category_name = transaction_params[:category]
+    category = @user.categories.where(name: category_name).first
+
+    if category.nil?
+      flash[:alert] = "Category does not exist. Go create it first!"
+      redirect_to(transactions_path)
+      return
+    end
+
+    params = transaction_params
+    params[:category] = category
+
+    @transaction = Transaction.new(params)
     @transaction.user_id = @user.id
+  
     if @transaction.save
       flash[:notice] = 'Transaction created'
       redirect_to(transactions_path)
@@ -44,7 +56,20 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = @user.transactions.find_by(id: params[:id])
-    if @transaction.update(transaction_params)
+
+    category_name = transaction_params[:category]
+    category = @user.categories.where(name: category_name).first
+
+    if category.nil?
+      flash[:alert] = "Category does not exist. Go create it first!"
+      redirect_to(transactions_path)
+      return
+    end
+
+    params = transaction_params
+    params[:category] = category
+
+    if @transaction.update(params)
       flash[:notice] = 'Transaction updated'
       redirect_to(transactions_path)
     else
