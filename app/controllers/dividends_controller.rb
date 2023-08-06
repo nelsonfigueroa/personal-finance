@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class DividendsController < ApplicationController
-  # frozen_string_literal: true
   before_action :assign_user
 
   def index
