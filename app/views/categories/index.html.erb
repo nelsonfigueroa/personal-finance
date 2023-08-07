@@ -1,0 +1,31 @@
+<h1><i>Categories</i></h1>
+
+<section>
+  <%= render partial: 'layouts/notifications' %>
+
+  <small>Categories to be assigned to transactions.</small>
+  <br><br>
+  <%= link_to 'Add a Category', new_category_path, class: '' %>
+  <br><br>
+
+  <% if @categories.empty? %>
+    <p>No existing categories. Create one!</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+          <td><%= link_to category.name, category %></td>
+          <td><%= category.color %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

@@ -1,0 +1,24 @@
+<section>
+  <%= render partial: 'layouts/notifications' %>
+
+  <nav aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Categories', categories_path %></li>
+      <li><a href="#" aria-current="page"><%= @category.name %></a></li>
+    </ul>
+  </nav>
+
+  <h1><%= @category.name %></h1>
+
+  <%= link_to edit_category_path, class: '' do %>
+    <button>Edit Category</button>
+  <% end %>
+
+  <%= link_to category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}", class: '' } do %>
+    <button>Delete Category</button>
+  <% end %>
+
+  <hr>
+
+  <p>i will add a table here soon of all transactions associated with this category</p>
+</section>

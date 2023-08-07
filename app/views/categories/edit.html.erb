@@ -1,0 +1,21 @@
+
+  <%= render partial: 'layouts/notifications' %>
+
+  <nav aria-label="breadcrumbs">
+    <ul>
+      <li><%= link_to 'Categories', categories_path %></li>
+      <li><%= link_to "#{@category.name}", category_path(@category) %></li>
+      <li><a href="#" aria-current="page">Edit Category</a></li>
+    </ul>
+  </nav>
+
+  <h1>Edit Category</h1>
+
+  <%= form_with model: @category do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+    <%= f.label :color %>
+    <%= f.color_field :color %>
+    <%= f.submit "Update", class: '' %>
+  <% end %>
+
