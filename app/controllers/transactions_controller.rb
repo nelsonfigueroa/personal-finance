@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
-    @transactions = @user.transactions.includes([:category]) # temporarily showing all
+    @transactions = @user.transactions.includes([:category])
   end
 
   def show
