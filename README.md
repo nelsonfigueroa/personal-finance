@@ -16,13 +16,13 @@ You can run this application locally using Docker.
 
 Build the app and set up the database container:
 
-```
+```shell
 docker-compose run web rake db:create db:setup
 ```
 
 Start up the Rails server and database:
 
-```
+```shell
 docker-compose up
 ```
 
@@ -38,13 +38,13 @@ Or you can create a new account.
 
 To take down the application run:
 
-```
+```shell
 docker-compose down
 ```
 
 If you don't plan on using Docker for other purposes, you can clean up the Docker images that were downloaded as well:
 
-```
+```shell
 docker system prune -a --volumes
 ```
 
