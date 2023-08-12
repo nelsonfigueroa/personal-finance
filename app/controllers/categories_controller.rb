@@ -9,7 +9,6 @@ class CategoriesController < ApplicationController
   def show
     @category = @user.categories.find_by(id: params[:id])
     @transactions = @user.transactions.where(category: @category.id)
-    # @transactions = @category.transactions.where(user_id: @user.id) # alternative? idk if this one is faster or slower
 
     return unless @category.nil?
 
