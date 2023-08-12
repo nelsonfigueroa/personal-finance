@@ -33,3 +33,8 @@ Category.create!([
   { user_id: 1, name: "Shopping", color: "#eeff00" },
   { user_id: 1, name: "Games", color: "#03a5fc" },
 ])
+
+# Transaction.create!([
+#   { user_id: 1, date: '2022-01-01', category_id: 1, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD' },
+#   { user_id: 1, date: '2022-02-01', category_id: 1, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD' }
+# ])
