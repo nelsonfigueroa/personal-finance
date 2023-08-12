@@ -13,6 +13,8 @@ RUN apk update
 
 # for nokogiri
 RUN apk add build-base
+# RUN apk add gcompat
+# RUN apk add libstdc++
 # postgres
 RUN apk add postgresql-dev
 # for webpacker
