@@ -11,9 +11,6 @@ class CategoriesController < ApplicationController
     @transactions = @user.transactions.where(category: @category.id)
     # @transactions = @category.transactions.where(user_id: @user.id) # alternative? idk if this one is faster or slower
 
-    category = Category.where(name: "Income").first
-    @transactions = category.transactions.where(user_id: @user.id)
-
     return unless @category.nil?
 
     flash[:alert] = 'Invalid ID'
