@@ -34,7 +34,16 @@ Category.create!([
   { user_id: 1, name: "Games", color: "#03a5fc" },
 ])
 
-# Transaction.create!([
-#   { user_id: 1, date: '2022-01-01', category_id: 1, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD' },
-#   { user_id: 1, date: '2022-02-01', category_id: 1, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD' }
-# ])
+# Rent for 2 year span
+24.times do |i|
+  i += 1
+  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 2, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD')
+end
+
+# Income for 2 year span
+24.times do |i|
+  i += 1
+  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 1, notes: 'Salary', amount_cents: 400000, amount_currency: 'USD')
+end
