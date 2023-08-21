@@ -13,8 +13,9 @@ RUN apk update
 
 # for nokogiri
 RUN apk add build-base
-# RUN apk add gcompat
-# RUN apk add libstdc++
+# not sure if these 2 are needed
+RUN apk add gcompat 
+RUN apk add libstdc++
 # postgres
 RUN apk add postgresql-dev
 # for webpacker
@@ -49,6 +50,8 @@ RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
 # more yarn caches
 RUN rm -rf /usr/local/share/.cache
 
+RUN rails db:create --trace
+RUN rails db:setup --trace
 # RUN rails db:migrate
 # RUN rails db:seed
 
