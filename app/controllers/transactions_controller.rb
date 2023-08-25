@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
-    @transactions = @user.transactions.includes([:category])
+    @transactions = @user.transactions.by_year(CURRENT_YEAR).includes([:category]).sorted_by_date
   end
 
   def show
