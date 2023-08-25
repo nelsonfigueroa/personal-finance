@@ -36,8 +36,8 @@ class CategoriesController < ApplicationController
       flash[:notice] = 'Category created'
       redirect_to(categories_path)
     else
-      flash[:alert] = @category.errors.full_messages.join(', ')
-      render('new')
+      flash[:alert] = @category.errors["name"][0]
+      redirect_to(new_category_path)
     end
   end
 
