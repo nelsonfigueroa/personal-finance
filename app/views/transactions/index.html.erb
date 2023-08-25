@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @transactions.sorted_by_date.each do |transaction| %>
+      <% @transactions.each do |transaction| %>
         <tr>
           <% if transaction.category %>
           <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
