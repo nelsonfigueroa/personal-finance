@@ -37,8 +37,8 @@ class DashboardController < ApplicationController
     @total_yearly_income = ( yearly_income + yearly_interest + @yearly_dividends) / 100.0
     
     @yearly_saved = savings_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
+    @yearly_invested = investing_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     
-    @yearly_invested = @transactions.by_year(CURRENT_YEAR).where(category: investing_category).sum(:amount_cents) / 100.0
     @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: interest_category).sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: not_expense_categories).sum(:amount_cents) / 100.0
 
