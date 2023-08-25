@@ -2,6 +2,7 @@
 
 class ChartsController < ApplicationController
   before_action :assign_user
+  before_action :get_categories
 
   ### net worth graph ###
 
@@ -45,6 +46,16 @@ class ChartsController < ApplicationController
     @user = current_user
   end
 
+  def get_categories
+    @income_category = Category.where(user_id: @user, name: 'Income').first
+    @interest_category = Category.where(user_id: @user, name: 'Interest').first
+    @savings_category = Category.where(user_id: @user, name: 'Savings').first
+    @investing_category = Category.where(user_id: @user, name: 'Investing').first
+    @sale_category = Category.where(user_id: @user, name: 'Sale').first
+    @@income_categories = [@income_category, @interest_category]
+    @@not_expense_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
+  end
+
   def generate_yearly_income_vs_expenses_chart_data
     transactions = @user.transactions.by_year(CURRENT_YEAR)
 
@@ -67,7 +78,8 @@ class ChartsController < ApplicationController
 
     dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
     income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
-    rent = transactions.where(category: %w[Rent]).sum(:amount_cents) / 100.0
+    rent_category = @user.categories.where(name: 'Rent').first
+    rent = transactions.where(category: rent_category).sum(:amount_cents) / 100.0
 
     {
       Income: income,
@@ -85,7 +97,7 @@ class ChartsController < ApplicationController
 
     @@income_categories.each do |category|
       amount = transactions.where(category: category).sum(:amount_cents) / 100.0
-      data.merge!(category => amount)
+      data.merge!(category.name => amount)
     end
 
     unless dividends.empty?
@@ -101,12 +113,12 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    categories = transactions.where.not(category: @@not_expense_categories).pluck('category').uniq
+    categories = @user.categories - @@not_expense_categories
     data = {}
 
     categories.each do |category|
       amount = transactions.where(category: category).sum(:amount_cents) / 100.0
-      data.merge!(category => amount)
+      data.merge!(category.name => amount)
     end
 
     data
