@@ -72,9 +72,9 @@ tr a:hover {
 
 /* This applies from 600px onwards */
 @media (min-width: 600px) {
-  body {
-    padding-left: 20%;
-    padding-right: 20%;
+  html {
+    margin-left: 10%;
+    margin-right: 10%;
   }
 }
 
