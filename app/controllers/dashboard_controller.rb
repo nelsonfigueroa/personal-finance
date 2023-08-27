@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     investing_category = Category.where(user_id: @user, name: 'Investing').first
     sale_category = Category.where(user_id: @user, name: 'Sale').first
     # @income_categories = [income_category, interest_category] # not needed?
-    not_expense_categories = [income_category, interest_category, savings_category, investing_category, sale_category]
+    excluded_categories = [income_category, interest_category, savings_category, investing_category, sale_category]
 
     ### net worth ###
     @accounts = @user.accounts.includes([:statements]).sorted_by_name
@@ -39,8 +39,8 @@ class DashboardController < ApplicationController
     @yearly_saved = savings_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     @yearly_invested = investing_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     
-    @yearly_interest = @transactions.by_year(CURRENT_YEAR).where(category: interest_category).sum(:amount_cents) / 100.0
-    @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: not_expense_categories).sum(:amount_cents) / 100.0
+    @yearly_interest = interest_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
+    @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: excluded_categories).sum(:amount_cents) / 100.0
 
     # adding decimal for display purposes in dashboard
     @yearly_dividends /= 100.0
@@ -61,7 +61,7 @@ class DashboardController < ApplicationController
     @transactions_by_category_per_year = {}
 
     # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
-    categories = @user.categories - not_expense_categories
+    categories = @user.categories - excluded_categories
 
     @transactions_by_category_per_year[CURRENT_YEAR] = {}
     categories.each do |category|
