@@ -43,7 +43,7 @@ end
 group :development do
   gem 'brakeman'
   gem 'bullet'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen'
@@ -53,7 +53,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'faker'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'webdrivers'
