@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_22_233918) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_032906) do
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_22_233918) do
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.integer "category_id"
+    t.string "merchant"
     t.index ["category"], name: "index_transactions_on_category"
     t.index ["category_id"], name: "index_transactions_on_category_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
