@@ -14,9 +14,10 @@
   <table>
     <thead>
       <tr>
+        <th>Merchant</th>
+        <th>Amount</th>
         <th>Category</th>
         <th>Date</th>
-        <th>Amount</th>
         <th>Notes</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -25,13 +26,14 @@
     <tbody>
       <% @transactions.each do |transaction| %>
         <tr>
+          <td><%= transaction.merchant %></td>
+          <td><%= humanized_money_with_symbol transaction.amount %></td>
           <% if transaction.category %>
           <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
           <% else %>
           <td>(uncategorized)</td>
           <% end %>
           <td><%= transaction.date %></td>
-          <td><%= humanized_money_with_symbol transaction.amount %></td>
           <td><%= transaction.notes %></td>
           <td>
             <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
@@ -44,4 +46,3 @@
     </tbody>
   </table>
 <% end %>
-
