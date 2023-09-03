@@ -11,12 +11,14 @@
   <h1>Create Transaction</h1>
 
   <%= form_with model: @transaction do |f| %>
+    <%= f.label :merchant %>
+    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: '' %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount, autofocus: true, class: '' %>
     <%= f.label :category %>
     <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
     <%= f.label :date %>
     <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
-    <%= f.label :amount %>
-    <%= f.text_field :amount, autofocus: true, class: '' %>
     <%= f.label :notes %>
     <%= f.text_field :notes, autofocus: true, class: '' %>
     <%= f.submit "Add", class: '' %>
