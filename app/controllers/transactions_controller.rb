@@ -12,8 +12,7 @@ class TransactionsController < ApplicationController
 
     return unless @transaction.nil?
 
-    flash[:alert] = 'Invalid ID'
-    redirect_to(transactions_path)
+    redirect_to transactions_path, alert: "Invalid ID"
   end
 
   def new
@@ -25,8 +24,7 @@ class TransactionsController < ApplicationController
 
     return unless @transaction.nil?
 
-    flash[:alert] = 'Invalid ID'
-    redirect_to(transactions_path)
+    redirect_to transactions_path, alert: "Invalid ID"
   end
 
   def create
@@ -71,7 +69,7 @@ class TransactionsController < ApplicationController
 
     if @transaction.update(params)
       flash[:notice] = 'Transaction updated'
-      redirect_to(transactions_path)
+      redirect_back_or_to @transaction
     else
       flash[:alert] = @transaction.errors.full_messages.join(', ')
       redirect_to(edit_transaction_path(@transaction))
@@ -101,7 +99,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:category, :amount, :date, :notes)
+    params.require(:transaction).permit(:category, :amount, :date, :notes, :merchant)
   end
 
   def assign_user
