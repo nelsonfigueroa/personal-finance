@@ -21,7 +21,7 @@
       <tbody>
         <% @categories.each do |category| %>
           <tr>
-          <td><%= link_to category.name, category %></td>
+          <td><%= link_to category.name, category %> [<%= category.transactions.count %>]</td>
           <td><%= category.color %></td>
           </tr>
         <% end %>
