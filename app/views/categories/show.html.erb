@@ -1,24 +1,59 @@
-<section>
-  <%= render partial: 'layouts/notifications' %>
+<%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
-    <ul>
-      <li><%= link_to 'Categories', categories_path %></li>
-      <li><a href="#" aria-current="page"><%= @category.name %></a></li>
-    </ul>
-  </nav>
+<nav aria-label="breadcrumbs">
+  <%= link_to 'Categories', categories_path %> >
+  <a href="#" aria-current="page"><%= @category.name %></a>
+</nav>
 
-  <h1><%= @category.name %></h1>
+<h1><%= @category.name %></h1>
 
-  <%= link_to edit_category_path, class: '' do %>
-    <button>Edit Category</button>
-  <% end %>
+<%= link_to edit_category_path, class: '' do %>
+  <button>Edit Category</button>
+<% end %>
 
-  <%= link_to category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}", class: '' } do %>
-    <button>Delete Category</button>
-  <% end %>
+<br>
 
-  <hr>
+<%= link_to category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}", class: '' } do %>
+  <button>Delete Category</button>
+<% end %>
 
-  <p>i will add a table here soon of all transactions associated with this category</p>
-</section>
+<br><br>
+
+<% if @transactions.empty? %>
+  <p>You have no transactions under this category.</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Merchant</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Notes</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.merchant %></td>
+          <td><%= humanized_money_with_symbol transaction.amount %></td>
+          <% if transaction.category %>
+          <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
+          <% else %>
+          <td>(uncategorized)</td>
+          <% end %>
+          <td><%= transaction.date %></td>
+          <td><%= transaction.notes %></td>
+          <td>
+            <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
+          </td>
+          <td>
+            <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
