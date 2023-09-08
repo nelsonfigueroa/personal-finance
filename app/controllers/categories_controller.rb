@@ -8,12 +8,12 @@ class CategoriesController < ApplicationController
 
   def show
     @category = @user.categories.find_by(id: params[:id])
-    @transactions = @user.transactions.where(category: @category.id)
+    if @category.nil?
+      redirect_to categories_path , alert: 'Invalid ID'
+      return
+    end
 
-    return unless @category.nil?
-
-    flash[:alert] = 'Invalid ID'
-    redirect_to(categories)
+    @transactions = @category.transactions.sorted_by_date
   end
 
   def new
@@ -22,11 +22,10 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = @user.categories.find_by(id: params[:id])
-
-    return unless @category.nil?
-
-    flash[:alert] = 'Invalid ID'
-    redirect_to(categories)
+    if @category.nil?
+      redirect_to categories_path , alert: 'Invalid ID'
+      return
+    end
   end
 
   def create
