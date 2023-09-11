@@ -4,7 +4,24 @@ class TransactionsController < ApplicationController
   before_action :assign_user
 
   def index
+    @income_category = Category.where(user_id: @user, name: 'Income').first
+    @interest_category = Category.where(user_id: @user, name: 'Interest').first
+    @savings_category = Category.where(user_id: @user, name: 'Savings').first
+    @investing_category = Category.where(user_id: @user, name: 'Investing').first
+    @sale_category = Category.where(user_id: @user, name: 'Sale').first
+    @income_categories = [@income_category, @interest_category]
+    @excluded_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
+
     @transactions = @user.transactions.by_year(CURRENT_YEAR).includes([:category]).sorted_by_date.group_by { |transaction| transaction.date.beginning_of_month }
+    @monthly_expenses = {}
+    @monthly_income = {}
+
+    @transactions.each do |month, transactions|
+      start_date = month.beginning_of_month
+      end_date = month.end_of_month
+      @monthly_expenses[month] = @user.transactions.where.not(category: @excluded_categories).where(date: start_date..end_date).sum(:amount_cents) / 100.0
+      @monthly_income[month] = @user.transactions.where(category: @income_categories).where(date: start_date..end_date).sum(:amount_cents) / 100.0
+    end
   end
 
   def show
