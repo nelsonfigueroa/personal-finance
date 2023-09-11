@@ -11,38 +11,46 @@
 <% if @transactions.empty? %>
   <p>No existing transactions. Create one!</p>
 <% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Merchant</th>
-        <th>Amount</th>
-        <th>Category</th>
-        <th>Date</th>
-        <th>Notes</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @transactions.each do |transaction| %>
+  <% @transactions.each do |month, transactions| %>
+    <h2><%= month.strftime("%B %Y") %></h2>
+    <p><%= transactions.count %> transactions.</p>
+
+    <p>Monthly income (does not include dividends): <%= humanized_money_with_symbol @monthly_income[month] %> </p>
+    <p>Monthly expenses: <%= humanized_money_with_symbol @monthly_expenses[month] %> </p>
+    <table>
+      <thead>
         <tr>
-          <td><%= transaction.merchant %></td>
-          <td><%= humanized_money_with_symbol transaction.amount %></td>
-          <% if transaction.category %>
-          <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
-          <% else %>
-          <td>(uncategorized)</td>
-          <% end %>
-          <td><%= transaction.date %></td>
-          <td><%= transaction.notes %></td>
-          <td>
-            <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
-          </td>
-          <td>
-            <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
-          </td>
+          <th>Merchant</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Notes</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
+      </thead>
+      <tbody>
+      <% transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.merchant %></td>
+        <td><%= humanized_money_with_symbol transaction.amount %></td>
+        <% if transaction.category %>
+        <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
+        <% else %>
+        <td>(uncategorized)</td>
+        <% end %>
+        <td><%= transaction.date.strftime("%Y-%m-%d") %></td>
+        <td><%= transaction.notes %></td>
+        <td>
+          <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
+        </td>
+        <td>
+          <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
+        </td>
+      </tr>
       <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+    <br><hr><br>
+  <% end %>
 <% end %>
