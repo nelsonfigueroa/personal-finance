@@ -161,6 +161,6 @@ class ChartsController < ApplicationController
 
       graph_data[date] = sum
     end
-    graph_data
+    graph_data.sort
   end
 end
