@@ -28,16 +28,12 @@ class DashboardController < ApplicationController
 
     # Initializing for calculations
     @transactions = @user.transactions
-    @categories = @user.categories.includes([:transactions]) # not used?
     @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
 
     ### transactions and spending ###
     yearly_income = income_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) 
     yearly_interest = interest_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents)
     @total_yearly_income = ( yearly_income + yearly_interest + @yearly_dividends) / 100.0
-    
-    @yearly_saved = savings_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
-    @yearly_invested = investing_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     
     @yearly_interest = interest_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: excluded_categories).sum(:amount_cents) / 100.0
@@ -58,16 +54,19 @@ class DashboardController < ApplicationController
     return if @transactions.empty?
 
     # for Yearly Expenses by Category
-    @transactions_by_category_per_year = {}
-
+    @categories = @user.categories
     # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
-    categories = @user.categories - excluded_categories
+    @categories -= excluded_categories
 
+    @transactions_by_category_per_year = {}
     @transactions_by_category_per_year[CURRENT_YEAR] = {}
-    categories.each do |category|
+
+    @categories.each do |category|
       # sum of transactions by year, by category
-      amount = @transactions.by_year(CURRENT_YEAR).where(category: category).sum(:amount_cents) / 100.0
-      @transactions_by_category_per_year[CURRENT_YEAR].merge!(category.name => amount)
+      amount = category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
+      next if amount <= 0.0
+
+      @transactions_by_category_per_year[CURRENT_YEAR].merge!(category => amount)
     end
 
     # sort hash for each year by values, descending
