@@ -7,7 +7,7 @@
   <small>Sum of the latest account statements</small>
   <p><b><%= humanized_money_with_symbol @net_worth %></b></p>
 
-  <%= area_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
+  <%= column_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
 </section>
 
 <section>
@@ -86,14 +86,6 @@
         <td><%= humanized_money_with_symbol @yearly_expenses %></td>
       </tr>
       <tr>
-        <td>Savings</td>
-        <td><%= humanized_money_with_symbol @yearly_saved %></td>
-      </tr>
-      <tr>
-        <td>Investments</td>
-        <td><%= humanized_money_with_symbol @yearly_invested %></td>
-      </tr>
-      <tr>
         <td>Dividends</td>
         <td><%= humanized_money_with_symbol @yearly_dividends %></td>
       </tr>
@@ -120,7 +112,7 @@
       <tbody>
         <% @transactions_by_category_per_year[year].each do |category, amount| %>
           <tr>
-          <td><span class="badge"><%= category %></span></td>
+          <td><a href="<%= category_path(category.id) %>"><span class="badge" style="color:<%= category.color %>;"><%= category.name %></span></a></td>
           <td><span><%= humanized_money_with_symbol amount %></span></td>
           </tr>
         <% end %>
