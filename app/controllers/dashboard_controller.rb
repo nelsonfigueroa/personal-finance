@@ -31,10 +31,10 @@ class DashboardController < ApplicationController
     @yearly_dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
 
     ### transactions and spending ###
-    yearly_income = income_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) 
+    yearly_income = income_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents)
     yearly_interest = interest_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents)
-    @total_yearly_income = ( yearly_income + yearly_interest + @yearly_dividends) / 100.0
-    
+    @total_yearly_income = (yearly_income + yearly_interest + @yearly_dividends) / 100.0
+
     @yearly_interest = interest_category.transactions.by_year(CURRENT_YEAR).sum(:amount_cents) / 100.0
     @yearly_expenses = @transactions.by_year(CURRENT_YEAR).where.not(category: excluded_categories).sum(:amount_cents) / 100.0
 
