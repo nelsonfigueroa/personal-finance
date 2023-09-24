@@ -16,7 +16,7 @@ class TransactionsController < ApplicationController
     @monthly_expenses = {}
     @monthly_income = {}
 
-    @transactions.each do |month, transactions|
+    @transactions.each do |month, _transactions|
       start_date = month.beginning_of_month
       end_date = month.end_of_month
       @monthly_expenses[month] = @user.transactions.where.not(category: @excluded_categories).where(date: start_date..end_date).sum(:amount_cents) / 100.0
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
 
     return unless @transaction.nil?
 
-    redirect_to transactions_path, alert: "Invalid ID"
+    redirect_to transactions_path, alert: 'Invalid ID'
   end
 
   def new
@@ -41,7 +41,7 @@ class TransactionsController < ApplicationController
 
     return unless @transaction.nil?
 
-    redirect_to transactions_path, alert: "Invalid ID"
+    redirect_to transactions_path, alert: 'Invalid ID'
   end
 
   def create
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
     category = @user.categories.where(name: category_name).first
 
     if category.nil?
-      flash[:alert] = "Category does not exist. Go create it first!"
+      flash[:alert] = 'Category does not exist. Go create it first!'
       redirect_to(transactions_path)
       return
     end
@@ -59,7 +59,7 @@ class TransactionsController < ApplicationController
 
     @transaction = Transaction.new(params)
     @transaction.user_id = @user.id
-  
+
     if @transaction.save
       flash[:notice] = 'Transaction created'
       redirect_to(transactions_path)
@@ -76,7 +76,7 @@ class TransactionsController < ApplicationController
     category = @user.categories.where(name: category_name).first
 
     if category.nil?
-      flash[:alert] = "Category does not exist. Go create it first!"
+      flash[:alert] = 'Category does not exist. Go create it first!'
       redirect_to(transactions_path)
       return
     end
