@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   # frozen_string_literal: true
   before_action :assign_user
@@ -9,7 +11,7 @@ class CategoriesController < ApplicationController
   def show
     @category = @user.categories.find_by(id: params[:id])
     if @category.nil?
-      redirect_to categories_path , alert: 'Invalid ID'
+      redirect_to categories_path, alert: 'Invalid ID'
       return
     end
 
@@ -22,10 +24,10 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = @user.categories.find_by(id: params[:id])
-    if @category.nil?
-      redirect_to categories_path , alert: 'Invalid ID'
-      return
-    end
+    return unless @category.nil?
+
+    redirect_to categories_path, alert: 'Invalid ID'
+    nil
   end
 
   def create
@@ -35,7 +37,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = 'Category created'
       redirect_to(categories_path)
     else
-      flash[:alert] = @category.errors["name"][0]
+      flash[:alert] = @category.errors['name'][0]
       redirect_to(new_category_path)
     end
   end
