@@ -13,9 +13,9 @@
 <% else %>
   <% @transactions.each do |month, transactions| %>
     <h2><%= month.strftime("%B %Y") %></h2>
-    <p><%= transactions.count %> transactions.</p>
+    <p><%= transactions.count %> transactions</p>
 
-    <p>Monthly income (does not include dividends): <%= humanized_money_with_symbol @monthly_income[month] %> </p>
+    <p>Monthly income (dividends excluded): <%= humanized_money_with_symbol @monthly_income[month] %> </p>
     <p>Monthly expenses: <%= humanized_money_with_symbol @monthly_expenses[month] %> </p>
     <table>
       <thead>
