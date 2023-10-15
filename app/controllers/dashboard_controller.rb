@@ -6,11 +6,8 @@ class DashboardController < ApplicationController
   def index
     income_category = Category.where(user_id: @user, name: 'Income').first
     interest_category = Category.where(user_id: @user, name: 'Interest').first
-    savings_category = Category.where(user_id: @user, name: 'Savings').first
-    investing_category = Category.where(user_id: @user, name: 'Investing').first
-    sale_category = Category.where(user_id: @user, name: 'Sale').first
     # @income_categories = [income_category, interest_category] # not needed?
-    excluded_categories = [income_category, interest_category, savings_category, investing_category, sale_category]
+    excluded_categories = [income_category, interest_category]
 
     ### net worth ###
     @accounts = @user.accounts.includes([:statements]).sorted_by_name
