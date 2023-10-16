@@ -6,7 +6,6 @@ class DashboardController < ApplicationController
   def index
     income_category = Category.where(user_id: @user, name: 'Income').first
     interest_category = Category.where(user_id: @user, name: 'Interest').first
-    # @income_categories = [income_category, interest_category] # not needed?
     excluded_categories = [income_category, interest_category]
 
     ### net worth ###
@@ -52,7 +51,6 @@ class DashboardController < ApplicationController
 
     # for Yearly Expenses by Category
     @categories = @user.categories
-    # don't include Savings, Investing, Income, Dividends, and Interest categories for expense tracking
     @categories -= excluded_categories
 
     @transactions_by_category_per_year = {}
