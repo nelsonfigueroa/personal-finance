@@ -13,7 +13,7 @@
 
   <%= form_with model: @category do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-field' %>
     <%= f.label :color %>
     <%= f.color_field :color %>
     <%= f.submit "Update", class: '' %>
