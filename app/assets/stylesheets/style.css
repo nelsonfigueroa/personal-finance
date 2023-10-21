@@ -21,12 +21,22 @@ a:hover {
 nav {
     padding-bottom: 1em;
     padding-top: 1em;
-    border-bottom: 1px dashed rgb(212, 212, 212);;
+    border-bottom: 1px dashed rgb(212, 212, 212);
 }
 
 section {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+/* styling for form fields */
+.form-field {
+  padding: 0.6rem;
+  margin: 0.6rem 0;
+  border-radius: 0.2rem;
+  border: 0; /* remove border */
+  font-family:inherit;
+  font-size: inherit;
 }
 
 /* syling for all tables */
