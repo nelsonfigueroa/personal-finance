@@ -12,20 +12,25 @@
 
   <%= form_with model: @transaction do |f| %>
     <%= f.label :merchant %>
-    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: '' %>
-    <br><br>
+    <br>
+    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: 'form-field' %>
+    <br>
     <%= f.label :amount %>
-    <%= f.text_field :amount, autofocus: true, class: '' %>
-    <br><br>
+    <br>
+    <%= f.text_field :amount, autofocus: true, class: 'form-field' %>
+    <br>
     <%= f.label :category %>
-    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
-    <br><br>
+    <br>
+    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: 'form-field' %>
+    <br>
     <%= f.label :date %>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
-    <br><br>
+    <br>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: 'form-field' %>
+    <br>
     <%= f.label :notes %>
-    <%= f.text_field :notes, autofocus: true, class: '' %>
-    <br><br>
+    <br>
+    <%= f.text_field :notes, autofocus: true, class: 'form-field' %>
+    <br>
     <%= f.submit "Add", class: '' %>
   <% end %>
 
