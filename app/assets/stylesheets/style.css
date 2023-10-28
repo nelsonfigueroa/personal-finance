@@ -39,6 +39,18 @@ section {
   font-size: inherit;
 }
 
+/* styling for form field input buttons */
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: rgb(43, 149, 255);
+  border: none;
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.4rem 1rem;
+  font-family:inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
 /* syling for all tables */
 
 table {
