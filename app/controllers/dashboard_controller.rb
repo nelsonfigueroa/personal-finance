@@ -42,7 +42,7 @@ class DashboardController < ApplicationController
     @income_vs_expenses_percentage = (@yearly_expenses / @total_yearly_income * 100).round unless (@total_yearly_income == 0.0) || (@yearly_expenses == 0.0)
 
     rent_category = @user.categories.where(name: 'Rent').first
-    if rent_category.transactions.by_year(CURRENT_YEAR)
+    unless rent_category.transactions.by_year(CURRENT_YEAR).empty?
       yearly_rent = @transactions.by_year(CURRENT_YEAR).where(category: rent_category).sum(:amount_cents) / 100.0
       @rent_to_income_percentage = (yearly_rent / @total_yearly_income * 100).round
     end
