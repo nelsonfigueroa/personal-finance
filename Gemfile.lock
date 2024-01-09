@@ -180,10 +180,12 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
@@ -196,7 +198,7 @@ GEM
       method_source (~> 0.9.0)
     psych (3.3.4)
     public_suffix (5.0.3)
-    puma (6.3.1)
+    puma (6.4.2)
       nio4r (~> 2.0)
     pwned (2.0.2)
     racc (1.7.1)
@@ -322,6 +324,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.6.4-arm64-darwin)
     sqlite3 (1.6.4-x86_64-darwin)
+    sqlite3 (1.6.4-x86_64-linux)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -362,6 +365,7 @@ GEM
 PLATFORMS
   arm64-darwin-23
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   actionpack (>= 7.0.4.1)
