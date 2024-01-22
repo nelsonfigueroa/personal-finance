@@ -9,7 +9,7 @@
 <br><br>
 
 <% if @transactions.empty? %>
-  <p>No existing transactions. Create one!</p>
+  <p>No existing transactions for <%= Time.zone.now.year %>. Create one!</p>
 <% else %>
   <% @transactions.each do |month, transactions| %>
     <h2><%= month.strftime("%B %Y") %></h2>
