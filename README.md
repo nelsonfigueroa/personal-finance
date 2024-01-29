@@ -6,10 +6,6 @@ Personal Finance is a Ruby on Rails application to keep track of finances in USD
 
 I built this for myself because other apps are either too complex for my needs ([Firefly III](https://www.firefly-iii.org/)), privacy-invasive ([Mint](https://mint.intuit.com/)), or have a subscription-based business model ([Copilot Money](https://copilot.money/)). I also don't like connecting my financial accounts to third party sites for security reasons, so this is a manual approach to tracking money. Since I built this for myself, it's a highly opinionated way of tracking finances.
 
-## To Do
-
-- [ ] Add a way to track individual stocks along with capital gains/losses
-
 ## Running Locally
 
 You can run this application locally using Docker.
@@ -52,7 +48,7 @@ docker system prune -a --volumes
 
 - [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
 - [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
-- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code. 
+- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code.
 - [erb-lint](https://github.com/Shopify/erb-lint) - Linting for `.erb` files.
 - [Chartkick](https://chartkick.com/) - Chart and graph generation.
 - [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
