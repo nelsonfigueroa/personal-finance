@@ -8,6 +8,8 @@ I built this for myself because other apps are either too complex for my needs (
 
 ## Running Locally
 
+**Note: Running with Docker is currently broken and I will attempt to fix once Ruby 3.3.1 is out. I recommend just running this like any other Rails app locally. There's plenty of guides out there :)**
+
 You can run this application locally using Docker.
 
 Build the app and set up the database container:
