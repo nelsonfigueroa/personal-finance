@@ -3,27 +3,27 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.0'
+ruby '3.2.3'
 
 gem 'actionpack', '>= 7.0.4.1'
 gem 'actionview', '>= 7.0.4.1'
 gem 'activerecord', '>= 7.0.4.1'
 gem 'activesupport', '>= 7.0.4.1'
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.4.2'
 gem 'chartkick', '>= 4.2.1'
 gem 'devise'
 gem 'devise-pwned_password'
+gem 'faker'
 gem 'groupdate'
 gem 'hotwire-rails', '>= 0.1.3'
 gem 'importmap-rails'
 gem 'jbuilder', '>= 2.7'
 gem 'money-rails', '~> 1.12'
 gem 'nokogiri', '>= 1.13.10'
-gem 'pg', '>= 1.2.3'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '>= 7.0.4'
-gem 'sassc-rails'
 gem 'sqlite3'
+gem "sprockets-rails"
 gem 'turbolinks', '~> 5.2.1'  
 
 group :development, :test do
@@ -49,7 +49,6 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'faker'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'webdrivers'

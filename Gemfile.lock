@@ -89,7 +89,7 @@ GEM
       smart_properties
     bigdecimal (3.1.6)
     bindex (0.8.1)
-    bootsnap (1.17.1)
+    bootsnap (1.18.3)
       msgpack (~> 1.2)
     brakeman (6.1.1)
       racc
@@ -97,11 +97,11 @@ GEM
     bullet (7.1.6)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    capybara (3.39.2)
+    capybara (3.40.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
+      nokogiri (~> 1.11)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
@@ -121,7 +121,7 @@ GEM
     devise-pwned_password (0.1.10)
       devise (~> 4)
       pwned (~> 2.0.0)
-    diff-lcs (1.5.0)
+    diff-lcs (1.5.1)
     docile (1.4.0)
     drb (2.2.0)
       ruby2_keywords
@@ -133,7 +133,7 @@ GEM
       rubocop
       smart_properties
     erubi (1.12.0)
-    factory_bot (6.4.5)
+    factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
@@ -180,7 +180,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.21.2)
-    monetize (1.12.0)
+    monetize (1.13.0)
       money (~> 6.12)
     money (6.16.0)
       i18n (>= 0.6.4, <= 2)
@@ -203,16 +203,11 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.0-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86_64-linux)
-      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    pg (1.5.4)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -223,7 +218,7 @@ GEM
       nio4r (~> 2.0)
     pwned (2.0.2)
     racc (1.7.3)
-    rack (3.0.8)
+    rack (3.0.9)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -295,7 +290,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
-    rubocop (1.60.1)
+    rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -319,14 +314,6 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     seed_dump (3.3.1)
       activerecord (>= 4)
       activesupport (>= 4)
@@ -354,14 +341,11 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.7.0-arm64-darwin)
-    sqlite3 (1.7.0-x86_64-darwin)
-    sqlite3 (1.7.0-x86_64-linux)
+    sqlite3 (1.7.2-arm64-darwin)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
     thor (1.3.0)
-    tilt (2.3.0)
     timeout (0.4.1)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
@@ -398,8 +382,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
-  x86_64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
   actionpack (>= 7.0.4.1)
@@ -423,7 +405,6 @@ DEPENDENCIES
   listen
   money-rails (~> 1.12)
   nokogiri (>= 1.13.10)
-  pg (>= 1.2.3)
   pry (>= 0.12.2)
   puma (>= 5.6.4)
   rails (>= 7.0.4)
@@ -432,12 +413,12 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  sassc-rails
   seed_dump
   shoulda-matchers
   simplecov
   spring
   spring-watcher-listen
+  sprockets-rails
   sqlite3
   turbolinks (~> 5.2.1)
   tzinfo-data
@@ -445,7 +426,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.3.0p0
+   ruby 3.2.3p157
 
 BUNDLED WITH
-   2.3.26
+   2.4.19
