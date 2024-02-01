@@ -1,4 +1,4 @@
-FROM ruby:3.1.3-alpine
+FROM ruby:3.2.3-alpine3.19
 
 ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RUBYOPT=$RUBYOPT
@@ -6,34 +6,34 @@ ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV RAILS_LOG_TO_STDOUT=true
 
-# to be able to run destructive database commands in production
-ENV DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-
 RUN apk update
 
-# for nokogiri
 RUN apk add build-base
-# not sure if these 2 are needed
-RUN apk add gcompat 
-RUN apk add libstdc++
-# postgres
-RUN apk add postgresql-dev
-# for webpacker
+RUN apk add gcompat
+RUN apk add sqlite-dev
 RUN apk add yarn
+# to fix "warning: It seems your ruby installation is missing psych (for YAML output)"
+RUN apk add yaml-dev
+
 RUN rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:2.3.7
+COPY Gemfile Gemfile.lock /app/
+
+RUN gem install bundler
 
 # don't install development, test gems
 RUN bundle config set without 'development test'
 RUN bundle install
 
+# work around to fix some BS
+RUN gem uninstall sqlite3
+RUN gem install sqlite3 --platform=ruby
+
 RUN rm -rf /usr/local/bundle/cache/*.gem \
 	&& find /usr/local/bundle/gems/ -name "*.c" -delete \
-	&& find /usr/local/bundle/gems/ -name "*.o" -delete
+       && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 COPY . .
 
@@ -45,15 +45,11 @@ RUN EDITOR="mate --wait" bin/rails credentials:edit
 RUN bundle exec rails assets:precompile
 
 # these aren't needed after assets are precompiled
-RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec
-
-# more yarn caches
-RUN rm -rf /usr/local/share/.cache
+RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec /usr/local/share/.cache
 
 RUN rails db:create --trace
-RUN rails db:setup --trace
-# RUN rails db:migrate
-# RUN rails db:seed
+RUN rails db:migrate
+RUN rails db:seed
 
 EXPOSE 3000
-# CMD ["rails", "s", "-b", "0.0.0.0"]
+CMD ["rails", "s", "-b", "0.0.0.0"]
