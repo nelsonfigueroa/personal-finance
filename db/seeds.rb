@@ -24,14 +24,14 @@ end
 end
 
 Category.create!([
-  { user_id: 1, name: "Income", color: "#1cfc03" }
+  { user_id: 1, name: "Income", color: "#1cfc03" },
   { user_id: 1, name: "Interest", color: "#1cfc03" },
   { user_id: 1, name: "Rent", color: "#FFFFFF" },
   { user_id: 1, name: "Groceries", color: "#00bfff" },
   { user_id: 1, name: "Restaurants", color: "#ff0022" },
   { user_id: 1, name: "Car", color: "#ff0022" },
   { user_id: 1, name: "Shopping", color: "#eeff00" },
-  { user_id: 1, name: "Games", color: "#03a5fc" },
+  { user_id: 1, name: "Games", color: "#03a5fc" }
 ])
 
 # Rent for 2 year span
