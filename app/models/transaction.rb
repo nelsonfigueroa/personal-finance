@@ -13,8 +13,8 @@ class Transaction < ApplicationRecord
   # https://stackoverflow.com/questions/9624601/activerecord-find-by-year-day-or-month-on-a-date-field
   def self.by_year(year)
     datetime = DateTime.new(year)
-    beginning_of_year = datetime.beginning_of_year
-    end_of_year = datetime.end_of_year
+    beginning_of_year = datetime.beginning_of_year.to_date
+    end_of_year = datetime.end_of_year.to_date
     where('date >= ? and date <= ?', beginning_of_year, end_of_year)
   end
 end
