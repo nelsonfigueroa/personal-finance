@@ -5,8 +5,8 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-  - 'db/schema.rb'
-  - 'bin/*'
+    - "db/schema.rb"
+    - "bin/*"
 
 Layout/LineLength:
   Enabled: false
@@ -17,13 +17,17 @@ Documentation:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - "spec/**/*.rb"
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
 Lint/ConstantResolution:
   Enabled: false
+
+# I prefer to be explicit about hash values
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
 
 # rubocop-performance
 Performance/AncestorsInclude:
