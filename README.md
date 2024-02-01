@@ -8,29 +8,27 @@ I built this for myself because other apps are either too complex for my needs (
 
 ## Running Locally
 
-**Note: Running with Docker is currently broken and I will attempt to fix once Ruby 3.3.1 is out. I recommend just running this like any other Rails app locally. There's plenty of guides out there :)**
-
 You can run this application locally using Docker.
 
-Build the app and set up the database container:
+Build the Docker image:
 
 ```shell
-docker-compose run web rake db:create db:setup
+docker build -t personal-finance .
 ```
 
-Start up the Rails server and database:
+Start up a container from the previously created image while specifying port `3000`:
 
 ```shell
-docker-compose up
+docker run -p 3000:3000 personal-finance:latest
 ```
 
-Then browse to `http://localhost:3000/`.
+Then browse to `http://0.0.0.0:3000/`.
 
-You can use the demo user credentials to try out the app:
+You can use the demo user credentials to try out the app. This user already has some data so you can get a feel for the app:
 - Email: `demo@demo`
 - Password: `demouser123!`
 
-Or you can create a new account.
+Or you can create a new account and start from scratch.
 
 ## Cleaning Up
 
