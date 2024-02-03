@@ -58,6 +58,16 @@ class StatementsController < ApplicationController
     redirect_to(account_path(@account.id))
   end
 
+  def download
+    json = []
+
+    # customizing JSON being returned so that ID numbers aren't returned
+    @user.statements.each do |statement|
+        json << {"account_name": statement.account.name, "date": statement.date, "balance_cents": statement.balance_cents, "currency": statement.balance_currency}
+    end
+    render json: json
+  end
+
   private
 
   def statement_params
