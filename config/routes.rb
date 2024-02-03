@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     resources :categories
 
     get 'transactions/download', to: 'transactions#download'
+    get 'statements/download', to: 'statements#download'
   end
 end
