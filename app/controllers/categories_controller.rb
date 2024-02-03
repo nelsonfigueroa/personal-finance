@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   before_action :assign_user
 
   def index
-    @categories = @user.categories
+    @categories = @user.categories.includes([:transactions])
   end
 
   def show
