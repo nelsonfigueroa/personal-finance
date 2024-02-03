@@ -4,7 +4,7 @@
 <%= render partial: 'layouts/notifications' %>
 
 <%= link_to 'Create a Transaction', new_transaction_path, class: '' %>
-<%= link_to 'Download Transactions as JSON', transactions_download_path, class: '' %>
+<%= link_to 'Download All Transactions as JSON', transactions_download_path, class: '', download: 'transactions.json' %>
 
 <br><br>
 
