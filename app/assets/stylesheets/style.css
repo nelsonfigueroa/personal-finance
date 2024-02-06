@@ -1,16 +1,22 @@
 html {
-    font-family: Menlo, Consolas, Monaco, Lucida Console, monospace;
+    font-family:
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        monospace;
     background-color: black;
     color: rgb(212, 212, 212);
 }
 
 h2:before {
-  content: "# ";
+    content: "# ";
 }
 
 a {
     color: rgb(43, 149, 255);
     transition: 0.2s;
+    text-decoration: none;
 }
 
 a:hover {
@@ -25,85 +31,87 @@ nav {
 }
 
 section {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 /* styling for form fields */
 .form-field {
-  padding: 0.6rem;
-  margin: 0.6rem 0;
-  border-radius: 0.2rem;
-  border: 0; /* remove border */
-  font-family:inherit;
-  font-size: inherit;
+    padding: 0.6rem;
+    margin: 0.6rem 0;
+    border-radius: 0.2rem;
+    border: 0; /* remove border */
+    font-family: inherit;
+    font-size: inherit;
 }
 
 /* styling for form field input buttons */
-input[type=button], input[type=submit], input[type=reset] {
-  background-color: rgb(43, 149, 255);
-  border: none;
-  border-radius: 0.2rem;
-  color: white;
-  padding: 0.4rem 1rem;
-  font-family:inherit;
-  font-size: inherit;
-  cursor: pointer;
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    background-color: rgb(43, 149, 255);
+    border: none;
+    border-radius: 0.2rem;
+    color: white;
+    padding: 0.4rem 1rem;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
 }
 
 /* syling for all tables */
 
 table {
-  /* border: 1px solid; */
-  width: 100%;
-  border-collapse: collapse;
-  /* border-left: 1px dashed;
+    /* border: 1px solid; */
+    width: 100%;
+    border-collapse: collapse;
+    /* border-left: 1px dashed;
   border-bottom: 1px dashed; */
 }
 
 th {
-  background-color: rgb(195, 195, 195);
-  color:black;
+    background-color: rgb(195, 195, 195);
+    color: black;
 }
 
-td, th {
-  padding: 0.4rem;
+td,
+th {
+    padding: 0.4rem;
 }
 
 td {
-  border-bottom: 1px solid rgb(50, 50, 50);
+    border-bottom: 1px solid rgb(50, 50, 50);
 }
 
 tr:nth-child(even) {
-  background-color: rgb(17, 17, 17);
+    background-color: rgb(17, 17, 17);
 }
 
 tr:hover {
-  background-color: rgb(195, 195, 195);
-  color:black;
+    background-color: rgb(195, 195, 195);
+    color: black;
 }
 
 tr:hover a {
-  color: rgb(0, 30, 255);
+    color: rgb(0, 30, 255);
 }
 
 tr a:hover {
-  color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
-
 
 /* This applies from 600px onwards */
 @media (min-width: 600px) {
-  html {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
+    html {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
 
 /* custom */
 .badge {
-  background-color:rgb(52, 52, 52);
-  border-radius: 0.3rem;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+    background-color: rgb(52, 52, 52);
+    border-radius: 0.3rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
 }
