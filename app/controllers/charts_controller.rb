@@ -21,22 +21,26 @@ class ChartsController < ApplicationController
   ### pie charts ###
 
   def yearly_income_vs_expenses_bar_chart
-    chart_data = generate_yearly_income_vs_expenses_chart_data
+    year = session[:year]
+    chart_data = generate_yearly_income_vs_expenses_chart_data(year)
     render json: chart_data
   end
 
   def yearly_income_vs_rent_bar_chart
-    chart_data = generate_yearly_income_vs_rent_chart_data
+    year = session[:year]
+    chart_data = generate_yearly_income_vs_rent_chart_data(year)
     render json: chart_data
   end
 
   def yearly_expenses_pie_chart
-    chart_data = generate_yearly_expenses_chart_data
+    year = session[:year]
+    chart_data = generate_yearly_expenses_chart_data(year)
     render json: chart_data
   end
 
   def yearly_income_pie_chart
-    chart_data = generate_yearly_income_chart_data
+    year = session[:year]
+    chart_data = generate_yearly_income_chart_data(year)
     render json: chart_data
   end
 
@@ -56,12 +60,12 @@ class ChartsController < ApplicationController
     @@not_expense_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
   end
 
-  def generate_yearly_income_vs_expenses_chart_data
-    transactions = @user.transactions.by_year(CURRENT_YEAR)
+  def generate_yearly_income_vs_expenses_chart_data(year)
+    transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
 
-    dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
+    dividends = @user.dividends.by_year(year).sum(:amount_cents)
     income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
     expenses = transactions.where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
@@ -71,12 +75,12 @@ class ChartsController < ApplicationController
     }
   end
 
-  def generate_yearly_income_vs_rent_chart_data
-    transactions = @user.transactions.by_year(CURRENT_YEAR)
+  def generate_yearly_income_vs_rent_chart_data(year)
+    transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
 
-    dividends = @user.dividends.by_year(CURRENT_YEAR).sum(:amount_cents)
+    dividends = @user.dividends.by_year(year).sum(:amount_cents)
     income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
     rent_category = @user.categories.where(name: 'Rent').first
     rent = transactions.where(category: rent_category).sum(:amount_cents) / 100.0
@@ -87,9 +91,9 @@ class ChartsController < ApplicationController
     }
   end
 
-  def generate_yearly_income_chart_data
-    transactions = @user.transactions.by_year(CURRENT_YEAR)
-    dividends = @user.dividends.by_year(CURRENT_YEAR)
+  def generate_yearly_income_chart_data(year)
+    transactions = @user.transactions.by_year(year)
+    dividends = @user.dividends.by_year(year)
 
     return {} if transactions.empty?
 
@@ -108,8 +112,8 @@ class ChartsController < ApplicationController
     data
   end
 
-  def generate_yearly_expenses_chart_data
-    transactions = @user.transactions.by_year(CURRENT_YEAR)
+  def generate_yearly_expenses_chart_data(year)
+    transactions = @user.transactions.by_year(year)
 
     return {} if transactions.empty?
 

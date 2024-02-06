@@ -12,7 +12,15 @@ class TransactionsController < ApplicationController
     @income_categories = [@income_category, @interest_category]
     @excluded_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
 
-    @transactions = @user.transactions.by_year(CURRENT_YEAR).includes([:category]).sorted_by_date.group_by { |transaction| transaction.date.beginning_of_month }
+    # year switcher for transactions
+    if params[:year].present?
+        year = params[:year].to_i
+    else
+        year = CURRENT_YEAR
+    end
+
+    @transactions = @user.transactions.by_year(year).includes([:category]).sorted_by_date.group_by { |transaction| transaction.date.beginning_of_month }
+
     @monthly_expenses = {}
     @monthly_income = {}
 

@@ -7,6 +7,12 @@
 
 <br><br>
 
+<%# Get all years that show up in transactions and display them in drop down field for filtering %>
+<%= form_tag transactions_path, method: :get do %>
+    <%= select_tag :year, options_for_select(Transaction.all.pluck(:date).map{ |date| date.year}.uniq.reverse), include_blank: true %>
+    <%= submit_tag "Filter" %>
+<% end %>
+
 <% if @transactions.empty? %>
   <p>No existing transactions for <%= Time.zone.now.year %>. Create one!</p>
 <% else %>
