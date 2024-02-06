@@ -1,8 +1,7 @@
+<%= render partial: 'layouts/notifications' %>
 
+<div class="auth-form">
   <h1>Log in</h1>
-
-  <%= render partial: 'layouts/notifications' %>
-
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: 'form-field' %>
     <br>
@@ -16,3 +15,4 @@
 
     <%= f.submit "Log in", class: '' %>
   <% end %>
+</div>

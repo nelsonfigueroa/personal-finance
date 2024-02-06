@@ -7,7 +7,13 @@
   <small>Sum of the latest account statements</small>
   <p><b><%= humanized_money_with_symbol @net_worth %></b></p>
 
-  <%= column_chart net_worth_graph_path, colors: ["rgba(72, 199, 116, 0.55)"], prefix: "$", thousands: ",", spanGaps: true, messages: {empty: "No statements recorded."} %>
+  <%= line_chart net_worth_graph_path,
+      colors: ["#00c200"], prefix: "$",
+      thousands: ",",
+      spanGaps: true,
+      loading: "Loading...",
+      messages: {empty: "No statements recorded."},
+      download: {filename: "net-worth", background: "#ffffff"} %>
 </section>
 
 <section>
@@ -48,8 +54,6 @@
 </section>
 
 <section>
-  <h1>Transactions</h1>
-
   <h2>Income vs Expenses</h2>
   <p>Percentage of income spent on expenses: <%= @income_vs_expenses_percentage %>%</p>
   <%= column_chart yearly_income_vs_expenses_bar_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>

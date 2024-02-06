@@ -27,7 +27,53 @@ a:hover {
 nav {
     padding-bottom: 1em;
     padding-top: 1em;
-    border-bottom: 1px dashed rgb(212, 212, 212);
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    padding: 0 0.5rem;
+}
+
+nav a:first-child {
+    padding-right: 0.5rem;
+    padding-left: 0;
+}
+nav a:last-child {
+    padding-right: 0;
+    padding-left: 0.5rem;
+}
+
+.auth-links {
+    margin-left: auto;
+}
+
+/* used for notifications */
+blockquote {
+    color: white;
+    border-left: 10px solid #474747;
+    margin: 1.5em 0;
+    padding: 0.5em 10px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column; /* To stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Adjust as needed */
+}
+
+.auth-form input[type="email"] {
+    width: 16rem;
+}
+
+.auth-form input[type="password"] {
+    width: 16rem;
+}
+
+.auth-form input[type="text"] {
+    width: 16rem;
 }
 
 section {
@@ -108,7 +154,7 @@ tr a:hover {
     }
 }
 
-/* custom */
+/* category badges */
 .badge {
     background-color: rgb(52, 52, 52);
     border-radius: 0.3rem;
