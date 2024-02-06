@@ -10,7 +10,7 @@ I built this for myself because other apps are either too complex for my needs (
 
 You can run this application locally using Docker.
 
-Build the Docker image:
+Clone this repo and `cd` into it. Then build the Docker image:
 
 ```shell
 docker build -t personal-finance .
