@@ -161,10 +161,11 @@ select {
     right: 0;
 }
 
+/* divider length varies depending on screen size so the divider doesn't overlap with <h2> */
 @media (max-width: 1200px) {
     .month-divider h2::before,
     .month-divider h2::after {
-        width: 30%; /* Adjust the width of the lines for smaller screens */
+        width: 30%;
     }
 }
 
