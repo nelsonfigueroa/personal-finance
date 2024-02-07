@@ -54,11 +54,13 @@
 </section>
 
 <h1>Transactions</h1>
+<div class="year-select">
 <%# Get all years that show up in transactions and display them in drop down field for filtering %>
 <%= form_tag dashboard_path, method: :get do %>
     <%= select_tag :year, options_for_select(Transaction.all.pluck(:date).map{ |date| date.year}.uniq.reverse), include_blank: true %>
     <%= submit_tag "Filter" %>
 <% end %>
+</div>
 
 <section>
   <h2>Income vs Expenses</h2>

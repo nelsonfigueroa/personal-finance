@@ -39,6 +39,7 @@ nav a:first-child {
     padding-right: 0.5rem;
     padding-left: 0;
 }
+
 nav a:last-child {
     padding-right: 0;
     padding-left: 0.5rem;
@@ -58,10 +59,12 @@ blockquote {
 
 .auth-form {
     display: flex;
-    flex-direction: column; /* To stack elements vertically */
+    flex-direction: column;
+    /* To stack elements vertically */
     justify-content: center;
     align-items: center;
-    height: 50vh; /* Adjust as needed */
+    height: 50vh;
+    /* Adjust as needed */
 }
 
 .auth-form input[type="email"] {
@@ -86,7 +89,8 @@ section {
     padding: 0.6rem;
     margin: 0.6rem 0;
     border-radius: 0.2rem;
-    border: 0; /* remove border */
+    border: 0;
+    /* remove border */
     font-family: inherit;
     font-size: inherit;
 }
@@ -105,14 +109,83 @@ input[type="reset"] {
     cursor: pointer;
 }
 
-/* syling for all tables */
+/* styling for year filter dropdown */
+.year-select {
+    /* not used at the moment... */
+}
 
+select {
+    font-family: inherit;
+    font-size: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0.4em 5em 0.4em 1em;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-radius: 0.5em;
+    border: none;
+}
+
+/* Dividers separating transactions by month */
+.month-divider {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 0.1em;
+}
+
+.month-divider h2 {
+    width: 80%;
+    position: relative;
+}
+
+.month-divider h2::before,
+.month-divider h2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    height: 1px; /* Adjust the height of the lines */
+    background-color: rgb(212, 212, 212); /* Adjust the color of the lines */
+    width: 35%;
+}
+
+.month-divider h2::before {
+    left: 0;
+}
+
+.month-divider h2::after {
+    right: 0;
+}
+
+@media (max-width: 1200px) {
+    .month-divider h2::before,
+    .month-divider h2::after {
+        width: 30%; /* Adjust the width of the lines for smaller screens */
+    }
+}
+
+@media (max-width: 978px) {
+    .month-divider h2::before,
+    .month-divider h2::after {
+        width: 25%;
+    }
+}
+
+@media (max-width: 500px) {
+    .month-divider h2::before,
+    .month-divider h2::after {
+        width: 20%;
+    }
+}
+
+/* syling for all tables */
 table {
-    /* border: 1px solid; */
     width: 100%;
     border-collapse: collapse;
-    /* border-left: 1px dashed;
-  border-bottom: 1px dashed; */
 }
 
 th {
@@ -134,7 +207,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: rgb(195, 195, 195);
+    background-color: #919191;
     color: black;
 }
 
@@ -160,4 +233,5 @@ tr a:hover {
     border-radius: 0.3rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
+    font-size: 0.9rem;
 }

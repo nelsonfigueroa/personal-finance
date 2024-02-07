@@ -7,18 +7,22 @@
 
 <br><br>
 
+<div class="year-select">
 <%# Get all years that show up in transactions and display them in drop down field for filtering %>
 <%= form_tag transactions_path, method: :get do %>
     <%= select_tag :year, options_for_select(Transaction.all.pluck(:date).map{ |date| date.year}.uniq.reverse), include_blank: true %>
     <%= submit_tag "Filter" %>
 <% end %>
+</div>
 
 <% if @transactions.empty? %>
   <p>No existing transactions for <%= Time.zone.now.year %>. Create one!</p>
 <% else %>
   <% @transactions.each do |month, transactions| %>
-    <h2><%= month.strftime("%B %Y") %></h2>
-    <p><%= transactions.count %> transactions</p>
+    <div class="month-divider">
+        <h2><%= month.strftime("%B %Y") %></h2>
+        <p><%= transactions.count %> transactions</p>
+    </div>
 
     <p>Monthly income (dividends excluded): <%= humanized_money_with_symbol @monthly_income[month] %> </p>
     <p>Monthly expenses: <%= humanized_money_with_symbol @monthly_expenses[month] %> </p>
