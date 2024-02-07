@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     # gathering all years needed for dropdown filter
     @years_for_switcher = @user.transactions.pluck(:date).map{ |date| date.year}
     @years_for_switcher << CURRENT_YEAR
-    @years_for_switcher.uniq!.reverse!
+    @years_for_switcher.uniq!.sort!.reverse!
 
     # year switcher for transactions
     if params[:year].present?
