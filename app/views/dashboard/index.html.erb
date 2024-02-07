@@ -57,7 +57,7 @@
 <div class="year-select">
 <%# Get all years that show up in transactions and display them in drop down field for filtering %>
 <%= form_tag dashboard_path, method: :get do %>
-    <%= select_tag :year, options_for_select(Transaction.all.pluck(:date).map{ |date| date.year}.uniq.reverse), include_blank: true %>
+    <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false %>
     <%= submit_tag "Filter" %>
 <% end %>
 </div>

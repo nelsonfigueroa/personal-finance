@@ -8,6 +8,11 @@ class DashboardController < ApplicationController
     interest_category = Category.where(user_id: @user, name: 'Interest').first
     excluded_categories = [income_category, interest_category]
 
+    # gathering all years needed for dropdown filter
+    @years_for_switcher = @user.transactions.pluck(:date).map{ |date| date.year}
+    @years_for_switcher << CURRENT_YEAR
+    @years_for_switcher.uniq!.reverse!
+
     # year switcher for transactions
     if params[:year].present?
         year = params[:year].to_i
@@ -16,6 +21,9 @@ class DashboardController < ApplicationController
         year = CURRENT_YEAR
         session[:year] = CURRENT_YEAR # session param gets passed to chart actions automatically
     end
+
+    # year to display on dropdown menu
+    @selected_year = year
 
     ### net worth ###
     @accounts = @user.accounts.includes([:statements]).sorted_by_name
