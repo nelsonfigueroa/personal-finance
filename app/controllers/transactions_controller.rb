@@ -12,12 +12,20 @@ class TransactionsController < ApplicationController
     @income_categories = [@income_category, @interest_category]
     @excluded_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
 
+    # gathering all years needed for dropdown filter
+    @years_for_switcher = @user.transactions.pluck(:date).map{ |date| date.year}
+    @years_for_switcher << CURRENT_YEAR
+    @years_for_switcher.uniq!.reverse!
+
     # year switcher for transactions
     if params[:year].present?
         year = params[:year].to_i
     else
         year = CURRENT_YEAR
     end
+
+    # year to display on dropdown menu
+    @selected_year = year
 
     @transactions = @user.transactions.by_year(year).includes([:category]).sorted_by_date.group_by { |transaction| transaction.date.beginning_of_month }
 
