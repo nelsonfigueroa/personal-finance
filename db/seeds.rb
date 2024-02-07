@@ -11,10 +11,10 @@ User.create!([
   Account.create!(user_id: 1, name: Faker::Bank.unique.name)
 end
 
-# each account gets 24 statements to cover a 2 year span
-24.times do |i|
+# each account gets 48 statements to cover a 4 year span
+48.times do |i|
   i += 1
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
 
   # for each account
   5.times do |x|
@@ -34,24 +34,24 @@ Category.create!([
   { user_id: 1, name: "Games", color: "#03a5fc" }
 ])
 
-# Income for 2 year span
-24.times do |i|
+# Income for 4 year span
+48.times do |i|
   i += 1
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 1, notes: 'Salary', amount_cents: 400000, amount_currency: 'USD')
 end
 
-# Interest Earnings for 2 year span
-24.times do |i|
+# Interest Earnings for 4 year span
+48.times do |i|
   i += 1
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 2, notes: 'Interest Earned', amount_cents: 2000, amount_currency: 'USD')
 end
 
-# Rent for 2 year span
+# Rent for 4 year span
 current_date = Date.current
-# 2 Years
-2.times do
+# 4 Years
+4.times do
   # 12 months
   12.times do
       Transaction.create!(user_id: 1, date: current_date, category_id: 3, notes: 'Rent', amount_cents: 200000, amount_currency: 'USD')
@@ -63,19 +63,19 @@ current_date = Date.current
   current_date = current_date.prev_year
 end
 
-# Groceries for 2 year span
-24.times do |i|
+# Groceries for 4 year span
+48.times do |i|
   i += 1
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 4, notes: 'Groceries', amount_cents: 100000, amount_currency: 'USD')
 end
 
-# Restaurants for 2 year span
-24.times do |i|
+# Restaurants for 4 year span
+48.times do |i|
   i += 1
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 5, notes: 'Food', amount_cents: 4000, amount_currency: 'USD')
 
-  date = Faker::Date.between(from: (25 - i).months.ago, to: (24 - i).months.ago)
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 5, notes: 'Food', amount_cents: 3500, amount_currency: 'USD')
 end
