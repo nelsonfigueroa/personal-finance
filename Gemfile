@@ -22,9 +22,9 @@ gem 'money-rails', '~> 1.12'
 gem 'nokogiri', '>= 1.13.10'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '>= 7.0.4'
+gem 'sprockets-rails'
 gem 'sqlite3'
-gem "sprockets-rails"
-gem 'turbolinks', '~> 5.2.1'  
+gem 'turbolinks', '~> 5.2.1'
 
 group :development, :test do
   gem 'erb_lint', require: false
