@@ -9,17 +9,17 @@ class DashboardController < ApplicationController
     excluded_categories = [income_category, interest_category]
 
     # gathering all years needed for dropdown filter
-    @years_for_switcher = @user.transactions.pluck(:date).map{ |date| date.year}
+    @years_for_switcher = @user.transactions.pluck(:date).map(&:year)
     @years_for_switcher << CURRENT_YEAR
     @years_for_switcher.uniq!.sort!.reverse!
 
     # year switcher for transactions
     if params[:year].present?
-        year = params[:year].to_i
-        session[:year] = params[:year].to_i # session param gets passed to chart actions automatically
+      year = params[:year].to_i
+      session[:year] = params[:year].to_i # session param gets passed to chart actions automatically
     else
-        year = CURRENT_YEAR
-        session[:year] = CURRENT_YEAR # session param gets passed to chart actions automatically
+      year = CURRENT_YEAR
+      session[:year] = CURRENT_YEAR # session param gets passed to chart actions automatically
     end
 
     # year to display on dropdown menu
