@@ -2,7 +2,7 @@
 
 class ChartsController < ApplicationController
   before_action :assign_user
-  before_action :get_categories
+  before_action :assign_categories
 
   ### net worth graph ###
 
@@ -50,7 +50,7 @@ class ChartsController < ApplicationController
     @user = current_user
   end
 
-  def get_categories
+  def assign_categories
     @income_category = Category.where(user_id: @user, name: 'Income').first
     @interest_category = Category.where(user_id: @user, name: 'Interest').first
     @savings_category = Category.where(user_id: @user, name: 'Savings').first
