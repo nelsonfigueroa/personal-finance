@@ -63,7 +63,7 @@ class StatementsController < ApplicationController
 
     # customizing JSON being returned so that ID numbers aren't returned
     @user.statements.each do |statement|
-        json << {"account_name": statement.account.name, "date": statement.date, "balance_cents": statement.balance_cents, "currency": statement.balance_currency}
+      json << { account_name: statement.account.name, date: statement.date, balance_cents: statement.balance_cents, currency: statement.balance_currency }
     end
     render json: json
   end
