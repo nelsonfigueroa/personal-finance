@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     # gathering all years needed for dropdown filter
     @years_for_switcher = @user.transactions.pluck(:date).map(&:year)
     @years_for_switcher << CURRENT_YEAR
-    @years_for_switcher.uniq!.sort!.reverse!
+    @years_for_switcher.uniq!.sort!.reverse! unless @years_for_switcher.count == 1
 
     # year switcher for transactions
     if params[:year].present?
@@ -44,11 +44,20 @@ class DashboardController < ApplicationController
     @yearly_dividends = @user.dividends.by_year(year).sum(:amount_cents)
 
     ### transactions and spending ###
-    yearly_income = income_category.transactions.by_year(year).sum(:amount_cents)
-    yearly_interest = interest_category.transactions.by_year(year).sum(:amount_cents)
+    yearly_income = if income_category.nil?
+                        0
+                    else
+                        income_category.transactions.by_year(year).sum(:amount_cents)
+                    end
+    yearly_interest = if interest_category.nil?
+                        0
+                        else
+                            interest_category.transactions.by_year(year).sum(:amount_cents)
+                        end
+
     @total_yearly_income = (yearly_income + yearly_interest + @yearly_dividends) / 100.0
 
-    @yearly_interest = interest_category.transactions.by_year(year).sum(:amount_cents) / 100.0
+    @yearly_interest = yearly_interest / 100.0
     @yearly_expenses = @transactions.by_year(year).where.not(category: excluded_categories).sum(:amount_cents) / 100.0
 
     # adding decimal for display purposes in dashboard
@@ -59,7 +68,7 @@ class DashboardController < ApplicationController
     @income_vs_expenses_percentage = (@yearly_expenses / @total_yearly_income * 100).round unless (@total_yearly_income == 0.0) || (@yearly_expenses == 0.0)
 
     rent_category = @user.categories.where(name: 'Rent').first
-    unless rent_category.transactions.by_year(year).empty?
+    unless (rent_category.nil? || rent_category.transactions.by_year(year).empty?)
       yearly_rent = @transactions.by_year(year).where(category: rent_category).sum(:amount_cents) / 100.0
       @rent_to_income_percentage = (yearly_rent / @total_yearly_income * 100).round
     end
