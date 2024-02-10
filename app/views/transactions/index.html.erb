@@ -5,6 +5,14 @@
 <%= link_to 'Create a Transaction', new_transaction_path, class: '' %>
 <%= link_to 'Download All Transactions as JSON', transactions_download_path, class: '', download: 'transactions.json' %>
 
+<%= form_with url: transactions_import_path, method: :post do |form| %>
+  <%= form.label :csv, "Import Transactions from CSV" %>
+  <%= form.file_field :csv %>
+  <%= form.label :import_from, "Import CSV from:" %>
+  <%= form.select(:import_from, ["Apple Card", "Copilot Money"]) %>
+  <%= form.submit "Import" %>
+<% end %>
+
 <br><br>
 
 <div class="year-select">
