@@ -45,15 +45,15 @@ class DashboardController < ApplicationController
 
     ### transactions and spending ###
     yearly_income = if income_category.nil?
-                        0
+                      0
                     else
-                        income_category.transactions.by_year(year).sum(:amount_cents)
+                      income_category.transactions.by_year(year).sum(:amount_cents)
                     end
     yearly_interest = if interest_category.nil?
                         0
-                        else
-                            interest_category.transactions.by_year(year).sum(:amount_cents)
-                        end
+                      else
+                        interest_category.transactions.by_year(year).sum(:amount_cents)
+                      end
 
     @total_yearly_income = (yearly_income + yearly_interest + @yearly_dividends) / 100.0
 
@@ -68,7 +68,7 @@ class DashboardController < ApplicationController
     @income_vs_expenses_percentage = (@yearly_expenses / @total_yearly_income * 100).round unless (@total_yearly_income == 0.0) || (@yearly_expenses == 0.0)
 
     rent_category = @user.categories.where(name: 'Rent').first
-    unless (rent_category.nil? || rent_category.transactions.by_year(year).empty?)
+    unless rent_category.nil? || rent_category.transactions.by_year(year).empty?
       yearly_rent = @transactions.by_year(year).where(category: rent_category).sum(:amount_cents) / 100.0
       @rent_to_income_percentage = (yearly_rent / @total_yearly_income * 100).round
     end
