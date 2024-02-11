@@ -131,10 +131,14 @@ class TransactionsController < ApplicationController
   end
 
   def import
-      if params[:import_from] == "Apple Card"
+      if params[:csv].nil?
+          flash[:alert] = "Select a file before importing"
+      elsif params[:import_from] == "Apple Card"
           apple_card_csv_importer(params[:csv])
+          flash[:notice] = 'Transactions Imported!'
       elsif params[:import_from] == "Copilot Money"
           copilot_money_csv_importer(params[:csv])
+          flash[:notice] = 'Transactions Imported!'
       end
 
       redirect_to(transactions_path)
@@ -158,8 +162,7 @@ class TransactionsController < ApplicationController
           end
 
           # converting to proper format
-          date = Date.strptime(row[0], "%m/%d/%Y")
-          date = parsed_date.strftime("%Y-%m-%d")
+          date = Date.strptime(row[0], "%m/%d/%Y").strftime("%Y-%m-%d")
 
           merchant = row[3]
           category_name = row[4]
