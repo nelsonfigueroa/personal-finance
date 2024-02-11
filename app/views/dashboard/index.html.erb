@@ -111,7 +111,7 @@
   <br>
 
   <% if @transactions.empty? %>
-    <p>You don't have any transactions. Add some!</p>
+    <p>(Add some transactions to show yearly expenses by category)</p>
   <% else %>
     <h2>Yearly Expenses by Category</h2>
     <% @transactions_by_category_per_year.keys.each do |year| %>
