@@ -109,6 +109,17 @@ input[type="reset"] {
     cursor: pointer;
 }
 
+input[type="file"] {
+    border: 1px dashed;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+input[type="file"]:hover {
+    background-color: #919191;
+}
+
 /* styling for year filter dropdown */
 .year-select {
     /* not used at the moment... */
