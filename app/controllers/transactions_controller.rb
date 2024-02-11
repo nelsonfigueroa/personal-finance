@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 class TransactionsController < ApplicationController
@@ -131,17 +132,17 @@ class TransactionsController < ApplicationController
   end
 
   def import
-      if params[:csv].nil?
-          flash[:alert] = "Select a file before importing"
-      elsif params[:import_from] == "Apple Card"
-          apple_card_csv_importer(params[:csv])
-          flash[:notice] = 'Transactions Imported!'
-      elsif params[:import_from] == "Copilot Money"
-          copilot_money_csv_importer(params[:csv])
-          flash[:notice] = 'Transactions Imported!'
-      end
+    if params[:csv].nil?
+      flash[:alert] = 'Select a file before importing'
+    elsif params[:import_from] == 'Apple Card'
+      apple_card_csv_importer(params[:csv])
+      flash[:notice] = 'Transactions Imported!'
+    elsif params[:import_from] == 'Copilot Money'
+      copilot_money_csv_importer(params[:csv])
+      flash[:notice] = 'Transactions Imported!'
+    end
 
-      redirect_to(transactions_path)
+    redirect_to(transactions_path)
   end
 
   private
@@ -155,73 +156,63 @@ class TransactionsController < ApplicationController
   end
 
   def apple_card_csv_importer(csv)
-      CSV.parse(csv.read) do |row|
-          # skip the first row of headers
-          if row[0] == "Transaction Date"
-              next
-          end
+    CSV.parse(csv.read) do |row|
+      # skip the first row of headers
+      next if row[0] == 'Transaction Date'
 
-          # converting to proper format
-          date = Date.strptime(row[0], "%m/%d/%Y").strftime("%Y-%m-%d")
+      # converting to proper format
+      date = Date.strptime(row[0], '%m/%d/%Y').strftime('%Y-%m-%d')
 
-          merchant = row[3]
-          category_name = row[4]
-          type = row[5]
-          amount = row[6]
+      merchant = row[3]
+      category_name = row[4]
+      type = row[5]
+      amount = row[6]
 
-          if type == "Payment"
-            # this is a payment from another account, nothing to do here
-              next
-          elsif type == "Purchase"
-              # check that the category actually exists, otherwise create it and assign to  the transaction
-            category = Category.where(user_id: @user.id, name: category_name).first
-            if category.nil?
-                category = Category.create!(user_id: @user.id, name: category_name, color: "#FFF")
-            end
+      if type == 'Payment'
+        # this is a payment from another account, nothing to do here
+        next
+      elsif type == 'Purchase'
+        # check that the category actually exists, otherwise create it and assign to  the transaction
+        category = Category.where(user_id: @user.id, name: category_name).first
+        category = Category.create!(user_id: @user.id, name: category_name, color: '#FFF') if category.nil?
 
-            amount_cents = (amount.to_f * 100).round.abs
-            Transaction.create!(user_id: @user.id, category_id: category.id, date: date, merchant: merchant, notes: nil, amount_cents: amount_cents, amount_currency: 'USD')
-          end
+        amount_cents = (amount.to_f * 100).round.abs
+        Transaction.create!(user_id: @user.id, category_id: category.id, date: date, merchant: merchant, notes: nil, amount_cents: amount_cents, amount_currency: 'USD')
       end
+    end
   end
 
   def copilot_money_csv_importer(csv)
-      CSV.parse(csv.read) do |row|
-          # skip the first row of headers
-          if row[0] == "date"
-              next
-          end
+    CSV.parse(csv.read) do |row|
+      # skip the first row of headers
+      next if row[0] == 'date'
 
-          date = row[0]
-          merchant = row[1].force_encoding('UTF-8') unless row[1].nil?
-          amount = row[2]
-          category_name = row[4]
-          excluded = row[6].downcase
-          transaction_type = row[7]
-          notes = row[10].force_encoding('UTF-8') unless row[10].nil?
+      date = row[0]
+      merchant = row[1].force_encoding('UTF-8') unless row[1].nil?
+      amount = row[2]
+      category_name = row[4]
+      excluded = row[6].downcase
+      transaction_type = row[7]
+      notes = row[10].force_encoding('UTF-8') unless row[10].nil?
 
-          # don't care about internal transfers
-          if transaction_type == "internal transfer"
-              next
-          elsif transaction_type == "income"
-          # the category in the CSV will be empty for income transactions so we can hardcode the category name
-              category = Category.where(user_id: @user.id, name: "Income").first
-              if category.nil?
-                  category = Category.create!(user_id: @user.id, name: "Income", color: "#FFF")
-              end
-              # don't care about excluded transactions that do not fall under "income"
-          elsif excluded == "true"
-              next
-          elsif transaction_type == "regular" && excluded == "false"
-              category = Category.where(user_id: @user.id, name: category_name).first
-              if category.nil?
-                  category = Category.create!(user_id: @user.id, name: category_name, color: "#FFF")
-              end
-          end
-
-          amount_cents = (amount.to_f * 100).round.abs
-
-          Transaction.create!(user_id: @user.id, category_id: category.id, date: date, merchant: merchant, notes: notes, amount_cents: amount_cents, amount_currency: 'USD')
+      # don't care about internal transfers
+      if transaction_type == 'internal transfer'
+        next
+      elsif transaction_type == 'income'
+        # the category in the CSV will be empty for income transactions so we can hardcode the category name
+        category = Category.where(user_id: @user.id, name: 'Income').first
+        category = Category.create!(user_id: @user.id, name: 'Income', color: '#FFF') if category.nil?
+      # don't care about excluded transactions that do not fall under "income"
+      elsif excluded == 'true'
+        next
+      elsif transaction_type == 'regular' && excluded == 'false'
+        category = Category.where(user_id: @user.id, name: category_name).first
+        category = Category.create!(user_id: @user.id, name: category_name, color: '#FFF') if category.nil?
       end
+
+      amount_cents = (amount.to_f * 100).round.abs
+
+      Transaction.create!(user_id: @user.id, category_id: category.id, date: date, merchant: merchant, notes: notes, amount_cents: amount_cents, amount_currency: 'USD')
+    end
   end
 end
