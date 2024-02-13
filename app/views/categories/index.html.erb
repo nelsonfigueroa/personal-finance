@@ -21,8 +21,8 @@
       <tbody>
         <% @categories.each do |category| %>
           <tr>
-          <td><%= link_to category.name, category %> [<%= category.transactions.count %>]</td>
-          <td><%= category.color %></td>
+          <td><%= link_to category.name, category, class: 'link link-primary' %> [<%= category.transactions.count %>]</td>
+          <td><div class='badge badge-lg' style="background-color: <%= category.color %>"></div></td>
           </tr>
         <% end %>
       </tbody>

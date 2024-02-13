@@ -10,21 +10,19 @@
 
   <h1><%= @account.name %></h1>
 
-  <%= line_chart single_account_graph_path(account_id: @account.id) %>
-
-  <%= link_to new_account_statement_path(account_id: @account.id), class: '' do %>
+  <%= link_to new_account_statement_path(account_id: @account.id), class: 'btn btn-neutral' do %>
     <button>Add Statement</button>
   <% end %>
 
-  <%= link_to edit_account_path, class: '' do %>
+  <%= link_to edit_account_path, class: 'btn btn-neutral' do %>
     <button>Edit Account Name</button>
   <% end %>
 
-  <%= link_to account_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this account?: #{@account.name}", class: '' } do %>
+  <%= link_to account_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this account?: #{@account.name}" }, class: 'btn btn-neutral' do %>
     <button>Delete Account</button>
   <% end %>
 
-  <hr>
+  <%= line_chart single_account_graph_path(account_id: @account.id) %>
 
   <% unless @statements.empty? %>
   <br><br>

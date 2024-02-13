@@ -31,7 +31,7 @@
       <tbody>
         <% @accounts.each do |account| %>
           <tr>
-          <td><%= link_to account.name, account %></td>
+          <td><%= link_to account.name, account, class: 'link link-primary' %></td>
           <% if account.statements.order(:date).last %>
             <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
