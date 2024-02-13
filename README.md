@@ -54,3 +54,4 @@ docker system prune -a --volumes
 - [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
 - [Bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
 - [brakeman](https://github.com/presidentbeef/brakeman) - To check for security vulnerabiliies
+- [Tailwind CSS](https://tailwindcss.com/) with the [daisyUI](https://daisyui.com/) library.
