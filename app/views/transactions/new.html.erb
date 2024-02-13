@@ -13,23 +13,23 @@
   <%= form_with model: @transaction do |f| %>
     <%= f.label :merchant %>
     <br>
-    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: '' %>
+    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: 'input input-bordered' %>
     <br>
     <%= f.label :amount %>
     <br>
-    <%= f.text_field :amount, autofocus: true, class: '' %>
+    <%= f.text_field :amount, autofocus: true, class: 'input input-bordered' %>
     <br>
     <%= f.label :category %>
     <br>
-    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
+    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: 'input input-bordered' %>
     <br>
     <%= f.label :date %>
     <br>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
     <br>
     <%= f.label :notes %>
     <br>
-    <%= f.text_field :notes, autofocus: true, class: '' %>
+    <%= f.text_field :notes, autofocus: true, class: 'input input-bordered' %>
     <br>
-    <%= f.submit "Add", class: '' %>
+    <%= f.submit "Add", class: 'btn btn-neutral' %>
   <% end %>
