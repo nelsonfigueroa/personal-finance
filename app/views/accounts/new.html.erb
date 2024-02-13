@@ -11,7 +11,7 @@
     <h1>Add Account</h1>
     <%= form_with model: @account do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
-      <%= f.submit "Add", class: '' %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-bordered' %>
+      <%= f.submit "Add Account", class: 'btn btn-neutral' %>
     <% end %>
 </section>
