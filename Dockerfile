@@ -11,7 +11,7 @@ RUN apk update
 RUN apk add build-base
 RUN apk add gcompat
 RUN apk add sqlite-dev
-RUN apk add yarn
+RUN apk add nodejs npm
 # to fix "warning: It seems your ruby installation is missing psych (for YAML output)"
 RUN apk add yaml-dev
 
@@ -27,7 +27,7 @@ RUN gem install bundler
 RUN bundle config set without 'development test'
 RUN bundle install
 
-# work around to fix some BS
+# workaround to fix some SQLite issues
 RUN gem uninstall sqlite3
 RUN gem install sqlite3 --platform=ruby
 
@@ -37,11 +37,12 @@ RUN rm -rf /usr/local/bundle/cache/*.gem \
 
 COPY . .
 
-RUN yarn install --check-files
+RUN npm install
 
 # generate master.key and encrypted credentials
 RUN EDITOR="mate --wait" bin/rails credentials:edit
 
+RUN bundle exec rails tailwindcss:install
 RUN bundle exec rails assets:precompile
 
 # these aren't needed after assets are precompiled

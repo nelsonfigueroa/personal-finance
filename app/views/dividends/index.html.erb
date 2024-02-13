@@ -1,16 +1,20 @@
-<h1><i>Dividends</i></h1>
+<div class="container">
+<h1>Dividends</h1>
 
   <%= render partial: 'layouts/notifications' %>
-
   <%= link_to 'Create Dividend', new_dividend_path, class: '' %>
-
   <br><br>
 
   <% if @dividends.empty? %>
     <p>No existing dividends</p>
   <% else %>
-    <p style="font-size: 1.5rem;">Total Dividends this year: <span style="color: limegreen;"><%= humanized_money_with_symbol @total_dividends_this_year %></span></p>
-    <table>
+    <div class="stats">
+        <div class="stat">
+        <div class="stat-title">Total Dividends This Year</div>
+        <div class="stat-value text-success"><%= humanized_money_with_symbol @total_dividends_this_year %></div>
+        </div>
+    </div>
+    <table class="table table-zebra table-sm">
       <thead>
         <tr>
           <th>Amount</th>
@@ -41,3 +45,4 @@
       </tbody>
     </table>
   <% end %>
+</div>

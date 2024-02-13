@@ -24,7 +24,9 @@ gem 'puma', '>= 5.6.4'
 gem 'rails', '>= 7.0.4'
 gem 'sprockets-rails'
 gem 'sqlite3'
+gem 'tailwindcss-rails', '~> 2.3'
 gem 'turbolinks', '~> 5.2.1'
+gem 'tzinfo-data'
 
 group :development, :test do
   gem 'erb_lint', require: false
@@ -53,5 +55,3 @@ group :test do
   gem 'simplecov', require: false
   gem 'webdrivers'
 end
-
-gem 'tzinfo-data'

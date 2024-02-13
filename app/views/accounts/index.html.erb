@@ -1,4 +1,6 @@
-<h1><i>Accounts</i></h1>
+<div class="container">
+
+<h1>Accounts</h1>
 
 <section>
   <%= render partial: 'layouts/notifications' %>
@@ -12,8 +14,13 @@
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
-    <p style="font-size: 1.5rem;">Net Worth: <span style="color: limegreen;"><%= humanized_money_with_symbol @net_worth %></span></p>
-    <table>
+    <div class="stats">
+        <div class="stat">
+        <div class="stat-title">Net Worth</div>
+        <div class="stat-value text-success"><%= humanized_money_with_symbol @net_worth %></div>
+        </div>
+    </div>
+    <table class="table table-zebra table-sm">
       <thead>
         <tr>
           <th>Name</th>
@@ -38,3 +45,4 @@
     </table>
   <% end %>
 </section>
+</div>

@@ -13,23 +13,23 @@
   <%= form_with model: @transaction do |f| %>
     <%= f.label :merchant %>
     <br>
-    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: 'form-field' %>
+    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: '' %>
     <br>
     <%= f.label :amount %>
     <br>
-    <%= f.text_field :amount, autofocus: true, class: 'form-field' %>
+    <%= f.text_field :amount, autofocus: true, class: '' %>
     <br>
     <%= f.label :category %>
     <br>
-    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: 'form-field' %>
+    <%= f.text_field :category, autofocus: true, autocomplete: "category", class: '' %>
     <br>
     <%= f.label :date %>
     <br>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: 'form-field' %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: '' %>
     <br>
     <%= f.label :notes %>
     <br>
-    <%= f.text_field :notes, autofocus: true, class: 'form-field' %>
+    <%= f.text_field :notes, autofocus: true, class: '' %>
     <br>
     <%= f.submit "Add", class: '' %>
   <% end %>

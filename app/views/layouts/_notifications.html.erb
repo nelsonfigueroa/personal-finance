@@ -1,7 +1,9 @@
+<div class="toast">
 <% if notice %>
-  <blockquote style="background-color: #00763B;"><%= notice %></blockquote>
+  <div role="alert" class="alert alert-info"><%= notice %></div>
 <% end %>
 
 <% if alert %>
-  <blockquote style="background-color: #8D002A;"><%= alert %></blockquote>
+  <div role="alert" class="alert alert-warning"><%= alert %></div>
 <% end %>
+</div>

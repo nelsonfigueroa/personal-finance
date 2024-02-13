@@ -1,20 +1,23 @@
+<div class="container">
+
 <%= render partial: 'layouts/notifications' %>
 
-<h1><i>Dashboard</i></h1>
+<h1>Dashboard</h1>
 
-<section>
-  <h2>Net Worth</h2>
-  <small>Sum of the latest account statements</small>
-  <p><b><%= humanized_money_with_symbol @net_worth %></b></p>
+<div class="stats">
+    <div class="stat">
+    <div class="stat-title">Net Worth</div>
+    <div class="stat-value text-success"><%= humanized_money_with_symbol @net_worth %></div>
+    </div>
+</div>
 
-  <%= line_chart net_worth_graph_path,
-      colors: ["#00c200"], prefix: "$",
-      thousands: ",",
-      spanGaps: true,
-      loading: "Loading...",
-      messages: {empty: "No statements recorded."},
-      download: {filename: "net-worth", background: "#ffffff"} %>
-</section>
+<%= line_chart net_worth_graph_path,
+    colors: ["#00c200"], prefix: "$",
+    thousands: ",",
+    spanGaps: true,
+    loading: "Loading...",
+    messages: {empty: "No statements recorded."},
+    download: {filename: "net-worth", background: "#ffffff"} %>
 
 <section>
   <h2>Account Balances</h2>
@@ -23,7 +26,7 @@
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
-    <table>
+    <table class="table table-zebra table-sm">
       <thead>
         <tr>
           <th>Name</th>
@@ -54,12 +57,10 @@
 </section>
 
 <h2>Overview for <%= @selected_year %></h2>
-<div class="year-select">
 <%= form_tag dashboard_path, method: :get do %>
     <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false %>
     <%= submit_tag "Filter" %>
 <% end %>
-</div>
 
 <section>
   <h2>Income vs Expenses</h2>
@@ -81,7 +82,7 @@
   <%= pie_chart yearly_expenses_pie_chart_path, prefix: "$", messages: {empty: "No expense transactions recorded."} %>
 
   <h2>Yearly Overview</h2>
-  <table>
+  <table class="table table-zebra table-sm">
     <thead>
       <tr>
         <th colspan="2"><%= Time.zone.now.year %></th>
@@ -115,7 +116,7 @@
   <% else %>
     <h2>Yearly Expenses by Category</h2>
     <% @transactions_by_category_per_year.keys.each do |year| %>
-    <table>
+    <table class="table table-zebra table-sm">
       <thead>
         <tr>
           <th colspan="2"><%= year %></th>
@@ -134,3 +135,4 @@
     <br>
   <% end %>
 </section>
+</div>

@@ -40,7 +40,7 @@
           <td><%= transaction.merchant %></td>
           <td><%= humanized_money_with_symbol transaction.amount %></td>
           <% if transaction.category %>
-          <td><span class="badge" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
+          <td><span class="" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
           <% else %>
           <td>(uncategorized)</td>
           <% end %>

@@ -1,4 +1,4 @@
-<section>
+<div class="container">
   <%= render partial: 'layouts/notifications' %>
 
   <nav aria-label="breadcrumbs">
@@ -29,7 +29,7 @@
   <% unless @statements.empty? %>
   <br><br>
   <h2>Statements</h2>
-  <table>
+  <table class="table table-zebra table-sm">
     <thead>
       <tr>
         <th>Balance</th>
@@ -55,4 +55,4 @@
     </tbody>
   </table>
   <% end %>
-</section>
+</div>
