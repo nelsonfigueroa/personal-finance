@@ -7,8 +7,8 @@
 
   <small>Create accounts and then then create statements to keep track of balances periodically. Statements are aggregated to calculate net worth in the dashboard.</small>
   <br><br>
-  <%= link_to 'Add an Account', new_account_path, class: '' %>
-  <%= link_to 'Download All Statements as JSON', statements_download_path, class: '' , download: 'statements.json' %>
+  <%= link_to 'Add an Account', new_account_path, class: 'btn btn-neutral' %>
+  <%= link_to 'Download All Statements as JSON', statements_download_path, class: 'btn btn-neutral' , download: 'statements.json' %>
   <br><br>
 
   <% if @accounts.empty? %>

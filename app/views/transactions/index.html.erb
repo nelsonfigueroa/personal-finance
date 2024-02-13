@@ -4,8 +4,8 @@
 
 <%= render partial: 'layouts/notifications' %>
 
-<%= link_to 'Create a Transaction', new_transaction_path, class: 'btn' %>
-<%= link_to 'Download All Transactions as JSON', transactions_download_path, class: 'btn', download: 'transactions.json' %>
+<%= link_to 'Create a Transaction', new_transaction_path, class: 'btn btn-neutral' %>
+<%= link_to 'Download All Transactions as JSON', transactions_download_path, class: 'btn btn-neutral', download: 'transactions.json' %>
 
 <br><br>
 
@@ -23,14 +23,14 @@
       </div>
       <%= form.select(:import_from, ["Apple Card", "Copilot Money"], {},  class: 'form-control select select-bordered w-full max-w-xs' ) %>
 <% end %>
-  <%= form.submit "Import", class: 'btn' %>
+  <%= form.submit "Import", class: 'btn btn-neutral' %>
 <% end %>
 
 <br>
 
 <%= form_tag transactions_path, method: :get do %>
     <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: 'select select-accent' %>
-    <%= submit_tag "Filter by year", class: 'btn' %>
+    <%= submit_tag "Filter by year", class: 'btn btn-neutral' %>
 <% end %>
 
 <% if @transactions.empty? %>
