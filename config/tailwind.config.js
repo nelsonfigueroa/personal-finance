@@ -7,6 +7,9 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
   ],
+  daisyui: {
+    themes: false,
+  },
   theme: {
     container: {
       center: true,
