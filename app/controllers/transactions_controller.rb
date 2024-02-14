@@ -195,19 +195,17 @@ class TransactionsController < ApplicationController
       transaction_type = row[7]
       notes = row[10].force_encoding('UTF-8') unless row[10].nil?
 
-      # don't care about internal transfers
-      if transaction_type == 'internal transfer'
-        next
-      elsif transaction_type == 'income'
+      if transaction_type == 'income'
         # the category in the CSV will be empty for income transactions so we can hardcode the category name
         category = Category.where(user_id: @user.id, name: 'Income').first
         category = Category.create!(user_id: @user.id, name: 'Income', color: '#FFF') if category.nil?
       # don't care about excluded transactions that do not fall under "income"
-      elsif excluded == 'true'
-        next
       elsif transaction_type == 'regular' && excluded == 'false'
         category = Category.where(user_id: @user.id, name: category_name).first
         category = Category.create!(user_id: @user.id, name: category_name, color: '#FFF') if category.nil?
+      else
+        # don't care about internal transfers or excluded transactions
+        next
       end
 
       amount_cents = (amount.to_f * 100).round.abs
