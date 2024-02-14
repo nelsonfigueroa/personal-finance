@@ -2,7 +2,7 @@
 
 class Category < ApplicationRecord
   belongs_to :user
-  has_many :transactions
+  has_many :transactions, dependent: :nullify
 
   validates :name, presence: true
   validates :color, presence: true, format: { with: /\A#?(?:[0-9a-fA-F]{3}){1,2}\z/, message: 'must be a valid hex color' }
