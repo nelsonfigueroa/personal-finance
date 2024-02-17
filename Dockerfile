@@ -1,21 +1,11 @@
 FROM ruby:3.2.3-alpine3.19
 
-ARG RUBYOPT='-W:no-deprecated -W:no-experimental'
-ENV RUBYOPT=$RUBYOPT
+ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV RAILS_LOG_TO_STDOUT=true
 
-RUN apk update
-
-RUN apk add build-base
-RUN apk add gcompat
-RUN apk add sqlite-dev
-RUN apk add nodejs npm
-# to fix "warning: It seems your ruby installation is missing psych (for YAML output)"
-RUN apk add yaml-dev
-
-RUN rm -rf /var/cache/apk/*
+RUN apk --update add build-base gcompat sqlite-dev nodejs npm yaml-dev
 
 WORKDIR /app
 
@@ -25,7 +15,7 @@ RUN gem install bundler
 
 # don't install development, test gems
 RUN bundle config set without 'development test'
-RUN bundle install
+RUN bundle install --jobs 4 --no-cache --retry 5
 
 # workaround to fix some SQLite issues
 RUN gem uninstall sqlite3
@@ -45,12 +35,37 @@ RUN EDITOR="mate --wait" bin/rails credentials:edit
 RUN bundle exec rails tailwindcss:install
 RUN bundle exec rails assets:precompile
 
-# these aren't needed after assets are precompiled
-RUN rm -rf node_modules tmp/cache vendor/assets lib/assets spec /usr/local/share/.cache
-
 RUN rails db:create --trace
 RUN rails db:migrate
 RUN rails db:seed
+
+# cleanup
+RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/*
+RUN find / -type f -name "*.c" -exec rm -rf {} +
+RUN find / -type f -name "*.h" -exec rm -rf {} +
+RUN find / -type f -name "*.hpp" -exec rm -rf {} +
+RUN find / -type f -name "*.java" -exec rm -rf {} +
+RUN find / -type f -name "*.log" -exec rm -rf {} +
+RUN find / -type f -name "*.md" -exec rm -rf {} +
+RUN find / -type f -name "*.mk" -exec rm -rf {} +
+RUN find / -type f -name "*.o" -exec rm -rf {} +
+RUN find / -type f -name "*.txt" -exec rm -rf {} +
+RUN find / -type f -name "Makefile" -exec rm -rf {} +
+RUN find / -type f -name "*.gem" -exec rm -rf {} +
+RUN find / -type f -name "CHANGELOG" -exec rm -rf {} +
+RUN find / -type f -name "LICENSE" -exec rm -rf {} +
+RUN find / -type f -name "README" -exec rm -rf {} +
+RUN find / -type f -name "CHANGES" -exec rm -rf {} +
+RUN find / -type f -name "TODO" -exec rm -rf {} +
+RUN find / -type f -name "MIT-LICENSE" -exec rm -rf {} +
+RUN find / -type f -name "Dockerfile" -exec rm -rf {} +
+RUN find / -type f -name ".rspec" -exec rm -rf {} +
+RUN find / -type f -name ".rubocop.yml" -exec rm -rf {} +
+RUN find / -type f -name "gem_make.out" -exec rm -rf {} +
+RUN find / -name ".npm" -exec rm -rf {} +
+RUN find / -name "Rakefile" -exec rm -rf {} +
+RUN find / -name "spec" -exec rm -rf {} +
+RUN find / -name "node_modules" -exec rm -rf {} +
 
 EXPOSE 3000
 CMD ["rails", "s", "-b", "0.0.0.0"]
