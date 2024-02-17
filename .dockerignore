@@ -14,7 +14,7 @@
 Dockerfile
 README.md
 coverage
-db/*.sqlite3
+db/*.sqlite3*
 docker-compose.yml
 log/*
 node_modules
