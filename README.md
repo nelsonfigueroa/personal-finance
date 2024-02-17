@@ -30,20 +30,6 @@ You can use the demo user credentials to try out the app. This user already has 
 
 Or you can create a new account and start from scratch.
 
-## Cleaning Up
-
-To take down the application run:
-
-```shell
-docker-compose down
-```
-
-If you don't plan on using Docker for other purposes, you can clean up the Docker images that were downloaded as well:
-
-```shell
-docker system prune -a --volumes
-```
-
 ## Notable Gems and Libraries used:
 
 - [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
