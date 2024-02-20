@@ -71,7 +71,6 @@ Rails.application.configure do
     end
   end
 
-
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
@@ -90,5 +89,5 @@ Rails.application.configure do
   end
 
   # for debugbar gem
-  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  config.action_cable.allowed_request_origins = [%r{http://*}, %r{https://*}]
 end
