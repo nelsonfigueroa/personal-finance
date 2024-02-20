@@ -14,5 +14,9 @@
   <body>
     <%= render partial: 'layouts/nav' %>
     <%= yield %>
+
+    <% if Rails.env.development? %>
+        <%= debugbar_javascript %>
+    <% end %>
   </body>
 </html>

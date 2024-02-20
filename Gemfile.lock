@@ -112,6 +112,9 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
+    debugbar (0.1.4)
+      actioncable
+      rails
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -401,6 +404,7 @@ DEPENDENCIES
   bullet
   capybara (>= 2.15)
   chartkick (>= 4.2.1)
+  debugbar
   devise
   devise-pwned_password
   erb_lint

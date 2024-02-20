@@ -3,6 +3,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  if defined? Debugbar
+    mount Debugbar::Engine => Debugbar.config.prefix
+  end
+
   devise_for :users
 
   authenticated :user do

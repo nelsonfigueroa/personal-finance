@@ -42,6 +42,7 @@ end
 group :development do
   gem 'brakeman'
   gem 'bullet'
+  gem 'debugbar'
   gem 'listen'
   gem 'seed_dump'
   gem 'spring'

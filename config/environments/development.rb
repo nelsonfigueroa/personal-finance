@@ -60,10 +60,17 @@ Rails.application.configure do
     development_logfile = Rails.application.config.paths['log'].first
 
     if File.exist?(development_logfile)
-      Rails.logger.debug 'Deleting development.log...'
-      File.delete(development_logfile)
+      # get file size of development.log and convert to Megabytes rounded to 2 decimal places
+      file_size = (File.size(development_logfile) / 1_024_000.0).round(2)
+
+      # if development.log is 50MB or more, delete it.
+      if file_size >= 50
+        Rails.logger.debug 'development.log is over 50MB. Deleting...'
+        File.delete(development_logfile)
+      end
     end
   end
+
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
@@ -81,4 +88,7 @@ Rails.application.configure do
     Bullet.rails_logger  = true
     Bullet.add_footer    = true
   end
+
+  # for debugbar gem
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 end
