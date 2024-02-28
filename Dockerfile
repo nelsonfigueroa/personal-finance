@@ -1,4 +1,4 @@
-FROM ruby:3.2.3-alpine3.19
+FROM ruby:3.2.3-alpine3.19 AS build
 
 ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
@@ -22,8 +22,8 @@ RUN gem uninstall sqlite3
 RUN gem install sqlite3 --platform=ruby
 
 RUN rm -rf /usr/local/bundle/cache/*.gem \
-	&& find /usr/local/bundle/gems/ -name "*.c" -delete \
-       && find /usr/local/bundle/gems/ -name "*.o" -delete
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 COPY . .
 
@@ -40,7 +40,7 @@ RUN rails db:migrate
 RUN rails db:seed
 
 # cleanup
-RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/*
+RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/* /root/.bundle/cache
 RUN find / -type f -name "*.c" -exec rm -rf {} +
 RUN find / -type f -name "*.h" -exec rm -rf {} +
 RUN find / -type f -name "*.hpp" -exec rm -rf {} +
@@ -67,5 +67,14 @@ RUN find / -name "Rakefile" -exec rm -rf {} +
 RUN find / -name "spec" -exec rm -rf {} +
 RUN find / -name "node_modules" -exec rm -rf {} +
 
+# Runtime image without deleted files/directories
+FROM ruby:3.2.3-alpine3.19 AS runtime
+COPY --from=build . .
+
+ENV RAILS_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_LOG_TO_STDOUT=true
+
+WORKDIR /app
 EXPOSE 3000
-CMD ["rails", "s", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
