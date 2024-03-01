@@ -2,8 +2,6 @@ FROM ruby:3.2.3-alpine3.19 AS build
 
 ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
-ENV RAILS_SERVE_STATIC_FILES=true
-ENV RAILS_LOG_TO_STDOUT=true
 
 RUN apk --update add build-base gcompat sqlite-dev nodejs npm yaml-dev
 

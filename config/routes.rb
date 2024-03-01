@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       resources :statements, except: [:show]
     end
 
-    resources :dividends
     resources :transactions, except: [:show]
     resources :categories
 
