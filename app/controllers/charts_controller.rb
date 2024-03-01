@@ -65,8 +65,7 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    dividends = @user.dividends.by_year(year).sum(:amount_cents)
-    income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
+    income = (transactions.where(category: @@income_categories).sum(:amount_cents)) / 100.0
     expenses = transactions.where.not(category: @@not_expense_categories).sum(:amount_cents) / 100.0
 
     {
@@ -80,8 +79,7 @@ class ChartsController < ApplicationController
 
     return {} if transactions.empty?
 
-    dividends = @user.dividends.by_year(year).sum(:amount_cents)
-    income = (transactions.where(category: @@income_categories).sum(:amount_cents) + dividends) / 100.0
+    income = (transactions.where(category: @@income_categories).sum(:amount_cents)) / 100.0
     rent_category = @user.categories.where(name: 'Rent').first
     rent = transactions.where(category: rent_category).sum(:amount_cents) / 100.0
 
@@ -93,7 +91,6 @@ class ChartsController < ApplicationController
 
   def generate_yearly_income_chart_data(year)
     transactions = @user.transactions.by_year(year)
-    dividends = @user.dividends.by_year(year)
 
     return {} if transactions.empty?
 
@@ -102,11 +99,6 @@ class ChartsController < ApplicationController
     @@income_categories.each do |category|
       amount = transactions.where(category: category).sum(:amount_cents) / 100.0
       data.merge!(category.name => amount)
-    end
-
-    unless dividends.empty?
-      dividends_total = dividends.sum(:amount_cents) / 100.0
-      data['Dividends'] = dividends_total
     end
 
     data
