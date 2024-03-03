@@ -58,7 +58,7 @@
 
 <h2>Overview for <%= @selected_year %></h2>
 <%= form_tag dashboard_path, method: :get do %>
-    <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false %>
+    <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: 'select select-accent' %>
     <%= submit_tag "Filter by year", class: 'btn btn-neutral' %>
 <% end %>
 
