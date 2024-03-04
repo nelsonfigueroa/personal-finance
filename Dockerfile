@@ -30,12 +30,9 @@ RUN npm install
 # generate master.key and encrypted credentials
 RUN EDITOR="mate --wait" bin/rails credentials:edit
 
-RUN bundle exec rails tailwindcss:install
-RUN bundle exec rails assets:precompile
+RUN bundle exec rails tailwindcss:install && bundle exec rails assets:precompile
 
-RUN rails db:create --trace
-RUN rails db:migrate
-RUN rails db:seed
+RUN rails db:setup --trace
 
 # cleanup
 RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/* /root/.bundle/cache
