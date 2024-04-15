@@ -34,6 +34,11 @@ RUN bundle exec rails tailwindcss:install && bundle exec rails assets:precompile
 
 RUN rails db:setup --trace
 
+# I don't think I need these?
+RUN apk del nodejs
+RUN apk del npm
+RUN apk del build-base
+
 # cleanup
 RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/* /root/.bundle/cache
 RUN find / -type f -name "*.c" -exec rm -rf {} +
@@ -61,6 +66,9 @@ RUN find / -name ".npm" -exec rm -rf {} +
 RUN find / -name "Rakefile" -exec rm -rf {} +
 RUN find / -name "spec" -exec rm -rf {} +
 RUN find / -name "node_modules" -exec rm -rf {} +
+
+# remove the package manager
+RUN apk del apk-tools
 
 # Runtime image without deleted files/directories
 FROM ruby:3.2.3-alpine3.19 AS runtime
