@@ -3,6 +3,7 @@
 */*/test.rb
 */credentials.yml.enc
 */master.key
+.bundle
 .dockerignore
 .erb-lint.yml
 .git
@@ -15,7 +16,6 @@ Dockerfile
 README.md
 coverage
 db/*.sqlite3*
-docker-compose.yml
 log/*
 node_modules
 public/packs
