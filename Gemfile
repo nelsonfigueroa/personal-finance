@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.3'
+ruby '3.3.1'
 
 gem 'actionpack', '>= 7.0.4.1'
 gem 'actionview', '>= 7.0.4.1'
@@ -25,7 +25,7 @@ gem 'rails', '>= 7.0.4'
 gem 'sprockets-rails'
 gem 'sqlite3'
 gem 'tailwindcss-rails', '~> 2.3'
-gem 'turbolinks', '~> 5.2.1'
+gem 'turbolinks', '>= 5.2'
 gem 'tzinfo-data'
 
 group :development, :test do
@@ -33,7 +33,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry', '>= 0.12.2'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 5.0.1'
+  gem 'rspec-rails', '>= 6.1'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
