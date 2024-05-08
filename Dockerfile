@@ -1,9 +1,10 @@
-FROM ruby:3.2.3-alpine3.19 AS build
+FROM ruby:3.3.1-slim-bullseye AS build
 
 ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
 
-RUN apk --update add build-base gcompat sqlite-dev nodejs npm yaml-dev
+RUN apt update
+RUN apt install -y build-essential npm libsqlite3-dev nodejs
 
 WORKDIR /app
 
@@ -14,14 +15,6 @@ RUN gem install bundler
 # don't install development, test gems
 RUN bundle config set without 'development test'
 RUN bundle install --jobs 4 --no-cache --retry 5
-
-# workaround to fix some SQLite issues
-RUN gem uninstall sqlite3
-RUN gem install sqlite3 --platform=ruby
-
-RUN rm -rf /usr/local/bundle/cache/*.gem \
-    && find /usr/local/bundle/gems/ -name "*.c" -delete \
-    && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 COPY . .
 
@@ -34,13 +27,13 @@ RUN bundle exec rails tailwindcss:install && bundle exec rails assets:precompile
 
 RUN rails db:setup --trace
 
-# I don't think I need these?
-RUN apk del nodejs
-RUN apk del npm
-RUN apk del build-base
-
 # cleanup
-RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /var/cache/apk/* /root/.bundle/cache
+RUN apt remove -y nodejs
+RUN apt remove -y build-essential
+RUN apt autoremove -y
+
+# more cleanup
+RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /root/.bundle/cache
 RUN find / -type f -name "*.c" -exec rm -rf {} +
 RUN find / -type f -name "*.h" -exec rm -rf {} +
 RUN find / -type f -name "*.hpp" -exec rm -rf {} +
@@ -68,10 +61,10 @@ RUN find / -name "spec" -exec rm -rf {} +
 RUN find / -name "node_modules" -exec rm -rf {} +
 
 # remove the package manager
-RUN apk del apk-tools
+RUN apt remove -y --allow-remove-essential apt
 
-# Runtime image without deleted files/directories
-FROM ruby:3.2.3-alpine3.19 AS runtime
+# Runtime image without unnecessary files/directories
+FROM ruby:3.3.1-slim-bullseye AS runtime
 COPY --from=build . .
 
 ENV RAILS_ENV=production
