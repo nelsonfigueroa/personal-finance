@@ -65,7 +65,7 @@ Rails.application.configure do
 
       # if development.log is 50MB or more, delete it.
       if file_size >= 20
-        Rails.logger.debug 'development.log is over 50MB. Deleting...'
+        Rails.logger.debug 'development.log is over 20MB. Deleting...'
         File.delete(development_logfile)
       end
     end
