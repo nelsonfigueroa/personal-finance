@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_importmap_tags %>
+
+    <%= debugbar_head  if defined? Debugbar %>
   </head>
 
   <body>
@@ -16,7 +18,7 @@
     <%= yield %>
 
     <% if Rails.env.development? %>
-        <%= debugbar_body %>
+        <%= debugbar_body if defined? Debugbar %>
     <% end %>
   </body>
 </html>
