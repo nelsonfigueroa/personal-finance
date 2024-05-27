@@ -1,15 +1,16 @@
-<div class="">
-  <h1>Sign up</h1>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
+<div class="container">
+  <h1 class="text-2xl font-bold">Sign up</h1>
+  <br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }, html: { class: 'w-full max-w-sm' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <%= f.text_field :name, autofocus: true, placeholder: 'Name', autocomplete: "name", class: '' %>
+    <%= f.text_field :name, autofocus: true, placeholder: 'Name', autocomplete: "name", class: 'block input input-bordered input-accent w-full max-w-xs' %>
     <br>
-    <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: '' %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: 'block input input-bordered input-accent w-full max-w-xs' %>
     <br>
-    <%= f.password_field :password, placeholder: "Password (#{@minimum_password_length} characters minimum)", autocomplete: "new-password", class: '' %>
+    <%= f.password_field :password, placeholder: "Password (#{@minimum_password_length} characters minimum)", autocomplete: "new-password", class: 'block input input-bordered input-accent w-full max-w-xs' %>
     <br>
-    <%= f.password_field :password_confirmation, placeholder: 'Repeat Password', autocomplete: "new-password", class: '' %>
+    <%= f.password_field :password_confirmation, placeholder: 'Repeat Password', autocomplete: "new-password", class: 'block input input-bordered input-accent w-full max-w-xs' %>
     <br>
-    <%= f.submit "Sign up", class: '' %>
+    <%= f.submit "Sign up", class: 'btn btn-neutral' %>
   <% end %>
 <div>
