@@ -44,6 +44,7 @@ group :development do
   gem 'bullet'
   gem 'debugbar'
   gem 'listen'
+  gem "rails_live_reload"
   gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen'
