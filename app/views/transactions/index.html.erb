@@ -1,8 +1,9 @@
 <div class="container">
 
-<h1>Transactions</h1>
-
 <%= render partial: 'layouts/notifications' %>
+
+<small>Create transactions here. Your dashboard will populate once you have transactions.</small>
+<br><br>
 
 <%= link_to 'Create a Transaction', new_transaction_path, class: 'btn btn-neutral' %>
 <%= link_to 'Download All Transactions as JSON', transactions_download_path, class: 'btn btn-neutral', download: 'transactions.json' %>
@@ -37,25 +38,25 @@
   <p>No existing transactions for <%= Time.zone.now.year %>. Create one!</p>
 <% else %>
   <% @transactions.each do |month, transactions| %>
-        <div class="divider divider-accent"><%= month.strftime("%B %Y") %></div>
+    <div class="divider divider-accent"><%= month.strftime("%B %Y") %></div>
 
-    <div class="stats">
+    <div class="container mx-auto">
+        <div class="stats">
+            <div class="stat place-items-center">
+            <div class="stat-title">Monthly Income</div>
+            <div class="stat-value text-success"><%= humanized_money_with_symbol @monthly_income[month] %></div>
+            </div>
 
-        <div class="stat place-items-center">
-        <div class="stat-title">Monthly Income</div>
-        <div class="stat-value text-success"><%= humanized_money_with_symbol @monthly_income[month] %></div>
+            <div class="stat place-items-center">
+            <div class="stat-title">Monthly Expenses</div>
+            <div class="stat-value text-error"><%= humanized_money_with_symbol @monthly_expenses[month] %></div>
+            </div>
+
+            <div class="stat place-items-center">
+            <div class="stat-title">Transactions</div>
+            <div class="stat-value"><%= transactions.count %></div>
+            </div>
         </div>
-
-        <div class="stat place-items-center">
-        <div class="stat-title">Monthly Expenses</div>
-        <div class="stat-value text-error"><%= humanized_money_with_symbol @monthly_expenses[month] %></div>
-        </div>
-
-        <div class="stat place-items-center">
-          <div class="stat-title">Transactions</div>
-          <div class="stat-value"><%= transactions.count %></div>
-        </div>
-
     </div>
 
     <table class="table table-zebra table-pin-rows table-sm">
