@@ -1,11 +1,11 @@
 <%= render partial: 'layouts/notifications' %>
 
-<nav aria-label="breadcrumbs">
-  <%= link_to 'Categories', categories_path %> >
-  <a href="#" aria-current="page"><%= @category.name %></a>
-</nav>
-
-<h1><%= @category.name %></h1>
+<div class="breadcrumbs">
+    <ul>
+        <li><%= link_to 'Categories', categories_path %></li>
+        <li><a href="#" aria-current="page"><%= @category.name %></a></li>
+    </ul>
+</div>
 
 <%= link_to edit_category_path, class: '' do %>
   <button>Edit Category</button>
