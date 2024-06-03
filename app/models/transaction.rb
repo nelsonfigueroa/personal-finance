@@ -2,7 +2,7 @@
 
 class Transaction < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   validates :date, :category, :amount, presence: true
   validates :amount, numericality: true
 
