@@ -79,3 +79,30 @@ end
   date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
   Transaction.create!(user_id: 1, date: date, category_id: 5, notes: 'Food', amount_cents: 3500, amount_currency: 'USD')
 end
+
+# Car transactions for 4 year span
+48.times do |i|
+  i += 1
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 10000, amount_currency: 'USD')
+
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 23500, amount_currency: 'USD')
+end
+
+# Shopping transactions for 4 year span
+48.times do |i|
+  i += 1
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 7, notes: 'Shopping', amount_cents: 1000, amount_currency: 'USD')
+
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 7, notes: 'Shopping', amount_cents: 6000, amount_currency: 'USD')
+end
+
+# Games transactions for 4 year span
+48.times do |i|
+  i += 1
+  date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
+  Transaction.create!(user_id: 1, date: date, category_id: 7, notes: 'New video game purchase', amount_cents: 7000, amount_currency: 'USD')
+end
