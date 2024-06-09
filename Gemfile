@@ -24,8 +24,8 @@ gem 'puma', '>= 5.6.4'
 gem 'rails', '>= 7.0.4'
 gem 'sprockets-rails'
 gem 'sqlite3'
-gem 'turbo-rails', '>= 2.0.5'
 gem 'tailwindcss-rails', '~> 2.3'
+gem 'turbo-rails', '>= 2.0.5'
 gem 'tzinfo-data'
 
 group :development, :test do
@@ -44,7 +44,7 @@ group :development do
   gem 'bullet'
   gem 'debugbar'
   gem 'listen'
-  gem "rails_live_reload"
+  gem 'rails_live_reload'
   gem 'seed_dump'
   gem 'spring'
   gem 'spring-watcher-listen'
