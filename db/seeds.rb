@@ -84,10 +84,10 @@ end
 48.times do |i|
   i += 1
   date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
-  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 10000, amount_currency: 'USD')
+  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 10_000, amount_currency: 'USD')
 
   date = Faker::Date.between(from: (49 - i).months.ago, to: (48 - i).months.ago)
-  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 23500, amount_currency: 'USD')
+  Transaction.create!(user_id: 1, date: date, category_id: 6, notes: 'Car', amount_cents: 23_500, amount_currency: 'USD')
 end
 
 # Shopping transactions for 4 year span
