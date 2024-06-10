@@ -54,10 +54,8 @@ class ChartsController < ApplicationController
     @income_category = Category.where(user_id: @user, name: 'Income').first
     @interest_category = Category.where(user_id: @user, name: 'Interest').first
     @savings_category = Category.where(user_id: @user, name: 'Savings').first
-    @investing_category = Category.where(user_id: @user, name: 'Investing').first
-    @sale_category = Category.where(user_id: @user, name: 'Sale').first
     @@income_categories = [@income_category, @interest_category]
-    @@not_expense_categories = [@income_category, @interest_category, @savings_category, @investing_category, @sale_category]
+    @@not_expense_categories = [@income_category, @interest_category, @savings_category]
   end
 
   def generate_yearly_income_vs_expenses_chart_data(year)
@@ -135,8 +133,8 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    # hardcoding year
-    statements = @user.statements.from_year(CURRENT_YEAR - 5)
+    # hardcoding 1 year back
+    statements = @user.statements.from_year(CURRENT_YEAR - 1)
     return [] if statements.empty?
 
     graph_data = {}
