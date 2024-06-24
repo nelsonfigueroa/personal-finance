@@ -20,7 +20,7 @@ class Statement < ApplicationRecord
     beginning_of_year = datetime.beginning_of_year
 
     # current year
-    datetime = DateTime.new(Time.zone.now.year)
+    datetime = DateTime.new(CURRENT_YEAR)
     end_of_year = datetime.end_of_year
     where('date >= ? and date <= ?', beginning_of_year, end_of_year)
   end
