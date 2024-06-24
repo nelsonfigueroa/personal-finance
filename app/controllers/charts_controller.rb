@@ -133,14 +133,15 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    graph_data = {}
     account_ids = @user.accounts.pluck(:id)
-    dates = @user.statements.pluck(:date).uniq
 
-    # hardcoding 5 years back
+    # hardcoding 5 years back of statements
+    statements = @user.statements.from_year(CURRENT_YEAR - 5)
+    dates = statements.pluck(:date).uniq
+
     # Preload statements for all accounts up to the latest date in dates array
-    all_statements = @user.statements.where(account_id: account_ids).from_year(CURRENT_YEAR - 5).where('date <= ?', dates.max).order(account_id: :asc, date: :desc)
-    return [] if all_statements.empty?
+    all_statements = statements.where(account_id: account_ids).where('date <= ?', dates.max).order(account_id: :asc, date: :desc)
+    return {} if all_statements.empty?
 
     # Group statements by account_id for easy lookup
     statements_by_account = all_statements.group_by(&:account_id)
