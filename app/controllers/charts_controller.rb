@@ -133,21 +133,27 @@ class ChartsController < ApplicationController
   end
 
   def generate_net_worth_data
-    # hardcoding 1 year back
-    statements = @user.statements.from_year(CURRENT_YEAR - 1)
-    return [] if statements.empty?
+    graph_data = {}
+    account_ids = @user.accounts.pluck(:id)
+    dates = @user.statements.pluck(:date).uniq
+
+    # hardcoding 5 years back
+    # Preload statements for all accounts up to the latest date in dates array
+    all_statements = @user.statements.where(account_id: account_ids).from_year(CURRENT_YEAR - 5).where('date <= ?', dates.max).order(account_id: :asc, date: :desc)
+    return [] if all_statements.empty?
+
+    # Group statements by account_id for easy lookup
+    statements_by_account = all_statements.group_by(&:account_id)
 
     graph_data = {}
 
-    account_ids = @user.accounts.pluck(:id)
-    dates = statements.pluck(:date).uniq
-
     dates.each do |date|
       sum = 0
-      account_ids.each do |account_id|
-        statement = statements.where(account_id: account_id).where('date <= ?', date).order(date: :desc).limit(1)[0]
-        next if statement.nil?
 
+      account_ids.each do |account_id|
+        # Get the latest statement for the account up to the given date
+        statement = statements_by_account[account_id]&.find { |s| s.date <= date }
+        next if statement.nil?
         sum += statement.balance_cents
       end
 
@@ -155,6 +161,7 @@ class ChartsController < ApplicationController
 
       graph_data[date] = sum
     end
+
     graph_data.sort
   end
 end
