@@ -1,13 +1,13 @@
 <section>
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <div class="breadcrumbs">
     <ul>
       <li><%= link_to 'Accounts', accounts_path %></li>
       <li><%= link_to "#{@account.name}", account_path(@account) %></li>
       <li><a href="#" aria-current="page">Add Statement</a></li>
     </ul>
-  </nav>
+  </div>
 
   <%= form_with model: @statement, url: {controller: 'statements', action: 'create'} do |f| %>
     <%= f.label :balance %>

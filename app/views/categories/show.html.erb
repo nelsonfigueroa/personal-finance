@@ -7,13 +7,11 @@
     </ul>
 </div>
 
-<%= link_to edit_category_path, class: '' do %>
+<%= link_to edit_category_path, class: 'btn btn-neutral' do %>
   <button>Edit Category</button>
 <% end %>
 
-<br>
-
-<%= link_to category_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}", class: '' } do %>
+<%= link_to category_path, class: 'btn btn-neutral', data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}" } do %>
   <button>Delete Category</button>
 <% end %>
 

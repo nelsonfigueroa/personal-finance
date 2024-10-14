@@ -1,14 +1,12 @@
 
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <div class="breadcrumbs">
     <ul>
       <li><%= link_to 'Transactions', transactions_path %></li>
       <li><a href="#" aria-current="page">Create Transaction</a></li>
     </ul>
-  </nav>
-
-  <h1>Create Transaction</h1>
+  </div>
 
   <%= form_with model: @transaction do |f| %>
     <%= f.label :merchant %>

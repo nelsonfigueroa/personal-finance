@@ -16,14 +16,14 @@
         <span class="label-text">Import Transactions from CSV</span>
       </div>
       <%= form.file_field :csv, class: "form-control file-input file-input-bordered w-full max-w-xs" %>
- <% end %>
+  <% end %>
   <br>
   <%= form.label :import_from, "", class: 'form-control w-full max-w-xs' do %>
       <div class="label">
         <span class="label-text">Kind of CSV you are importing</span>
       </div>
       <%= form.select(:import_from, ["Apple Card", "Copilot Money"], {},  class: 'form-control select select-bordered w-full max-w-xs' ) %>
-<% end %>
+  <% end %>
   <%= form.submit "Import", class: 'btn btn-neutral' %>
 <% end %>
 

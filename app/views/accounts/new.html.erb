@@ -1,15 +1,15 @@
 <section>
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <div class="breadcrumbs">
     <ul>
       <li><%= link_to 'Accounts', accounts_path %></li>
       <li><a href="#" aria-current="page">Add Account</a></li>
     </ul>
-  </nav>
+  </div>
 
   <%= form_with model: @account do |f| %>
-    <%= f.label :name %>
+    <%= f.label :name, class: 'label-text' %>
     <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-bordered' %>
     <%= f.submit "Add Account", class: 'btn btn-neutral' %>
   <% end %>
