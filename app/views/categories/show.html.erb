@@ -20,7 +20,7 @@
 <% if @transactions.empty? %>
   <p>You have no transactions under this category.</p>
 <% else %>
-  <table>
+  <table class="table table-zebra table-pin-rows table-sm">
     <thead>
       <tr>
         <th>Merchant</th>
@@ -28,8 +28,7 @@
         <th>Category</th>
         <th>Date</th>
         <th>Notes</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -46,8 +45,6 @@
           <td><%= transaction.notes %></td>
           <td>
             <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
-          </td>
-          <td>
             <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
           </td>
         </tr>
