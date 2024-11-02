@@ -6,7 +6,7 @@
     <div class="stat">
         <p class="text-2xl join-item">Net Worth</p>
         <div class="stat-value text-success join-item"><%= humanized_money_with_symbol @net_worth %></div>
-        <p class="join-item">As of <%= Time.zone.now.strftime('%Y-%m-%d') %></p>
+        <p class="join-item">As of <%= Time.now.strftime('%Y-%m-%d') %></p>
     </div>
 </div>
 
@@ -93,7 +93,7 @@
   <table class="table table-zebra table-sm">
     <thead>
       <tr>
-        <th colspan="2"><%= Time.zone.now.year %></th>
+        <th colspan="2"><%= Time.now.year %></th>
       </tr>
     </thead>
 

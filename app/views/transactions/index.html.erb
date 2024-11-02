@@ -35,7 +35,7 @@
 <% end %>
 
 <% if @transactions.empty? %>
-  <p>No existing transactions for <%= Time.zone.now.year %>. Create one!</p>
+  <p>No existing transactions for <%= Time.now.year %>. Create one!</p>
 <% else %>
   <% @transactions.each do |month, transactions| %>
     <div class="divider divider-accent"><%= month.strftime("%B %Y") %></div>
