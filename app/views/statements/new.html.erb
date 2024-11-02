@@ -13,7 +13,7 @@
     <%= f.label :balance %>
     <%= f.number_field :balance, step: 0.01, class: 'input input-bordered' %>
     <%= f.label :date %>
-    <%= f.date_field :date, value: "#{Time.now.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
+    <%= f.date_field :date, value: "#{Time.now.getlocal.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
     <%= f.label :notes %>
     <%= f.text_field :notes, class: 'input input-bordered' %>
     <%= f.submit "Add", class: 'btn btn-neutral' %>

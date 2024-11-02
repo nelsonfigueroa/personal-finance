@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # current year to be used throughout app controllers
-  CURRENT_YEAR = Time.now.year
+  CURRENT_YEAR = Time.now.getlocal.year
 
   protected
 

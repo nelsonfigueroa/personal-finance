@@ -4,5 +4,5 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   # current year to be used throughout app models
-  CURRENT_YEAR = Time.now.year
+  CURRENT_YEAR = Time.now.getlocal.year
 end

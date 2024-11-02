@@ -23,7 +23,7 @@
     <br>
     <%= f.label :date %>
     <br>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", value: "#{Time.now.getlocal.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
     <br>
     <%= f.label :notes %>
     <br>
