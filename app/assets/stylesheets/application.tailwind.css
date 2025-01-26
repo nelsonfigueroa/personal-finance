@@ -11,3 +11,8 @@
 }
 
 */
+
+/* disable default button animations */
+.btn {
+  animation: none;
+}
