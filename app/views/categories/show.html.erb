@@ -37,15 +37,15 @@
           <td><%= transaction.merchant %></td>
           <td><%= humanized_money_with_symbol transaction.amount %></td>
           <% if transaction.category %>
-          <td><span class="" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></span></td>
+          <td><div class="badge badge-outline bg-neutral badge-sm" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></div></td>
           <% else %>
           <td>(uncategorized)</td>
           <% end %>
           <td><%= transaction.date %></td>
           <td><%= transaction.notes %></td>
           <td>
-            <%= link_to edit_transaction_path(transaction.id), class: '' do %>Edit<% end %>
-            <%= link_to transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} do %>Delete<% end %>
+            <%= link_to 'Edit', edit_transaction_path(transaction.id), class: '' %>
+            <%= link_to 'Delete', transaction_path(transaction.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this transaction?", class: ''} %>
           </td>
         </tr>
       <% end %>
