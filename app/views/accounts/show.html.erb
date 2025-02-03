@@ -28,8 +28,9 @@
   <table class="table table-zebra table-sm">
     <thead>
       <tr>
-        <th>Balance</th>
+        <th>Latest Statement Balance</th>
         <th>Date</th>
+        <th>Notes</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -42,6 +43,7 @@
           <td><%= humanized_money_with_symbol statement.balance %></td>
         <% end %>
         <td><%= statement.date.to_formatted_s(:long) %></td>
+        <td><%= statement.notes %></td>
         <td>
           <%= link_to 'Edit', edit_account_statement_path(account_id: @account.id, id: statement), class: '' %>
           <%= link_to 'Delete', account_statement_path(account_id: @account.id, id: statement), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: '' %>

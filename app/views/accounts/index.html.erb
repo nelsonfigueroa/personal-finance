@@ -22,8 +22,9 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Latest Statement</th>
+          <th>Latest Statement Balance</th>
           <th>Date</th>
+          <th>Notes</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@
           <% if account.statements.order(:date).last %>
             <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
+            <td><%= account.statements.order(:date).last.notes %></td>
           <% else %>
             <td><i>No recorded statements</i></td>
             <td></td>
