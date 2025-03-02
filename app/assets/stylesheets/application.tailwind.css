@@ -13,6 +13,9 @@
 */
 
 /* disable default button animations */
-.btn {
-  animation: none;
+* {
+  animation: none !important;
+  transition: none !important;
+  animation-duration: 0s !important;
+  animation-name: none !important;
 }
