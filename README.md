@@ -29,15 +29,3 @@ You can use the demo user credentials to try out the app. This user already has 
 - Password: `demouser123!`
 
 Or you can create a new account and start from scratch.
-
-## Notable Gems and Libraries used:
-
-- [RSpec](https://github.com/rspec/rspec-rails) - For writing tests.
-- [simplecov](https://github.com/colszowka/simplecov) - Provides test coverage analysis.
-- [Rubocop](https://github.com/rubocop-hq/rubocop-rails) - Linting for Ruby code.
-- [erb-lint](https://github.com/Shopify/erb-lint) - Linting for `.erb` files.
-- [Chartkick](https://chartkick.com/) - Chart and graph generation.
-- [devise-pwned_password](https://github.com/michaelbanfield/devise-pwned_password) - Gem that checks if Devise Models are using passwords that have shown up in data breaches. Powered by the [pwned](https://github.com/philnash/pwned) gem.
-- [Bullet](https://github.com/flyerhzm/bullet) - To ensure database queries are efficient
-- [brakeman](https://github.com/presidentbeef/brakeman) - To check for security vulnerabiliies
-- [Tailwind CSS](https://tailwindcss.com/) with the [daisyUI](https://daisyui.com/) library.
