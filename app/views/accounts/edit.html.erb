@@ -1,7 +1,7 @@
 
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <nav aria-label="">
     <ul>
       <li><%= link_to 'Accounts', accounts_path %></li>
       <li><%= link_to "#{@account.name}", account_path(@account) %></li>
@@ -13,6 +13,6 @@
 
   <%= form_with model: @account do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-bordered' %>
-    <%= f.submit "Update", class: 'btn btn-neutral' %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+    <%= f.submit "Update", class: '' %>
   <% end %>

@@ -5,20 +5,20 @@
 
   <small>Create accounts and then then create statements to keep track of balances periodically. Statements are aggregated to calculate net worth in the dashboard.</small>
   <br><br>
-  <%= link_to 'Add an Account', new_account_path, class: 'btn btn-neutral' %>
-  <%= link_to 'Download All Statements as JSON', statements_download_path, class: 'btn btn-neutral' , download: 'statements.json' %>
+  <%= link_to 'Add an Account', new_account_path %>
+  <%= link_to 'Download All Statements as JSON', statements_download_path, download: 'statements.json' %>
   <br><br>
 
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
-    <div class="stats">
-        <div class="stat">
-        <div class="stat-title">Net Worth</div>
-        <div class="stat-value text-success"><%= humanized_money_with_symbol @net_worth %></div>
+    <div>
+        <div>
+        <div>Net Worth</div>
+        <div><%= humanized_money_with_symbol @net_worth %></div>
         </div>
     </div>
-    <table class="table table-zebra table-sm">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -30,7 +30,7 @@
       <tbody>
         <% @accounts.each do |account| %>
           <tr>
-          <td><%= link_to account.name, account, class: 'link link-primary' %></td>
+          <td><%= link_to account.name, account, class: '' %></td>
           <% if account.statements.order(:date).last %>
             <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
             <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>

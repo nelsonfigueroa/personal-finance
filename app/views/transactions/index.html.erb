@@ -5,61 +5,61 @@
 <small>Create transactions here. Your dashboard will populate once you have transactions.</small>
 <br><br>
 
-<%= link_to 'Create a Transaction', new_transaction_path, class: 'btn btn-neutral' %>
-<%= link_to 'Download All Transactions as JSON', transactions_download_path, class: 'btn btn-neutral', download: 'transactions.json' %>
+<%= link_to 'Create a Transaction', new_transaction_path, class: '' %>
+<%= link_to 'Download All Transactions as JSON', transactions_download_path, class: '', download: 'transactions.json' %>
 
 <br><br>
 
 <%= form_with url: transactions_import_path, method: :post do |form| %>
-  <%= form.label :csv, "", class: 'form-control w-full max-w-xs' do %>
-      <div class="label">
-        <span class="label-text">Import Transactions from CSV</span>
+  <%= form.label :csv, "", class: '' do %>
+      <div class="">
+        <span class="">Import Transactions from CSV</span>
       </div>
-      <%= form.file_field :csv, class: "form-control file-input file-input-bordered w-full max-w-xs" %>
+      <%= form.file_field :csv, class: "" %>
   <% end %>
   <br>
-  <%= form.label :import_from, "", class: 'form-control w-full max-w-xs' do %>
-      <div class="label">
-        <span class="label-text">Kind of CSV you are importing</span>
+  <%= form.label :import_from, "", class: '' do %>
+      <div class="">
+        <span class="">Kind of CSV you are importing</span>
       </div>
-      <%= form.select(:import_from, ["Apple Card", "Copilot Money"], {},  class: 'form-control select select-bordered w-full max-w-xs' ) %>
+      <%= form.select(:import_from, ["Apple Card", "Copilot Money"], {},  class: '' ) %>
   <% end %>
-  <%= form.submit "Import", class: 'btn btn-neutral' %>
+  <%= form.submit "Import", class: '' %>
 <% end %>
 
 <br>
 
 <%= form_tag transactions_path, method: :get do %>
-    <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: 'select select-accent' %>
-    <%= submit_tag "Filter by year", class: 'btn btn-neutral' %>
+    <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: '' %>
+    <%= submit_tag "Filter by year", class: '' %>
 <% end %>
 
 <% if @transactions.empty? %>
   <p>No existing transactions for <%= Time.now.getlocal.year %>. Create one!</p>
 <% else %>
   <% @transactions.each do |month, transactions| %>
-    <div class="divider divider-accent"><%= month.strftime("%B %Y") %></div>
+    <div class=""><%= month.strftime("%B %Y") %></div>
 
-    <div class="container mx-auto">
-        <div class="stats">
-            <div class="stat place-items-center">
-            <div class="stat-title">Monthly Income</div>
-            <div class="stat-value text-success"><%= humanized_money_with_symbol @monthly_income[month] %></div>
+    <div class="">
+        <div class="">
+            <div class="">
+            <div class="">Monthly Income</div>
+            <div class=""><%= humanized_money_with_symbol @monthly_income[month] %></div>
             </div>
 
-            <div class="stat place-items-center">
-            <div class="stat-title">Monthly Expenses</div>
-            <div class="stat-value text-error"><%= humanized_money_with_symbol @monthly_expenses[month] %></div>
+            <div class="">
+            <div class="">Monthly Expenses</div>
+            <div class=""><%= humanized_money_with_symbol @monthly_expenses[month] %></div>
             </div>
 
-            <div class="stat place-items-center">
-            <div class="stat-title">Transactions</div>
-            <div class="stat-value"><%= transactions.count %></div>
+            <div class="">
+            <div class="">Transactions</div>
+            <div class=""><%= transactions.count %></div>
             </div>
         </div>
     </div>
 
-    <table class="table table-zebra table-pin-rows table-sm">
+    <table class="">
       <thead>
         <tr>
           <th>Merchant</th>
@@ -76,7 +76,7 @@
         <td><%= transaction.merchant %></td>
         <td><%= humanized_money_with_symbol transaction.amount %></td>
         <% if transaction.category %>
-        <td><div class="badge badge-outline bg-neutral badge-sm" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></div></td>
+        <td><div class="" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></div></td>
         <% else %>
         <td>(uncategorized)</td>
         <% end %>

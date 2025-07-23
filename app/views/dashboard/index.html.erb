@@ -2,11 +2,11 @@
 
 <%= render partial: 'layouts/notifications' %>
 
-<div class="stats join join-horizontal">
-    <div class="stat">
-        <p class="text-2xl join-item">Net Worth</p>
-        <div class="stat-value text-success join-item"><%= humanized_money_with_symbol @net_worth %></div>
-        <p class="join-item">As of <%= Time.now.getlocal.strftime('%Y-%m-%d') %></p>
+<div class="">
+    <div class="">
+        <p class="">Net Worth</p>
+        <div class=""><%= humanized_money_with_symbol @net_worth %></div>
+        <p class="">As of <%= Time.now.getlocal.strftime('%Y-%m-%d') %></p>
     </div>
 </div>
 
@@ -21,13 +21,13 @@
 <br>
 
 <section>
-  <h2 class="text-2xl">Account Balances</h2>
+  <h2 class="">Account Balances</h2>
   <br>
 
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
-    <table class="table table-zebra table-sm">
+    <table class="">
       <thead>
         <tr>
           <th>Name</th>
@@ -59,38 +59,38 @@
 
 <br>
 
-<p class="text-2xl">Overview for <%= @selected_year %></p>
+<p class="">Overview for <%= @selected_year %></p>
 
-<div class="join join-horizontal">
+<div class="">
     <%= form_tag dashboard_path, method: :get do %>
-        <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: 'select select-accent join-item' %>
-        <%= submit_tag "Filter by year", class: 'btn join-item btn-neutral' %>
+        <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: '' %>
+        <%= submit_tag "Filter by year", class: '' %>
     <% end %>
 </div>
 
 <br><br>
 
 <section>
-  <h2 class="text-2xl">Income vs Expenses (<%= @selected_year %>)</h2>
+  <h2 class="">Income vs Expenses (<%= @selected_year %>)</h2>
   <p>Percentage of income spent on expenses: <%= @income_vs_expenses_percentage %>%</p>
   <%= column_chart yearly_income_vs_expenses_bar_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
 
-  <h2 class="text-2xl">Income vs Rent (<%= @selected_year %>)</h2>
+  <h2 class="">Income vs Rent (<%= @selected_year %>)</h2>
     <% if @rent_to_income_percentage %>
       <p>Percentage of income spent on rent: <%= @rent_to_income_percentage %>% (Try to keep this at 30% or under!)</p>
     <% end %>
   <%= column_chart yearly_income_vs_rent_bar_chart_path, prefix: "$", messages: {empty: "No rent transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
 
-  <h2 class="text-2xl">Income (<%= @selected_year %>)</h2>
+  <h2 class="">Income (<%= @selected_year %>)</h2>
   <small>Where your money comes from</small>
   <%= pie_chart yearly_income_pie_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
 
-  <h2 class="text-2xl">Expenses (<%= @selected_year %>)</h2>
+  <h2 class="">Expenses (<%= @selected_year %>)</h2>
   <small>Where your money is being spent</small>
   <%= pie_chart yearly_expenses_pie_chart_path, prefix: "$", messages: {empty: "No expense transactions recorded."} %>
 
-  <h2 class="text-2xl">Yearly Overview (<%= @selected_year %>)</h2>
-  <table class="table table-zebra table-sm">
+  <h2 class="">Yearly Overview (<%= @selected_year %>)</h2>
+  <table class="">
     <thead>
       <tr>
         <th colspan="2"><%= Time.now.getlocal.year %></th>
@@ -118,9 +118,9 @@
   <% if @transactions.empty? %>
     <p>(Add some transactions to show yearly expenses by category)</p>
   <% else %>
-    <h2 class="text-2xl">Yearly Expenses by Category (<%= @selected_year %>)</h2>
+    <h2 class="">Yearly Expenses by Category (<%= @selected_year %>)</h2>
     <% @transactions_by_category_per_year.keys.each do |year| %>
-    <table class="table table-zebra table-sm">
+    <table class="">
       <thead>
         <tr>
           <th colspan="2"><%= year %></th>
@@ -129,7 +129,7 @@
       <tbody>
         <% @transactions_by_category_per_year[year].each do |category, amount| %>
           <tr>
-          <td><a href="<%= category_path(category.id) %>"><span class="badge" style="color:<%= category.color %>;"><%= category.name %></span></a></td>
+          <td><a href="<%= category_path(category.id) %>"><span class="" style="color:<%= category.color %>;"><%= category.name %></span></a></td>
           <td><span><%= humanized_money_with_symbol amount %></span></td>
           </tr>
         <% end %>

@@ -23,7 +23,7 @@ RUN npm install
 # generate master.key and encrypted credentials
 RUN EDITOR="mate --wait" bin/rails credentials:edit
 
-RUN bundle exec rails tailwindcss:install && bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompile
 
 RUN rails db:setup --trace
 

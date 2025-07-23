@@ -1,7 +1,7 @@
 <section>
   <%= render partial: 'layouts/notifications' %>
 
-  <div class="breadcrumbs">
+  <div class="">
     <ul>
       <li><%= link_to 'Accounts', accounts_path %></li>
       <li><%= link_to "#{@account.name}", account_path(@account) %></li>
@@ -11,11 +11,11 @@
 
   <%= form_with model: @statement, url: {controller: 'statements', action: 'create'} do |f| %>
     <%= f.label :balance %>
-    <%= f.number_field :balance, step: 0.01, class: 'input input-bordered' %>
+    <%= f.number_field :balance, step: 0.01, class: '' %>
     <%= f.label :date %>
-    <%= f.date_field :date, value: "#{Time.now.getlocal.strftime('%Y-%m-%d')}", class: 'input input-bordered' %>
+    <%= f.date_field :date, value: "#{Time.now.getlocal.strftime('%Y-%m-%d')}", class: '' %>
     <%= f.label :notes %>
-    <%= f.text_field :notes, class: 'input input-bordered' %>
-    <%= f.submit "Add", class: 'btn btn-neutral' %>
+    <%= f.text_field :notes, class: '' %>
+    <%= f.submit "Add", class: '' %>
   <% end %>
 </section>

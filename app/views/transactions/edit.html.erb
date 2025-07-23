@@ -1,7 +1,7 @@
 
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <nav aria-label="">
     <ul>
       <li><%= link_to 'Transactions', transactions_path %></li>
       <li><%= link_to "#{@transaction.id}", transaction_path(@transaction) %></li>
@@ -13,19 +13,19 @@
 
   <%= form_with model: @transaction do |f| %>
     <%= f.label :merchant %>
-    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: 'input input-bordered' %>
+    <%= f.text_field :merchant, autofocus: true, autocomplete: "merchant", class: '' %>
     <br><br>
     <%= f.label :amount %>
-    <%= f.text_field :amount, autofocus: true, class: 'input input-bordered' %>
+    <%= f.text_field :amount, autofocus: true, class: '' %>
     <br><br>
     <%= f.label :category %>
-    <%= f.text_field :category, autofocus: true, value: @transaction.category.name, class: 'input input-bordered' %>
+    <%= f.text_field :category, autofocus: true, value: @transaction.category.name, class: '' %>
     <br><br>
     <%= f.label :date %>
-    <%= f.date_field :date, autofocus: true, autocomplete: "date", class: 'input input-bordered' %>
+    <%= f.date_field :date, autofocus: true, autocomplete: "date", class: '' %>
     <br><br>
     <%= f.label :notes %>
-    <%= f.text_field :notes, autofocus: true, class: 'input input-bordered' %>
+    <%= f.text_field :notes, autofocus: true, class: '' %>
     <br><br>
-    <%= f.submit "Save", class: 'btn btn-neutral' %>
+    <%= f.submit "Save", class: '' %>
   <% end %>

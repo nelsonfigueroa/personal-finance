@@ -1,7 +1,7 @@
 
   <%= render partial: 'layouts/notifications' %>
 
-  <nav aria-label="breadcrumbs">
+  <nav aria-label="">
     <ul>
       <li><%= link_to 'Categories', categories_path %></li>
       <li><%= link_to "#{@category.name}", category_path(@category) %></li>

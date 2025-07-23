@@ -24,7 +24,6 @@ gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.2', '>= 7.2.2'
 gem 'sprockets-rails'
 gem 'sqlite3'
-gem 'tailwindcss-rails', '~> 2.3'
 gem 'turbo-rails', '>= 2.0.5'
 gem 'tzinfo-data'
 

@@ -1,17 +1,17 @@
 <%= render partial: 'layouts/notifications' %>
 
-<div class="breadcrumbs">
+<div>
     <ul>
         <li><%= link_to 'Categories', categories_path %></li>
         <li><a href="#" aria-current="page"><%= @category.name %></a></li>
     </ul>
 </div>
 
-<%= link_to edit_category_path, class: 'btn btn-neutral' do %>
+<%= link_to edit_category_path, class: '' do %>
   <button>Edit Category</button>
 <% end %>
 
-<%= link_to category_path, class: 'btn btn-neutral', data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}" } do %>
+<%= link_to category_path, class: '', data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this category?: #{@category.name}" } do %>
   <button>Delete Category</button>
 <% end %>
 
@@ -20,7 +20,7 @@
 <% if @transactions.empty? %>
   <p>You have no transactions under this category.</p>
 <% else %>
-  <table class="table table-zebra table-pin-rows table-sm">
+  <table class="">
     <thead>
       <tr>
         <th>Merchant</th>
@@ -37,7 +37,7 @@
           <td><%= transaction.merchant %></td>
           <td><%= humanized_money_with_symbol transaction.amount %></td>
           <% if transaction.category %>
-          <td><div class="badge badge-outline bg-neutral badge-sm" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></div></td>
+          <td><div class="" style="color:<%= transaction.category.color %>;"><%= transaction.category.name %></div></td>
           <% else %>
           <td>(uncategorized)</td>
           <% end %>

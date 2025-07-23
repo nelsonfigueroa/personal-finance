@@ -1,7 +1,7 @@
 <section>
   <%= render partial: 'layouts/notifications' %>
 
-  <div class="breadcrumbs">
+  <div>
     <ul>
       <li><%= link_to 'Accounts', accounts_path %></li>
       <li><a href="#" aria-current="page">Add Account</a></li>
@@ -9,8 +9,8 @@
   </div>
 
   <%= form_with model: @account do |f| %>
-    <%= f.label :name, class: 'label-text' %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-bordered' %>
-    <%= f.submit "Add Account", class: 'btn btn-neutral' %>
+    <%= f.label :name, class: '' %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: '' %>
+    <%= f.submit "Add Account", class: '' %>
   <% end %>
 </section>

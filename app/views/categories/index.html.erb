@@ -3,13 +3,13 @@
 
   <small>Categories to be assigned to transactions.</small>
   <br><br>
-  <%= link_to 'Add a Category', new_category_path, class: 'btn btn-neutral' %>
+  <%= link_to 'Add a Category', new_category_path, class: '' %>
   <br><br>
 
   <% if @categories.empty? %>
     <p>No existing categories. Create one!</p>
   <% else %>
-    <table class="table table-zebra table-sm">
+    <table class="">
       <thead>
         <tr>
           <th>Name</th>
@@ -19,8 +19,8 @@
       <tbody>
         <% @categories.each do |category| %>
           <tr>
-          <td><%= link_to category.name, category, class: 'link link-primary' %> [<%= category.transactions.size %>]</td>
-          <td><div class='badge badge-lg' style="background-color: <%= category.color %>"></div></td>
+          <td><%= link_to category.name, category, class: '' %> [<%= category.transactions.size %>]</td>
+          <td><div class='' style="background-color: <%= category.color %>"></div></td>
           </tr>
         <% end %>
       </tbody>
