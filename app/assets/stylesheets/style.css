@@ -1,0 +1,441 @@
+/* ==========================================================================
+   Terminal Theme
+   Palette: #0a0a0a bg, #b0b0b0 text, #4c8dff UI accent, #00c200 money green
+   Font: IBM Plex Mono, 15px base
+   ========================================================================== */
+
+/* --- Reset & Base --- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  background-color: #0a0a0a;
+  color: #b0b0b0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* --- Layout --- */
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+/* --- Typography --- */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #d0d0d0;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1.1rem; }
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+small {
+  color: #666;
+  font-size: 0.87rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #2a2a2a;
+  margin: 1rem 0;
+}
+
+/* --- Links --- */
+
+a {
+  color: #4c8dff;
+  text-decoration: none;
+  transition: text-decoration 0.15s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #4c8dff;
+}
+
+/* --- Navigation --- */
+
+nav {
+  border-bottom: 1px solid #2a2a2a;
+  padding: 0.75rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  color: #b0b0b0;
+  font-size: 0.87rem;
+  text-transform: lowercase;
+  margin-right: 0.25rem;
+}
+
+nav a:visited {
+  color: #b0b0b0;
+}
+
+nav a::before {
+  content: "[";
+  color: #444;
+}
+
+nav a::after {
+  content: "]";
+  color: #444;
+}
+
+nav a:hover {
+  color: #4c8dff;
+  text-decoration: none;
+}
+
+nav a:hover::before,
+nav a:hover::after {
+  color: #4c8dff;
+}
+
+/* --- Tables --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.93rem;
+}
+
+thead th {
+  text-align: left;
+  color: #d0d0d0;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid #4c8dff;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a1a;
+  vertical-align: top;
+}
+
+tbody tr:hover {
+  background-color: #111;
+}
+
+/* --- Forms --- */
+
+label {
+  display: block;
+  color: #888;
+  font-size: 0.87rem;
+  margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.93rem;
+  background-color: #111;
+  color: #b0b0b0;
+  border: 1px solid #2a2a2a;
+  padding: 0.5rem 0.75rem;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  margin-bottom: 0.75rem;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4c8dff;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 0.5rem;
+  accent-color: #4c8dff;
+}
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+/* --- Buttons --- */
+
+input[type="submit"],
+button {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.87rem;
+  background: transparent;
+  color: #b0b0b0;
+  border: 1px solid #2a2a2a;
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  border-color: #4c8dff;
+  color: #4c8dff;
+}
+
+/* Destructive action links within tables */
+a[data-turbo-method="delete"] {
+  color: #b0b0b0;
+}
+
+a[data-turbo-method="delete"]:hover {
+  color: #ff4444;
+}
+
+/* --- Net Worth Hero (Dashboard) --- */
+
+.container > div:first-of-type {
+  /* Targets the net worth wrapper on dashboard */
+}
+
+.container > div:first-of-type .net-worth-amount {
+  font-size: 2.2rem;
+  color: #00c200;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.container > div:first-of-type .net-worth-label {
+  font-size: 0.87rem;
+  color: #666;
+  text-transform: lowercase;
+}
+
+.container > div:first-of-type .net-worth-date {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+/* --- Notifications / Toasts --- */
+
+.toast {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.toast div[role="alert"] {
+  background-color: #111;
+  border: 1px solid #4c8dff;
+  color: #4c8dff;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.87rem;
+  border-radius: 2px;
+}
+
+/* --- Breadcrumbs --- */
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  font-size: 0.87rem;
+  margin-bottom: 1rem;
+}
+
+ul li::after {
+  content: " /";
+  color: #444;
+  margin-left: 0.25rem;
+}
+
+ul li:last-child::after {
+  content: "";
+}
+
+ul li a[aria-current="page"] {
+  color: #666;
+  pointer-events: none;
+}
+
+/* --- Month Headers (Transactions) --- */
+
+.container > div + div > div {
+  /* monthly stats row - will be styled with classes */
+}
+
+/* --- Charts --- */
+
+/* Chartkick chart containers */
+div[id^="chart-"] {
+  margin: 1rem 0;
+  background: transparent;
+}
+
+/* --- Year Switcher --- */
+
+form select {
+  display: inline-block;
+  width: auto;
+  max-width: 200px;
+}
+
+form input[type="submit"] {
+  display: inline-block;
+}
+
+/* --- Category Color Swatch --- */
+
+td div[style*="background-color"] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2px;
+}
+
+/* --- File Input --- */
+
+input[type="file"] {
+  padding: 0.4rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  background: transparent;
+  color: #b0b0b0;
+  border: 1px solid #2a2a2a;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+input[type="file"]::file-selector-button:hover {
+  border-color: #4c8dff;
+  color: #4c8dff;
+}
+
+/* --- ASCII Bar Charts --- */
+
+.ascii-chart {
+  margin: 0.75rem 0;
+  font-size: 0.87rem;
+}
+
+.ascii-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.ascii-chart-label {
+  min-width: 12ch;
+  max-width: 16ch;
+  color: #888;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ascii-chart-bar {
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ascii-bar-green {
+  color: #00c200;
+}
+
+.ascii-bar-dim {
+  color: #666;
+}
+
+.ascii-chart-bar .ascii-bar-green,
+.ascii-bar-green {
+  color: #00c200;
+}
+
+.ascii-chart-value {
+  color: #d0d0d0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ascii-chart-percent {
+  color: #555;
+  white-space: nowrap;
+  margin-left: 0.25rem;
+}
+
+.ascii-chart-empty {
+  color: #444;
+  font-style: italic;
+  font-size: 0.87rem;
+}
+
+/* --- Utility --- */
+
+br + br {
+  display: none; /* Collapse double line breaks into single spacing */
+}
+
+/* Spacing between action links/buttons at top of pages */
+.container > a,
+section > a {
+  margin-right: 1rem;
+}

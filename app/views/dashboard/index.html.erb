@@ -2,11 +2,11 @@
 
 <%= render partial: 'layouts/notifications' %>
 
-<div class="">
-    <div class="">
-        <p class="">Net Worth</p>
-        <div class=""><%= humanized_money_with_symbol @net_worth %></div>
-        <p class="">As of <%= Time.now.getlocal.strftime('%Y-%m-%d') %></p>
+<div>
+    <div>
+        <p class="net-worth-label">net worth</p>
+        <div class="net-worth-amount"><%= humanized_money_with_symbol @net_worth %></div>
+        <p class="net-worth-date">as of <%= Time.now.getlocal.strftime('%Y-%m-%d') %></p>
     </div>
 </div>
 
@@ -16,18 +16,26 @@
     spanGaps: true,
     loading: "Loading...",
     messages: {empty: "No statements recorded."},
-    download: {filename: "net-worth", background: "#ffffff"} %>
+    download: {filename: "net-worth", background: "#0a0a0a"},
+    library: {
+      scales: {
+        x: { ticks: { color: "#666", font: { family: "IBM Plex Mono" } }, grid: { color: "#1a1a1a" }, border: { color: "#2a2a2a" } },
+        y: { ticks: { color: "#666", font: { family: "IBM Plex Mono" } }, grid: { color: "#1a1a1a" }, border: { color: "#2a2a2a" } }
+      },
+      plugins: { legend: { labels: { color: "#666", font: { family: "IBM Plex Mono" } } } },
+      elements: { point: { radius: 2, hoverRadius: 4 }, line: { tension: 0, borderWidth: 2 } }
+    } %>
 
 <br>
 
 <section>
-  <h2 class="">Account Balances</h2>
+  <h2>Account Balances</h2>
   <br>
 
   <% if @accounts.empty? %>
     <p>No existing accounts. Create one!</p>
   <% else %>
-    <table class="">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -40,11 +48,7 @@
           <tr>
           <td><%= link_to account.name, account %></td>
           <% if account.statements.order(:date).last %>
-            <% if account.statements.order(:date).last.balance >= 0 %>
-              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-            <% else %>
-              <td><span><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></span></td>
-            <% end %>
+            <td><%= humanized_money_with_symbol account.statements.order(:date).last.balance %></td>
             <td><%= account.statements.order(:date).last.date.to_formatted_s(:long) %></td>
           <% else %>
             <td><i>No recorded statements</i></td>
@@ -59,44 +63,59 @@
 
 <br>
 
-<p class="">Overview for <%= @selected_year %></p>
+<p>Overview for <%= @selected_year %></p>
 
-<div class="">
+<div>
     <%= form_tag dashboard_path, method: :get do %>
-        <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false, class: '' %>
-        <%= submit_tag "Filter by year", class: '' %>
+        <%= select_tag :year, options_for_select(@years_for_switcher, @selected_year), include_blank: false %>
+        <%= submit_tag "Filter by year" %>
     <% end %>
 </div>
 
-<br><br>
+<br>
 
 <section>
-  <h2 class="">Income vs Expenses (<%= @selected_year %>)</h2>
+  <h2>Income vs Expenses (<%= @selected_year %>)</h2>
   <p>Percentage of income spent on expenses: <%= @income_vs_expenses_percentage %>%</p>
-  <%= column_chart yearly_income_vs_expenses_bar_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
+  <%= ascii_bar(
+    { "Income" => @total_yearly_income, "Expenses" => @yearly_expenses },
+    colors: { "Income" => "ascii-bar-green", "Expenses" => "ascii-bar-dim" }
+  ) %>
 
-  <h2 class="">Income vs Rent (<%= @selected_year %>)</h2>
-    <% if @rent_to_income_percentage %>
-      <p>Percentage of income spent on rent: <%= @rent_to_income_percentage %>% (Try to keep this at 30% or under!)</p>
-    <% end %>
-  <%= column_chart yearly_income_vs_rent_bar_chart_path, prefix: "$", messages: {empty: "No rent transactions recorded."}, colors: ["rgba(72, 199, 116, 0.55", "#666"] %>
+  <br>
 
-  <h2 class="">Income (<%= @selected_year %>)</h2>
+  <h2>Income vs Rent (<%= @selected_year %>)</h2>
+  <% if @rent_to_income_percentage %>
+    <p>Percentage of income spent on rent: <%= @rent_to_income_percentage %>% (Try to keep this at 30% or under!)</p>
+  <% end %>
+  <%= ascii_bar(
+    { "Income" => @total_yearly_income, "Rent" => @yearly_rent },
+    colors: { "Income" => "ascii-bar-green", "Rent" => "ascii-bar-dim" }
+  ) %>
+
+  <br>
+
+  <h2>Income (<%= @selected_year %>)</h2>
   <small>Where your money comes from</small>
-  <%= pie_chart yearly_income_pie_chart_path, prefix: "$", messages: {empty: "No income transactions recorded."} %>
+  <%= ascii_bar(@income_by_category, show_percent: true, total: @total_yearly_income) %>
 
-  <h2 class="">Expenses (<%= @selected_year %>)</h2>
+  <br>
+
+  <h2>Expenses (<%= @selected_year %>)</h2>
   <small>Where your money is being spent</small>
-  <%= pie_chart yearly_expenses_pie_chart_path, prefix: "$", messages: {empty: "No expense transactions recorded."} %>
+  <% expenses_by_category = @transactions_by_category_per_year[@selected_year] || {} %>
+  <% expenses_hash = expenses_by_category.transform_keys { |cat| cat.respond_to?(:name) ? cat.name : cat.to_s } %>
+  <%= ascii_bar(expenses_hash, show_percent: true, total: @yearly_expenses) %>
 
-  <h2 class="">Yearly Overview (<%= @selected_year %>)</h2>
-  <table class="">
+  <br>
+
+  <h2>Yearly Overview (<%= @selected_year %>)</h2>
+  <table>
     <thead>
       <tr>
-        <th colspan="2"><%= Time.now.getlocal.year %></th>
+        <th colspan="2"><%= @selected_year %></th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
         <td>Income</td>
@@ -118,9 +137,9 @@
   <% if @transactions.empty? %>
     <p>(Add some transactions to show yearly expenses by category)</p>
   <% else %>
-    <h2 class="">Yearly Expenses by Category (<%= @selected_year %>)</h2>
+    <h2>Yearly Expenses by Category (<%= @selected_year %>)</h2>
     <% @transactions_by_category_per_year.keys.each do |year| %>
-    <table class="">
+    <table>
       <thead>
         <tr>
           <th colspan="2"><%= year %></th>
@@ -129,14 +148,13 @@
       <tbody>
         <% @transactions_by_category_per_year[year].each do |category, amount| %>
           <tr>
-          <td><a href="<%= category_path(category.id) %>"><span class="" style="color:<%= category.color %>;"><%= category.name %></span></a></td>
-          <td><span><%= humanized_money_with_symbol amount %></span></td>
+          <td><a href="<%= category_path(category.id) %>"><span style="color:<%= category.color %>;"><%= category.name %></span></a></td>
+          <td><%= humanized_money_with_symbol amount %></td>
           </tr>
         <% end %>
     <% end %>
       </tbody>
     </table>
-    <br>
   <% end %>
 </section>
 </div>

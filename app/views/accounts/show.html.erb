@@ -20,7 +20,16 @@
     <button>Delete Account</button>
   <% end %>
 
-  <%= line_chart single_account_graph_path(account_id: @account.id) %>
+  <%= line_chart single_account_graph_path(account_id: @account.id),
+      colors: ["#00c200"], prefix: "$", thousands: ",",
+      library: {
+        scales: {
+          x: { ticks: { color: "#666", font: { family: "IBM Plex Mono" } }, grid: { color: "#1a1a1a" }, border: { color: "#2a2a2a" } },
+          y: { ticks: { color: "#666", font: { family: "IBM Plex Mono" } }, grid: { color: "#1a1a1a" }, border: { color: "#2a2a2a" } }
+        },
+        plugins: { legend: { labels: { color: "#666", font: { family: "IBM Plex Mono" } } } },
+        elements: { point: { radius: 2, hoverRadius: 4 }, line: { tension: 0, borderWidth: 2 } }
+      } %>
 
   <% unless @statements.empty? %>
   <br><br>
