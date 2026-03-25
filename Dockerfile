@@ -1,10 +1,10 @@
-FROM ruby:3.3.1-slim-bullseye AS build
+FROM ruby:3.3.7-slim-bullseye AS build
 
 ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
 
 RUN apt update
-RUN apt install -y build-essential npm libsqlite3-dev nodejs
+RUN apt install -y build-essential npm libsqlite3-dev nodejs libyaml-dev
 
 WORKDIR /app
 
@@ -64,7 +64,7 @@ RUN find / -name "node_modules" -exec rm -rf {} +
 RUN apt remove -y --allow-remove-essential apt
 
 # Runtime image without unnecessary files/directories
-FROM ruby:3.3.1-slim-bullseye AS runtime
+FROM ruby:3.3.7-slim-bullseye AS runtime
 COPY --from=build . .
 
 ENV RAILS_ENV=production

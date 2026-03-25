@@ -5,25 +5,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.7'
 
-gem 'actionpack', '>= 7.0.4.1'
-gem 'actionview', '>= 7.0.4.1'
-gem 'activerecord', '>= 7.0.4.1'
-gem 'activesupport', '>= 7.0.4.1'
 gem 'bootsnap', '>= 1.4.2'
 gem 'chartkick', '>= 4.2.1'
 gem 'devise'
 gem 'devise-pwned_password'
 gem 'faker'
 gem 'groupdate'
-gem 'hotwire-rails', '>= 0.1.3'
 gem 'importmap-rails'
 gem 'jbuilder', '>= 2.7'
-gem 'money-rails', '~> 1.12'
+gem 'money-rails', '~> 3.0'
 gem 'nokogiri', '>= 1.13.10'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 7.2', '>= 7.2.3.1'
+gem 'rails', '~> 8.1'
 gem 'sprockets-rails'
 gem 'sqlite3'
+gem 'stimulus-rails'
 gem 'turbo-rails', '>= 2.0.5'
 gem 'tzinfo-data'
 
@@ -45,14 +41,12 @@ group :development do
   gem 'listen'
   gem 'rails_live_reload'
   gem 'seed_dump'
-  gem 'spring'
-  gem 'spring-watcher-listen'
   gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  gem 'webdrivers'
 end
