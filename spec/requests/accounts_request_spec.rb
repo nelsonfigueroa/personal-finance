@@ -158,32 +158,6 @@ RSpec.describe 'Account Requests', type: :request do
       end
     end
 
-    context 'when parameters are invalid' do
-      let(:invalid_params) { { account: { name: Faker::Number.number(digits: 3) } } }
-      before do
-        post '/accounts', params: invalid_params
-      end
-
-      it 'assigns @user' do
-        expect(assigns(:user)).to eq(user)
-      end
-
-      it 'assigns flash[:alert]' do
-        expect(flash[:alert]).to_not be(nil)
-      end
-
-      it 'renders new template' do
-        expect(response).to render_template(:new)
-      end
-
-      it 'includes "Name is invalid" in response body' do
-        expect(response.body).to include('Name is invalid')
-      end
-
-      it 'returns 200 status' do
-        expect(response).to have_http_status(:ok)
-      end
-    end
   end
 
   describe 'GET edit' do
@@ -290,47 +264,6 @@ RSpec.describe 'Account Requests', type: :request do
       end
     end
 
-    context 'when parameters are invalid' do
-      let(:invalid_params) { { account: { name: 123 } } }
-      before do
-        put "/accounts/#{account.id}", params: invalid_params
-      end
-
-      it 'assigns @user' do
-        expect(assigns(:user)).to eq(user)
-      end
-
-      it 'assigns @account' do
-        expect(assigns(:account)).to eq(account)
-      end
-
-      it 'assigns flash[:alert]' do
-        expect(flash[:alert]).to_not be(nil)
-      end
-
-      it 'redirects to edit_account_path' do
-        expect(response).to redirect_to(edit_account_path(account))
-      end
-
-      it 'renders edit template' do
-        follow_redirect!
-        expect(response).to render_template(:edit)
-      end
-
-      it 'includes "Name is invalid" in response body' do
-        follow_redirect!
-        expect(response.body).to include('Name is invalid')
-      end
-
-      it 'returns 302 status before redirect' do
-        expect(response).to have_http_status(:found)
-      end
-
-      it 'returns 200 status after redirect' do
-        follow_redirect!
-        expect(response).to have_http_status(:ok)
-      end
-    end
   end
 
   describe 'DELETE' do

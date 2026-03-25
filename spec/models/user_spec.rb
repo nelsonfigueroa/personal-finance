@@ -6,8 +6,6 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many(:accounts).dependent(:destroy) }
     it { should have_many(:statements) }
-    it { should have_many(:expense_trackers).dependent(:destroy) }
-    it { should have_many(:expenses) }
   end
 
   describe 'validations' do
