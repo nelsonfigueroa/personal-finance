@@ -4,7 +4,7 @@ ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
 
 RUN apt update
-RUN apt install -y build-essential npm libsqlite3-dev nodejs libyaml-dev
+RUN apt install -y build-essential libsqlite3-dev libyaml-dev
 
 WORKDIR /app
 
@@ -18,8 +18,6 @@ RUN bundle install --jobs 4 --no-cache --retry 5
 
 COPY . .
 
-RUN npm install
-
 # generate master.key and encrypted credentials
 RUN EDITOR="mate --wait" bin/rails credentials:edit
 
@@ -28,7 +26,6 @@ RUN bundle exec rails assets:precompile
 RUN rails db:setup --trace
 
 # cleanup
-RUN apt remove -y nodejs
 RUN apt remove -y build-essential
 RUN apt autoremove -y
 
@@ -55,10 +52,8 @@ RUN find / -type f -name "Dockerfile" -exec rm -rf {} +
 RUN find / -type f -name ".rspec" -exec rm -rf {} +
 RUN find / -type f -name ".rubocop.yml" -exec rm -rf {} +
 RUN find / -type f -name "gem_make.out" -exec rm -rf {} +
-RUN find / -name ".npm" -exec rm -rf {} +
 RUN find / -name "Rakefile" -exec rm -rf {} +
 RUN find / -name "spec" -exec rm -rf {} +
-RUN find / -name "node_modules" -exec rm -rf {} +
 
 # remove the package manager
 RUN apt remove -y --allow-remove-essential apt
