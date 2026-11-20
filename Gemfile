@@ -3,10 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.7'
+ruby '4.0.10'
 
 gem 'bootsnap', '>= 1.4.2'
 gem 'chartkick', '>= 4.2.1'
+gem 'csv'
 gem 'devise'
 gem 'devise-pwned_password'
 gem 'faker'

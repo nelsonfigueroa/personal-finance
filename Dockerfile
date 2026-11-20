@@ -1,4 +1,4 @@
-FROM ruby:3.3.7-slim-bullseye AS build
+FROM ruby:4.0.10-slim-trixie AS build
 
 ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 ENV RAILS_ENV=production
@@ -25,42 +25,22 @@ RUN bundle exec rails assets:precompile
 
 RUN rails db:setup --trace
 
-# cleanup
-RUN apt remove -y build-essential
-RUN apt autoremove -y
+# only /usr/local/bundle and /app are copied to the runtime stage so only those need cleaning
+RUN rm -rf tmp/cache vendor/assets lib/assets
+RUN find /usr/local/bundle /app -type f \( \
+      -name "*.c" -o -name "*.h" -o -name "*.hpp" -o -name "*.java" -o \
+      -name "*.log" -o -name "*.md" -o -name "*.mk" -o -name "*.o" -o \
+      -name "*.txt" -o -name "*.gem" -o -name "Makefile" -o \
+      -name "CHANGELOG" -o -name "CHANGES" -o -name "README" -o -name "TODO" -o \
+      -name "LICENSE" -o -name "MIT-LICENSE" -o -name "Dockerfile" -o \
+      -name ".rspec" -o -name ".rubocop.yml" -o -name "gem_make.out" \
+    \) -delete \
+ && find /usr/local/bundle /app \( -name "Rakefile" -o -name "spec" \) -prune -exec rm -rf {} +
 
-# more cleanup
-RUN rm -rf tmp/cache vendor/assets lib/assets /usr/local/share/.cache /root/.bundle/cache
-RUN find / -type f -name "*.c" -exec rm -rf {} +
-RUN find / -type f -name "*.h" -exec rm -rf {} +
-RUN find / -type f -name "*.hpp" -exec rm -rf {} +
-RUN find / -type f -name "*.java" -exec rm -rf {} +
-RUN find / -type f -name "*.log" -exec rm -rf {} +
-RUN find / -type f -name "*.md" -exec rm -rf {} +
-RUN find / -type f -name "*.mk" -exec rm -rf {} +
-RUN find / -type f -name "*.o" -exec rm -rf {} +
-RUN find / -type f -name "*.txt" -exec rm -rf {} +
-RUN find / -type f -name "Makefile" -exec rm -rf {} +
-RUN find / -type f -name "*.gem" -exec rm -rf {} +
-RUN find / -type f -name "CHANGELOG" -exec rm -rf {} +
-RUN find / -type f -name "LICENSE" -exec rm -rf {} +
-RUN find / -type f -name "README" -exec rm -rf {} +
-RUN find / -type f -name "CHANGES" -exec rm -rf {} +
-RUN find / -type f -name "TODO" -exec rm -rf {} +
-RUN find / -type f -name "MIT-LICENSE" -exec rm -rf {} +
-RUN find / -type f -name "Dockerfile" -exec rm -rf {} +
-RUN find / -type f -name ".rspec" -exec rm -rf {} +
-RUN find / -type f -name ".rubocop.yml" -exec rm -rf {} +
-RUN find / -type f -name "gem_make.out" -exec rm -rf {} +
-RUN find / -name "Rakefile" -exec rm -rf {} +
-RUN find / -name "spec" -exec rm -rf {} +
-
-# remove the package manager
-RUN apt remove -y --allow-remove-essential apt
-
-# Runtime image without unnecessary files/directories
-FROM ruby:3.3.7-slim-bullseye AS runtime
-COPY --from=build . .
+# Runtime image with only gems and the app
+FROM ruby:4.0.10-slim-trixie AS runtime
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /app /app
 
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
